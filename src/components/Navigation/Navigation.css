@@ -1,0 +1,28 @@
+#navbar .nav-link {
+    color: #013f84 !important;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+}
+#navbar .navbar-brand {
+    font-size: 5.5rem;
+    color: #013f84;
+}
+
+#navbar ul .btn {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+#navbar .nav-link:hover {
+    color: #f9ba00 !important;
+}
+
+#navbar .nav-link.active {
+    color: #f9ba00 !important;
+}
+
+.navbar-toggler {
+    font-size: 3rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+}
