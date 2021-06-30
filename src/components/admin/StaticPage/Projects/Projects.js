@@ -4,10 +4,15 @@ import ProjectTable from "./ProjectTable/ProjectTable";
 import NoticeOfIntentModal from "../ToDoLists/Modal/Modal";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import {Button, Modal} from "react-bootstrap";
+import formConfig from "../../../../helpers/formConfig";
+import Input from "../../../UI/Input/Input";
 
 const Project = ( props ) => {
+    const token = localStorage.getItem('token')
     const [loaded, setLoaded] = useState(false)
     const [show, setShow] = useState(false);
+    const [addShow, setAddShow] = useState(false);
     const [singleToDo, setSingleToDo] = useState({
         businessName: '',
         potential: '',
@@ -17,12 +22,20 @@ const Project = ( props ) => {
     });
     const [completedProject, setCompletedProject] = useState([]);
 
+    const [noticeOfIntentForm, setNoticeOfIntentForm] = useState({
+        businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
+        potential: formConfig('input', 'col-md-6', 'text', 'Potential'),
+        planOnGoing: formConfig('dateTime', 'col-md-6', 'text', 'Date'),
+        businessPhoneNumber: formConfig('input', 'col-md-6', 'text', 'Phone Number'),
+        additionalInformation: formConfig('input', 'col-md-6', 'text', 'Additional Info'),
+    })
 
     useEffect(() => {
         axios.get('/admin/commissioned')
             .then((res) => {
                 setCompletedProject(res.data.completedIntent);
                 setLoaded(true)
+                console.log(completedProject)
             })
     },[loaded])
 
@@ -55,6 +68,100 @@ const Project = ( props ) => {
             })
     }
 
+    const formElementArray = [];
+    for (const key in noticeOfIntentForm ) {
+        formElementArray.push({
+            id: key,
+            config: noticeOfIntentForm[key],
+        })
+    }
+
+
+    const Notify = () => toast.success('Notice Of Intent Updated Successfully', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+    });
+    const inputChangeHandler = (event, inputIdentifier) => {
+        const updatedNoticeForm = {
+            ...noticeOfIntentForm
+        }
+
+        const updatedFormElement = {
+            ...updatedNoticeForm[inputIdentifier]
+        }
+
+        updatedFormElement.value = event.target.value;
+        updatedNoticeForm[inputIdentifier] = updatedFormElement;
+
+        setNoticeOfIntentForm(updatedNoticeForm);
+    }
+    const datePickerHandler =(date, inputIdentifier)=> {
+
+        const updatedNoticeForm = {
+            ...noticeOfIntentForm
+        }
+
+        const updatedFormElement = {
+            ...updatedNoticeForm[inputIdentifier]
+        }
+
+        updatedFormElement.value = date;
+        updatedNoticeForm[inputIdentifier] = updatedFormElement;
+
+        setNoticeOfIntentForm(updatedNoticeForm);
+    }
+
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+        setShow(false)
+        const formData = {};
+        for(const formElementIdentifier in noticeOfIntentForm) {
+            formData[formElementIdentifier] = noticeOfIntentForm[formElementIdentifier].value;
+        }
+        axios.post('/admin/create-notice', formData, {headers: {"Authorization": token}})
+            .then((res) => {
+                console.log(res);
+                Notify()
+                setAddShow(!addShow)
+                setLoaded(false)
+                setNoticeOfIntentForm({
+                    businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
+                    potential: formConfig('input', 'col-md-6', 'text', 'Potential'),
+                    planOnGoing: formConfig('date', 'col-md-6', 'text', 'Date', Date.now()),
+                    businessPhoneNumber: formConfig('input', 'col-md-6', 'text', 'Phone Number'),
+                    additionalInformation: formConfig('input', 'col-md-6', 'text', 'Additional Info'),
+                })
+            })
+    }
+
+    const form = (
+        <form onSubmit={formSubmitHandler}>
+            <div className="form-row">
+                {formElementArray.map(( formElement, index ) => (
+                    <Input
+                        key={index}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        changed={(event) => inputChangeHandler(event, formElement.id)}
+                        datePickerHandler={(e) => datePickerHandler(e, formElement.id)}
+                        label={formElement.config.elementConfig.placeholder}
+                        class={formElement.config.elementCol}
+                    />
+                ))}
+            </div>
+            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Create Intent</Button>
+        </form>
+    )
+
+    const toDoHandleShow = () => {
+        setAddShow(!addShow)
+    };
+
     return (
         <>
             <div className="content">
@@ -73,8 +180,11 @@ const Project = ( props ) => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="card">
-                                <div className="card-header card-header-primary">
+                                <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
                                     <h4 className="card-title mb-0">Projects</h4>
+                                    <button type="button" onClick={toDoHandleShow}
+                                            className="btn btn-primary btn-lg">Add
+                                    </button>
                                 </div>
                                 <div className="card-body">
                                     <div className="project-section">
@@ -116,6 +226,20 @@ const Project = ( props ) => {
                 additionalInformation={singleToDo.additionalInformation}
                 points={singleToDo.points}
             />
+            <Modal
+                show={addShow}
+                onHide={toDoHandleShow}
+                animation={false}
+                size={'lg'}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Add Notice</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {form}
+                </Modal.Body>
+            </Modal>
         </>
     );
 }

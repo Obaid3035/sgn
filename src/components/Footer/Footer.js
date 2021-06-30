@@ -55,7 +55,7 @@ const Footer = ( props ) => {
                 setQueryForm({
                     name: formConfig('input', 'col-md-6','text', 'First Name'),
                     email: formConfig('input', 'col-md-6','email', 'Email'),
-                    message: formConfig('textarea', 'col-md-12','text', 'message')
+                    description: formConfig('textarea', 'col-md-12','text', 'description')
                 })
                 setLoader(true)
                 notify()

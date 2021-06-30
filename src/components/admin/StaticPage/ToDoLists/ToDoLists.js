@@ -4,6 +4,9 @@ import ToDoList from "./ToDoList/ToDoList";
 import NoticeOfIntentModal from "./Modal/Modal";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import {Button, Modal} from "react-bootstrap";
+import Input from "../../../UI/Input/Input";
+import formConfig from "../../../../helpers/formConfig";
 
 const ToDoLists = (props ) => {
 
@@ -16,6 +19,17 @@ const ToDoLists = (props ) => {
         additionalInformation: '',
         points: ''
     });
+
+    const [noticeOfIntentForm, setNoticeOfIntentForm] = useState({
+        businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
+        potential: formConfig('input', 'col-md-6', 'text', 'Potential'),
+        planOnGoing: formConfig('dateTime', 'col-md-6', 'text', 'Date'),
+        businessPhoneNumber: formConfig('input', 'col-md-6', 'text', 'Phone Number'),
+        additionalInformation: formConfig('input', 'col-md-6', 'text', 'Additional Info'),
+        points: formConfig('input', 'col-md-6', 'number', 'Points', 0 ),
+        users: formConfig('select', 'col-md-12', '', 'Select Employee', '', '', '',
+            []),
+    })
     const [toDoList, setToDoList] = useState([]);
     const [show, setShow] = useState(false);
 
@@ -87,11 +101,121 @@ const ToDoLists = (props ) => {
         ))
     )
 
+    const inputChangeHandler = (event, inputIdentifier) => {
+        const updatedNoticeForm = {
+            ...noticeOfIntentForm
+        }
+
+        const updatedFormElement = {
+            ...updatedNoticeForm[inputIdentifier]
+        }
+
+        updatedFormElement.value = event.target.value;
+        updatedNoticeForm[inputIdentifier] = updatedFormElement;
+
+        setNoticeOfIntentForm(updatedNoticeForm);
+    }
+
+    const formElementArray = [];
+    for (const key in noticeOfIntentForm ) {
+        formElementArray.push({
+            id: key,
+            config: noticeOfIntentForm[key],
+        })
+    }
 
 
 
+    const toDoHandleShow = () => {
+        setShow(!show)
+        axios.get('/admin/users')
+            .then((res) => {
+                const data = res.data;
+                data.unshift({label: 'Select', value: ''})
+                const updatedState = {
+                    ...noticeOfIntentForm
+                }
+                const updatedElement = {
+                    ...updatedState['users']
+                }
+                updatedElement.elementConfig.option = res.data;
+                updatedState['users'] = updatedElement
+                setNoticeOfIntentForm(updatedState)
+            });
+    };
+
+    const Notify = () => toast.success('Notice Of Intent Updated Successfully', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+    });
 
 
+
+    const datePickerHandler =(date, inputIdentifier)=> {
+
+        const updatedNoticeForm = {
+            ...noticeOfIntentForm
+        }
+
+        const updatedFormElement = {
+            ...updatedNoticeForm[inputIdentifier]
+        }
+
+        updatedFormElement.value = date;
+        updatedNoticeForm[inputIdentifier] = updatedFormElement;
+
+        setNoticeOfIntentForm(updatedNoticeForm);
+    }
+
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+        setShow(false)
+        const formData = {};
+        for(const formElementIdentifier in noticeOfIntentForm) {
+            formData[formElementIdentifier] = noticeOfIntentForm[formElementIdentifier].value;
+        }
+
+        axios.post('/admin/noticeofintent', formData)
+            .then((res) => {
+                console.log(res);
+                Notify()
+                setShow(false)
+                setLoaded(false)
+                setNoticeOfIntentForm({
+                    businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
+                    potential: formConfig('input', 'col-md-6', 'text', 'Potential'),
+                    planOnGoing: formConfig('date', 'col-md-6', 'text', 'Date', Date.now()),
+                    businessPhoneNumber: formConfig('input', 'col-md-6', 'text', 'Phone Number'),
+                    additionalInformation: formConfig('input', 'col-md-6', 'text', 'Additional Info'),
+                    points: formConfig('input', 'col-md-6', 'number', 'Points', 0 ),
+                    users: formConfig('select', 'col-md-12', '', 'Select Employee', '', '', '',
+                        []),
+                })
+            })
+    }
+    const form = (
+        <form onSubmit={formSubmitHandler}>
+            <div className="form-row">
+                {formElementArray.map(( formElement, index ) => (
+                    <Input
+                        key={index}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        changed={(event) => inputChangeHandler(event, formElement.id)}
+                        datePickerHandler={(e) => datePickerHandler(e, formElement.id)}
+                        label={formElement.config.elementConfig.placeholder}
+                        class={formElement.config.elementCol}
+                    />
+                ))}
+            </div>
+            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Create Intent</Button>
+        </form>
+    )
 
     return (
         <>
@@ -114,6 +238,9 @@ const ToDoLists = (props ) => {
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
                                     <h4 className="card-title mb-0">To-Dos</h4>
+                                    <button type="button" onClick={toDoHandleShow}
+                                            className="btn btn-primary btn-lg">Add
+                                    </button>
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">
@@ -148,6 +275,20 @@ const ToDoLists = (props ) => {
                 additionalInformation={singleToDo.additionalInformation}
                 points={singleToDo.points}
             />
+            <Modal
+                show={show}
+                onHide={toDoHandleShow}
+                animation={false}
+                size={'lg'}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Add Notice</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {form}
+                </Modal.Body>
+            </Modal>
         </>
     );
 }

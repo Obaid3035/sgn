@@ -14,8 +14,8 @@ const QuoteView = (props) => {
                 setQuoteData(res.data)
                 setLoaded(true)
             })
+        console.log(quoteData)
     }, [loaded])
-
     return (
         loaded ?
             quoteData ? <div className="content">
@@ -132,7 +132,7 @@ const QuoteView = (props) => {
                                                     <label htmlFor="">Delivery Adress would be the same as the company’s
                                                         address?</label>
                                                     <input type="text" className="form-control" readOnly id=""
-                                                           name="sameDeliveryAddress" value={quoteData.checkAddress} />
+                                                           name="sameDeliveryAddress" value={quoteData.checkAddress ? 'Yes' : 'No'} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
@@ -140,6 +140,50 @@ const QuoteView = (props) => {
                                                     <label htmlFor="">Delivery Address</label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.Address} />
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-6 mb-4">
+                                                <div className="form-group">
+                                                    <label htmlFor="">
+                                                        On the scale of 1 to 10, how satisfied were you with your last interaction with our representative?</label>
+                                                    <input type="text" className="form-control" readOnly id=""
+                                                           name="deliveryAddress" value={quoteData.lastInteractive} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-lg-6 mb-4">
+                                                <div className="form-group">
+                                                    <label htmlFor="">
+                                                        On the scale of 1 to 10, how clear was our representative’s presentation?</label>
+                                                    <input type="text" className="form-control" readOnly id=""
+                                                           name="deliveryAddress" value={quoteData.representative} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-lg-6 mb-4">
+                                                <div className="form-group">
+                                                    <label htmlFor="">
+                                                        On the scale of 1 to 10, how likely would you recommend our company to friends and family?</label>
+                                                    <input type="text" className="form-control" readOnly id=""
+                                                           name="deliveryAddress" value={quoteData.recommend} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-lg-6 mb-4">
+                                                <div className="form-group">
+                                                    <label htmlFor="">
+                                                        REFERRAL CODE</label>
+                                                    <input type="text" className="form-control" readOnly id=""
+                                                           name="deliveryAddress" value={quoteData.code} />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-lg-6 mb-4">
+                                                <div className="form-group">
+                                                    <label htmlFor="">
+                                                        On the scale of 1 to 10, how satisfied were you with your last interaction with our representative?</label>
+                                                    <input type="text" className="form-control" readOnly id=""
+                                                           name="deliveryAddress" value={quoteData.representative} />
                                                 </div>
                                             </div>
                                         </div>

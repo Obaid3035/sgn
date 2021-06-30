@@ -14,6 +14,8 @@ import JobReview from "../../components/StaticPage/Career/JobReview/JobReview";
 import ApplicationForm from "../../components/StaticPage/ApplicationForm/ApplicationForm";
 import Welcome from "../../components/StaticPage/Welcome";
 import Questionare from "../../components/StaticPage/Questionare/Questionare";
+import Survey from "../../components/StaticPage/Survey/Survey";
+import SurveyForm from "../../components/StaticPage/SurveyForm/SurveyForm";
 
 const Layout = ( props ) => {
     const loggedIn = localStorage.getItem('loggedIn')
@@ -42,6 +44,8 @@ const Layout = ( props ) => {
             <main>
                <Switch>
                    <Route path={'/welcome'} exact component={Welcome}/>
+                   <Route path={'/survey-form/:id'} exact component={SurveyForm}/>
+                   <Route path={'/survey/:id'} exact component={Survey} />
                    <Route path={'/questionare'} exact component={Questionare} />
                    <Route path={'/application/:id'} exact component={ApplicationForm}/>
                    <Route path={'/about'} exact component={About} />

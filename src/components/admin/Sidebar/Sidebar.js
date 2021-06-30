@@ -187,6 +187,16 @@ function Sidebar({ color, image, user }) {
                     <p>{'Quote'}</p>
                   </NavLink>
                 </li>
+                <li className={activeRoute('/admin/getInTouch')}>
+                  <NavLink
+                      to={'/admin/getInTouch'}
+                      className="nav-link"
+                      activeClassName="active"
+                  >
+                    <i className={'fas fa-question-circle'} />
+                    <p>{'GetInTouch'}</p>
+                  </NavLink>
+                </li>
               </>
           ) : ''}
         </Nav>

@@ -11,6 +11,11 @@ import Layout from "./hoc/Layout/Layout";
 import CandidateLayout from "./hoc/CandidateLayout/CandidateLayout";
 import Welcome from "./components/StaticPage/Welcome";
 
+//rehman3904561@cloud.neduet.edu.pk
+//bY09UH7
+
+//obaid3035@gmail.com
+//S9CV9K1
 
 const App = ( props ) => {
     let {loggedIn} = useAuth();

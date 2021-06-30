@@ -89,6 +89,7 @@ const ApplicationForm = ( props ) => {
         address: '',
         zipCode: '',
         employmentLength: '',
+        currentlyEmployed: false,
         salary: '',
         position: '',
         reasonOfLeaving: '',
@@ -101,6 +102,7 @@ const ApplicationForm = ( props ) => {
         businessType: '',
         address: '',
         zipCode: '',
+        currentlyEmployed: false,
         employmentLength: '',
         salary: '',
         position: '',
@@ -114,6 +116,7 @@ const ApplicationForm = ( props ) => {
         businessType: '',
         address: '',
         zipCode: '',
+        currentlyEmployed: false,
         employmentLength: '',
         salary: '',
         position: '',
@@ -570,7 +573,7 @@ const Step1 = ( props ) => {
                     <div className="form-group row">
                         <label htmlFor="" className="col-sm-4 col-form-label">Middle Name:</label>
                         <div className="col-sm-8">
-                            <input type="text" className="form-control" required id="" name="middleName" value={props.middleName} onChange={props.handleChange} />
+                            <input type="text" className="form-control" id="" name="middleName" value={props.middleName} onChange={props.handleChange} />
                         </div>
                     </div>
 
@@ -584,14 +587,14 @@ const Step1 = ( props ) => {
                     <div className="form-group row">
                         <label htmlFor="" className="col-sm-4 col-form-label">Street Address:</label>
                         <div className="col-sm-8">
-                            <input type="text" className="form-control" required id="" name="streetAddress" value={props.streetAddress} onChange={props.handleChange} />
+                            <input type="text" className="form-control" id="" name="streetAddress" value={props.streetAddress} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
                         <div className="col-sm-8">
-                            <input type="text" className="form-control" required id="" name="zipCode" value={props.zipCode} onChange={props.handleChange} />
+                            <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode} onChange={props.handleChange} />
                         </div>
                     </div>
 
@@ -626,7 +629,7 @@ const Step2 = ( props ) => {
                     <div className="form-group row align-items-center">
                         <label htmlFor="" className="col-sm-4 col-form-label">Please upload your resume:*</label>
                         <div className="col-sm-8">
-                            <input type="file" onChange={props.fileSelectHandler} name={'resume'} required id="resume" accept="application/pdf,application/.docx"
+                            <input type="file" onChange={props.fileSelectHandler} name={'resume'} required id="resume"
                                    className="form-control form-control-file" />
                         </div>
                     </div>
@@ -1061,7 +1064,7 @@ const Step7 = ( props ) => {
                             <label htmlFor="schoolAddress" className="col-lg-5 col-sm-6 col-form-label">School
                                 Address:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" required id="" name="schoolAddress" value={props.schoolAddress} onChange={props.handleChange} />
+                                <input type="text" className="form-control" id="" name="schoolAddress" value={props.schoolAddress} onChange={props.handleChange} />
                             </div>
                         </div>
 
@@ -1069,7 +1072,7 @@ const Step7 = ( props ) => {
                             <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label">School City,
                                 State, Zip:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="schoolZipCode" value={props.schoolZipCode} onChange={props.handleChange} />
+                                <input type="text" className="form-control" id="" name="schoolZipCode" value={props.schoolZipCode} onChange={props.handleChange} />
                             </div>
                         </div>
 
@@ -1086,12 +1089,12 @@ const Step7 = ( props ) => {
                                 graduate?</label>
                             <div className="col-lg-7 col-sm-7">
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" name="isGraduate" type="radio" required
+                                    <input className="form-check-input" name="isGraduate" type="radio"
                                            value={true} onChange={props.handleChange}  />
                                     <label className="form-check-label">Yes</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" name="isGraduate" type="radio" required
+                                    <input className="form-check-input" name="isGraduate" type="radio"
                                            value={false} onChange={props.handleChange}  />
                                     <label className="form-check-label">No</label>
                                 </div>
@@ -1159,7 +1162,7 @@ const Step8 = ( props ) => {
                             <label htmlFor="schoolAddress"  className="col-lg-5 col-sm-6 col-form-label">School
                                 Address:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="schoolAddress" value={props.collegeAddress} onChange={props.handleChange} />
+                                <input type="text" className="form-control" id="" name="schoolAddress" value={props.collegeAddress} onChange={props.handleChange} />
                             </div>
                         </div>
 
@@ -1167,7 +1170,7 @@ const Step8 = ( props ) => {
                             <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label">School City,
                                 State, Zip:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="schoolZipCode" value={props.collegeZipCode} onChange={props.handleChange} />
+                                <input type="text" className="form-control" id="" name="schoolZipCode" value={props.collegeZipCode} onChange={props.handleChange} />
                             </div>
                         </div>
 
@@ -1184,12 +1187,12 @@ const Step8 = ( props ) => {
                                 graduate?</label>
                             <div className="col-lg-7 col-sm-6">
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" name="isGraduate" required type="radio" id="yes"
+                                    <input className="form-check-input" name="isGraduate" type="radio" id="yes"
                                            value={true} onChange={props.handleChange}  />
                                     <label className="form-check-label" htmlFor="yes">Yes</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" name="isGraduate" required type="radio" id="no"
+                                    <input className="form-check-input" name="isGraduate" type="radio" id="no"
                                            value={false} onChange={props.handleChange}  />
                                     <label className="form-check-label" htmlFor="no">No</label>
                                 </div>
@@ -1227,7 +1230,7 @@ const Step8 = ( props ) => {
                             <label htmlFor="schoolAddress" className="col-lg-5 col-sm-6 col-form-label">School
                                 Address:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="schoolAddress" value={props.vocationalAddress} onChange={props.vocationalHandleChange}  />
+                                <input type="text" className="form-control" id="" name="schoolAddress" value={props.vocationalAddress} onChange={props.vocationalHandleChange}  />
                             </div>
                         </div>
 
@@ -1235,7 +1238,7 @@ const Step8 = ( props ) => {
                             <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label">School City,
                                 State, Zip:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="schoolZipCode" value={props.vocationalZipCode} onChange={props.vocationalHandleChange}  />
+                                <input type="text" className="form-control" id=""  name="schoolZipCode" value={props.vocationalZipCode} onChange={props.vocationalHandleChange}  />
                             </div>
                         </div>
 
@@ -1252,12 +1255,12 @@ const Step8 = ( props ) => {
                                 graduate?</label>
                             <div className="col-lg-7 col-sm-6">
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" name="isGraduate" type="radio" id="yes" required
+                                    <input className="form-check-input" name="isGraduate" type="radio" id="yes"
                                            value={true} onChange={props.vocationalHandleChange}  />
                                     <label className="form-check-label" htmlFor="yes">Yes</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" name="isGraduate" type="radio" id="no" required
+                                    <input className="form-check-input" name="isGraduate" type="radio" id="no"
                                            value={false} onChange={props.vocationalHandleChange}  />
                                     <label className="form-check-label" htmlFor="no">No</label>
                                 </div>
@@ -1323,6 +1326,21 @@ const Step9 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <h4 className="mb-5">Employment History</h4>
+                    <div className={'form-group row align-items-center'}>
+                        <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label">Currently employed or not</label>
+                        <div className="col-lg-7 col-sm-6">
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" required name="currentlyEmployed" id="yes"
+                                       value={true} onChange={props.handleChange} />
+                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="currentlyEmployed" id="no" required
+                                       value={false} onChange={props.handleChange}  />
+                                <label className="form-check-label" htmlFor="no">No</label>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="form-group row align-items-center">
                         <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label">If you are currently
@@ -1330,12 +1348,12 @@ const Step9 = ( props ) => {
                         <div className="col-lg-7 col-sm-6">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" required name="contactEmployer" id="yes"
-                                       value={true} onChange={props.hideContentHandler} />
+                                       value={true} onChange={props.handleChange} />
                                 <label className="form-check-label" htmlFor="yes">Yes</label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" name="contactEmployer" id="no" required
-                                       value={false} onChange={props.hideContentHandler}  />
+                                       value={false} onChange={props.handleChange}  />
                                 <label className="form-check-label" htmlFor="no">No</label>
                             </div>
                         </div>
@@ -1367,14 +1385,14 @@ const Step9 = ( props ) => {
                     <div className="form-group row align-items-center">
                         <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:*</label>
                         <div className="col-lg-7 col-sm-6">
-                            <input type="text" className="form-control" id="" name="address" required value={props.address} onChange={props.handleChange} />
+                            <input type="text" className="form-control" id="" name="address" value={props.address} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
                         <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label">City, State, Zip:</label>
                         <div className="col-lg-7 col-sm-6">
-                            <input type="text" className="form-control" id="" name="zipCode" required value={props.zipCode} onChange={props.handleChange} />
+                            <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode} onChange={props.handleChange} />
                         </div>
                     </div>
 
@@ -1437,14 +1455,14 @@ const Step9 = ( props ) => {
                         <div className="form-group row align-items-center">
                             <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:*</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="address" value={props.address1} onChange={props.employeeHandleChange} />
+                                <input type="text" className="form-control" id="" name="address" value={props.address1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
                             <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label">City, State, Zip:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="zipCode" value={props.zipCode1} onChange={props.employeeHandleChange}  />
+                                <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode1} onChange={props.employeeHandleChange}  />
                             </div>
                         </div>
 
@@ -1535,14 +1553,14 @@ const Step9 = ( props ) => {
                         <div className="form-group row align-items-center">
                             <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:*</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="address" value={props.address2} onChange={props.employeeHandleChange2} />
+                                <input type="text" className="form-control" id="" name="address" value={props.address2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
                             <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label">City, State, Zip:</label>
                             <div className="col-lg-7 col-sm-6">
-                                <input type="text" className="form-control" id="" required name="zipCode" value={props.zipCode2} onChange={props.employeeHandleChange2}/>
+                                <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode2} onChange={props.employeeHandleChange2}/>
                             </div>
                         </div>
 
@@ -1653,28 +1671,28 @@ const Step10 = ( props ) => {
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Address:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="address" value={props.address} onChange={props.referenceHandleChange} />
+                                <input type="text" className="form-control" id="" name="address" value={props.address} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="city" value={props.city} onChange={props.referenceHandleChange} />
+                                <input type="text" className="form-control" id="" name="city" value={props.city} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Occupation:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="occupation" value={props.occupation} onChange={props.referenceHandleChange} />
+                                <input type="text" className="form-control" id="" name="occupation" value={props.occupation} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Number of Years Acquainted: </label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="yearsAcquainted" value={props.yearsAcquainted} onChange={props.referenceHandleChange} />
+                                <input type="text" className="form-control" id="" name="yearsAcquainted" value={props.yearsAcquainted} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
                     </div>
@@ -1712,28 +1730,28 @@ const Step10 = ( props ) => {
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Address:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="address" value={props.address2} onChange={props.referenceHandleChange2} />
+                                <input type="text" className="form-control" id="" name="address" value={props.address2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="city" value={props.city2} onChange={props.referenceHandleChange2} />
+                                <input type="text" className="form-control" id="" name="city" value={props.city2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Occupation:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="occupation" value={props.occupation2} onChange={props.referenceHandleChange2} />
+                                <input type="text" className="form-control" id="" name="occupation" value={props.occupation2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Number of Years Acquainted: </label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="yearsAcquainted" value={props.yearsAcquainted2} onChange={props.referenceHandleChange2} />
+                                <input type="text" className="form-control" id="" name="yearsAcquainted" value={props.yearsAcquainted2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
                     </div>
@@ -1771,28 +1789,28 @@ const Step10 = ( props ) => {
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Address:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="address" value={props.address3} onChange={props.referenceHandleChange3} />
+                                <input type="text" className="form-control" id="" name="address" value={props.address3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="city" value={props.city3} onChange={props.referenceHandleChange3} />
+                                <input type="text" className="form-control" id="" name="city" value={props.city3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Occupation:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="occupation" value={props.occupation3} onChange={props.referenceHandleChange3} />
+                                <input type="text" className="form-control" id="" name="occupation" value={props.occupation3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label htmlFor="" className="col-sm-4 col-form-label">Number of Years Acquainted: </label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="" required name="yearsAcquainted" value={props.yearsAcquainted3} onChange={props.referenceHandleChange3} />
+                                <input type="text" className="form-control" id="" name="yearsAcquainted" value={props.yearsAcquainted3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
                     </div>

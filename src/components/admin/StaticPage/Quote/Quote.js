@@ -89,8 +89,6 @@ const Quote = () => {
                 </div>
             </div>
         </div>
-
-
     )
 }
 

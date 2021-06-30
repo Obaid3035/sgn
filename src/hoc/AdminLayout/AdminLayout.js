@@ -42,6 +42,7 @@ import Report from "../../components/admin/StaticPage/Report/Report";
 import Chats from "../../components/admin/StaticPage/Chats/Chats";
 import Quote from "../../components/admin/StaticPage/Quote/Quote";
 import QuoteView from "../../components/admin/StaticPage/Quote/QuoteView/QuoteView";
+import GetInTouch from "../../components/admin/StaticPage/GetInTouch/GetInTouch";
 
 function Admin(  ) {
     const admin = {
@@ -157,6 +158,7 @@ function Admin(  ) {
                 <AdminNavbar />
                 <div className="content">
                     <Switch>
+                        <Route path={'/admin/getInTouch'} exact component={GetInTouch} />
                         <Route path={'/admin/quote/:id'} exact component={QuoteView} />
                         <Route path='/admin/quote' exact component={Quote}/>
                         <Route path='/admin/subAdmin/:id' component={SubAdminForm}/>

@@ -58,7 +58,7 @@ const Questionare = (props) => {
                 successNotify('Thank you for contacting us!')
                 setTimeout(() => {
                     setLoaded(true);
-                    props.history.replace('/')
+                    props.history.replace('/survey/' + id)
                 },2100)
             })
     }
@@ -428,7 +428,7 @@ const Step6 = ( props ) => {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <select className="form-control" name="wayToReach" required onChange={props.handleChange}>
+                            <select className="form-control" name="industry" required onChange={props.handleChange}>
                                 <option>Select Option</option>
                                 <option value="Agricultural industry">Agricultural industry</option>
                                 <option value="Manufacturing industry">Manufacturing industry</option>
@@ -458,7 +458,7 @@ const Step7 = ( props ) => {
                 <div className="row">
                     <div className="col-md-12">
                         <label>File</label>
-                        <input type="file" onChange={props.fileSelectHandler} name={'resume'} required id="resume" accept="application/pdf,application/msword"
+                        <input type="file" onChange={props.fileSelectHandler} name={'resume'} required id="resume"
                                className="form-control form-control-file" />
                     </div>
 
