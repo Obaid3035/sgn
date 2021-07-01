@@ -12,7 +12,7 @@ import logo5 from '../../../assets/img/logo5.png'
 
 import './OwlCarousel.css'
 
-const Carousel = ( props ) => {
+const CustomCarousel = ( props ) => {
     const responsiveClass =  {
             0: {
                 items: 1,
@@ -53,4 +53,4 @@ const Carousel = ( props ) => {
     );
 }
 
-export default Carousel;
+export default CustomCarousel;
