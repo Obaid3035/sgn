@@ -6,24 +6,27 @@ import { Carousel } from 'react-bootstrap'
 import CustomCarousel from "../../UI/OwlCarousel/OwlCarousel";
 import {NavLink} from "react-router-dom";
 import PreLoader from '../../../assets/video/logo.mp4'
+import ReactPlayer from "react-player";
 
 const Home = ( props ) => {
-    const [loader, setLoader] = useState(true);
+    const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        setTimeout(() => {
-            setLoader(false)
-        }, 7000)
+        if (localStorage.getItem('video') === 'true') {
+           setLoader(false)
+        } else  {
+            localStorage.setItem('video', 'true')
+            setLoader(true)
+        }
+
     }, [])
 
     const preLoader = (
        <>
            <div className="bg_load" />
-           <div className="wrapper">
-               <video autoPlay muted playsInline>
-                   <source src={PreLoader} type="video/mp4" />
-               </video>
+           <div className="wrapper d-flex justify-content-center">
+               <ReactPlayer url={PreLoader} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
            </div>
        </>
     )
