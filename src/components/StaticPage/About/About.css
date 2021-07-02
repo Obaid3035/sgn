@@ -1,10 +1,14 @@
 .about-banner-area {
-    background-image: url("../../../assets/img/about-header.jpg");
+    background-image: url("../../../assets/img/career-header-2.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 60rem;
     padding: 10rem;
+}
+
+.home__banner__text p {
+    color: #013f84 !important;
 }
 .about-banner-area h1 {
     font-weight: 700;

@@ -116,7 +116,7 @@ const Footer = ( props ) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                            <h2>Get in Touch</h2>
+                            <h2 style={{color: '#013f84'}}>Get in Touch</h2>
                             {getInTouchForm}
                         </div>
                     </div>

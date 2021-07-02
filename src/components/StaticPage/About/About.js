@@ -9,18 +9,18 @@ const About = ( props ) => {
             <section className="about-banner-area">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 text-center">
-                            <div className="header-content">
+                        <div className="col-6 text-left">
+                            <div className="header-content home__banner__text">
                                 <h1>About Us</h1>
                                 <p>SGN is a New York-based company dedicated to providing its customers with high- quality products and services around the world at low costs. In addition to our products and services, we have partnered with large companies in the
                                     agricultural, manufacturing and service industries to offer competitive prices.
                                 </p>
-                                <a className="custom-scroll" href="#detail-section" role="button" data-target="#detail-section">
-                                    scroll
-                                    <span>
-							<img src="img/arrow-scroll.png" alt="scroll-arrow" className="img-fluid pt-3 pr-1" />
-						</span>
-                                </a>
+                        {/*        <a className="custom-scroll" href="#detail-section" role="button" data-target="#detail-section">*/}
+                        {/*            scroll*/}
+                        {/*            <span>*/}
+						{/*	<img src="img/arrow-scroll.png" alt="scroll-arrow" className="img-fluid pt-3 pr-1" />*/}
+						{/*</span>*/}
+                        {/*        </a>*/}
                             </div>
                         </div>
                     </div>

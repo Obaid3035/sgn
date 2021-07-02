@@ -1,7 +1,4 @@
-.home-banner {
-    position: relative;
-    z-index: 1;
-}
+
 
 .section1__below {
     margin-top: -500px
@@ -9,6 +6,17 @@
 
 .home-banner .container {
     padding-top: 7rem;
+}
+
+.home__banner__text h1 {
+    color: #013f84 !important;
+    font-size: 3.5rem!important;
+    font-weight: 500!important;
+    text-transform: uppercase!important;
+}
+
+.white h1 {
+    color: #fff !important;
 }
 
 .home-banner h1 {
