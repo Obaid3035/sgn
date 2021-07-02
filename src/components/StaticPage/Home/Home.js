@@ -26,7 +26,7 @@ const Home = ( props ) => {
     const preLoader = (
        <>
            <div className="bg_load" />
-           <div className="wrapper d-flex justify-content-center">
+           <div className="splash__wrapper d-flex justify-content-center">
                <ReactPlayer url={'https://thedigitalmonk.org/sgn/assets/img/logo2.mp4'} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
            </div>
        </>
