@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css'
-import HomeHeader from '../../../assets/img/career-header.jpg'
-import HomeHeader2 from '../../../assets/img/career-header-2.jpg'
-import HomeHeader3 from '../../../assets/img/career-header-3.jpg'
 import Aux from "../../../hoc/Aux/Aux";
-import { Carousel } from 'react-bootstrap'
 import CustomCarousel from "../../UI/OwlCarousel/OwlCarousel";
-import {NavLink} from "react-router-dom";
 import ReactPlayer from "react-player";
+import HomeCarousel from "../../UI/HomeCarousel/HomeCarousel";
 
 const Home = ( props ) => {
     const [loader, setLoader] = useState(false);
@@ -38,59 +34,7 @@ const Home = ( props ) => {
                 (
                     <Aux>
                         <section className={'home-banner text-center'}>
-                            <Carousel controls={true} indicators={false} interval={5000} pause={false} fade={false}>
-                                <Carousel.Item>
-                                    <img
-                                        className="d-block w-100"
-                                        src={HomeHeader3}
-                                        alt="First slide"
-                                    />
-                                    <Carousel.Caption>
-                                        <div className="container section1__below">
-                                            <div className="row">
-                                                <div className="col-md-6 text-left home__banner__text">
-                                                    <h1>We Provide High Quality Products And Services At Your Fingertips For Very Low Cost.</h1>
-                                                    <NavLink to={'/questionare'}><a className={'btn btn-warning btn-lg quote-btn'}>Get a Quote</a></NavLink>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <img
-                                        className="d-block w-100"
-                                        src={HomeHeader2}
-                                        alt="First slide"
-                                    />
-                                    <Carousel.Caption>
-                                        <div className="container section1__below">
-                                            <div className="row">
-                                                <div className="col-md-6 text-left home__banner__text">
-                                                    <h1>No need to travel far, we will bring your orders right to you and within your schedule. </h1>
-                                                    <NavLink to={'/questionare'}><a className={'btn btn-warning btn-lg quote-btn'}>Get a Quote</a></NavLink>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <img
-                                        className="d-block w-100"
-                                        src={HomeHeader}
-                                        alt="First slide"
-                                    />
-                                    <Carousel.Caption>
-                                        <div className="container section1__below">
-                                            <div className="row">
-                                                <div className="col-md-6 text-left home__banner__text white">
-                                                    <h1>Our customers are always 100% satisfied working with us as we offer the best deals in the market. </h1>
-                                                    <NavLink to={'/questionare'}><a className={'btn btn-warning btn-lg quote-btn'}>Get a Quote</a></NavLink>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                            </Carousel>
+                            <HomeCarousel />
                         </section>
 
                         <section className={'section2'}>
