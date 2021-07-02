@@ -38,7 +38,7 @@ const Home = ( props ) => {
                 (
                     <Aux>
                         <section className={'home-banner text-center'}>
-                            <Carousel controls={true} indicators={false} interval={100000} pause={false} fade={false}>
+                            <Carousel controls={true} indicators={false} interval={5000} pause={false} fade={false}>
                                 <Carousel.Item>
                                     <img
                                         className="d-block w-100"
