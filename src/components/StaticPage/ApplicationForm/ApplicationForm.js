@@ -1383,7 +1383,7 @@ const Step9 = ( props ) => {
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:*</label>
+                        <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:</label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="address" value={props.address} onChange={props.handleChange} />
                         </div>
