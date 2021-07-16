@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import './ApplicationStatus.css'
 import axios from "axios";
 import Spinner from "../../UI/ProgressBar/ProgressBar";
+import moment from 'moment-timezone';
 
 const ApplicationStatus = ( props ) => {
 
@@ -39,7 +40,7 @@ const ApplicationStatus = ( props ) => {
                                             <span>location</span> {application.jobListing.jobCity}, {application.jobListing.jobCountry}
                                         </td>
                                         <td>
-                                            <span>applied on</span> {application.createdAt}
+                                            <span>applied on</span> {moment.tz(application.createdAt, 'America/New_York').format()}
                                         </td>
                                         <td className="status status-approved">
                                             <a href="#">{application.applicationStatus}</a>

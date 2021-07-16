@@ -102,6 +102,13 @@ const QuoteView = (props) => {
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
+                                                    <label htmlFor="">Name Of Product</label>
+                                                    <input type="text" className="form-control" id="" name="productName"
+                                                           readOnly value={quoteData.productName} />
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-6 mb-4">
+                                                <div className="form-group">
                                                     <label htmlFor="">Picture Of Document / Document</label>
                                                     <input type="text" className="form-control" readOnly value="abc.pdf" />
                                                 </div>

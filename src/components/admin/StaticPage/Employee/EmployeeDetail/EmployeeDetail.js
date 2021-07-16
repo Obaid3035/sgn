@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-import Aux from "../../../../../hoc/Aux/Aux";
 import {Button, Form, Modal} from 'react-bootstrap'
 import axios from "axios";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
-import {NavLink} from "react-router-dom";
 
 const EmployeeDetail = ( props ) => {
 
@@ -306,10 +304,14 @@ const EmployeeDetail = ( props ) => {
                                                       className="btn btn-attachment btn-warning mx-4">
                                                   Add Contract
                                               </button>
-                                              <button type="button" onClick={makeAdminHandler}
-                                                      className="btn btn-attachment btn-warning mx-4">
-                                                  Make Admin
-                                              </button>
+                                              {
+                                                  !employee.roles.includes('subAdmin') ?
+                                                      <button type="button" onClick={makeAdminHandler}
+                                                              className="btn btn-attachment btn-warning mx-4">
+                                                          Make Admin
+                                                      </button>
+                                                      : ''
+                                              }
                                           </div>
                                       </div>
                                       <div className="col-lg-12 mb-2">

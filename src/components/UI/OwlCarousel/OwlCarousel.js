@@ -33,7 +33,7 @@ const CustomCarousel = ( props ) => {
     return (
         <OwlCarousel className='owl-theme text-center'
                      loop responsive={responsiveClass} responsiveClass={true}
-                     margin={50}  autoplayTimeout={2000} smartSpeed={800}>
+                     margin={50}  autoplayTimeout={1000} autoplay={true} smartSpeed={800}>
             <div>
                 <img className={'img-fluid'} src={logo1} alt=""/>
             </div>

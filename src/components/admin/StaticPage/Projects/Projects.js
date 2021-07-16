@@ -162,6 +162,15 @@ const Project = ( props ) => {
         setAddShow(!addShow)
     };
 
+    const onSubmitHandler = (id) => {
+        axios.put('/admin/noticeofintent/' + id)
+            .then((res) => {
+                console.log(res)
+                props.history.replace('/admin/noticeofintent')
+                setLoaded(false)
+            })
+    }
+
     return (
         <>
             <div className="content">
@@ -202,6 +211,7 @@ const Project = ( props ) => {
                                                 ? <ProjectTable
                                                         project={completedProject}
                                                         handleShow={handleShow}
+                                                        onSubmit={onSubmitHandler}
                                                         changeStatus={changeStatusToCommissioned}
                                                     />
                                                 : <h4 className="text-center">No Project Found</h4>

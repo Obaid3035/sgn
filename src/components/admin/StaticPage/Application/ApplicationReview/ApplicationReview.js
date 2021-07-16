@@ -18,6 +18,7 @@ const ApplicationReview = ( props ) => {
         axios.get('/admin/application/' + id)
             .then((res) => {
                 setLoaded(true)
+                console.log(res.data);
                 setApplication(res.data);
             })
     }, [])
@@ -25,6 +26,7 @@ const ApplicationReview = ( props ) => {
     const hiredApplicationHandler = () => {
         setShow(!show)
     }
+
 
     const inputChangeHandler = (e) => {
         setReferralID(e.target.value)
@@ -207,6 +209,22 @@ const ApplicationReview = ( props ) => {
                                                            name="pleadedFelonyExplain" value={application.pleadedFelonyExplain} />
                                                 </div>
                                             </div>
+                                            <div className="col-lg-12 mb-4">
+                                                <div className="form-group">
+                                                    <label htmlFor="">Do you speak, write or understand any foreign
+                                                        languages?</label>
+                                                    <input type="text" className="form-control" name="isForeignLanguage"
+                                                           readOnly value={application.foreignLanguage.length > 0 ? 'yes' : 'no'} />
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-12">
+                                                <div className="form-group">
+                                                    <label htmlFor="">If yes, list which languages(s) and how fluent you
+                                                        consider yourself to be:</label>
+                                                    <input type="text" className="form-control" name="foreignLanguage"
+                                                           readOnly value={application.foreignLanguage}/>
+                                                </div>
+                                            </div>
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
                                                     <label htmlFor="">Desired Monthly Salary $</label>
@@ -309,22 +327,6 @@ const ApplicationReview = ( props ) => {
                                                             <label htmlFor="">Degree / Diploma earned</label>
                                                             <input type="text" className="form-control" name="degree" readOnly
                                                                    value={school.degree} />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-12 mb-4">
-                                                        <div className="form-group">
-                                                            <label htmlFor="">Do you speak, write or understand any foreign
-                                                                languages?</label>
-                                                            <input type="text" className="form-control" name="isForeignLanguage"
-                                                                   readOnly value={school.isForeignLanguage ? 'yes' : 'no'} />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-12">
-                                                        <div className="form-group">
-                                                            <label htmlFor="">If yes, list which languages(s) and how fluent you
-                                                                consider yourself to be:</label>
-                                                            <input type="text" className="form-control" name="foreignLanguage"
-                                                                   readOnly value={school.foreignLanguage}/>
                                                         </div>
                                                     </div>
                                                 </>
@@ -489,12 +491,13 @@ const ApplicationReview = ( props ) => {
                                                            value={application.createdAt}/>
                                                 </div>
                                             </div>
-                                            {application.applicationStatus !== 'Hired' ?  <div className={'col-lg-12'}>
-                                                <div className={'float-right'}>
-                                                    <Button size={'lg'} className={'px-5 mx-4'} onClick={hiredApplicationHandler} variant={'success'}>Hired</Button>
-                                                    {application.applicationStatus === 'Hired' || application.applicationStatus === 'underReview' ? <Button size={'lg'} className={'px-5'} onClick={declineApplicationHandler} variant={'danger'}>Reject</Button> : ''}
-                                                </div>
-                                            </div> : ''}
+                                            {application.applicationStatus !== 'Active' ?
+                                                application.applicationStatus !== 'Hired' ?  <div className={'col-lg-12'}>
+                                                    <div className={'float-right'}>
+                                                        <Button size={'lg'} className={'px-5 mx-4'} onClick={hiredApplicationHandler} variant={'success'}>Hired</Button>
+                                                        {application.applicationStatus === 'Hired' || application.applicationStatus === 'underReview' ? <Button size={'lg'} className={'px-5'} onClick={declineApplicationHandler} variant={'danger'}>Reject</Button> : ''}
+                                                    </div>
+                                                </div> : '' : ''}
                                         </div>
                                     </form>
                                 </div>

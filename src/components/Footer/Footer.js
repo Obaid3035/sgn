@@ -19,7 +19,7 @@ const Footer = ( props ) => {
     const [loader, setLoader] = useState(true)
 
 
-    const notify = () => toast.success('Your Quote has been successfully submitted'
+    const notify = () => toast.success('Your Message has been successfully submitted'
         ,{
         position: "top-center",
         autoClose: 2000,

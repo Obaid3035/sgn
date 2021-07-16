@@ -19,6 +19,7 @@ const ToDoLists = (props ) => {
         additionalInformation: '',
         points: ''
     });
+    const [Viewshow, setViewShow] = useState(false);
 
     const [noticeOfIntentForm, setNoticeOfIntentForm] = useState({
         businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
@@ -48,9 +49,9 @@ const ToDoLists = (props ) => {
     },[loaded])
 
     const handleShow = (id) => {
-        setShow(!show);
+        setViewShow(!Viewshow);
         console.log(show)
-        if (!show) {
+        if (!Viewshow) {
             axios.get('/admin/noticeofintent/' + id)
                 .then((res) => {
                     setSingleToDo(res.data)
@@ -266,7 +267,7 @@ const ToDoLists = (props ) => {
                 </div>
             </div>
             <NoticeOfIntentModal
-                show={show}
+                show={Viewshow}
                 handleShow={handleShow}
                 businessName={singleToDo.businessName}
                 potential={singleToDo.potential}

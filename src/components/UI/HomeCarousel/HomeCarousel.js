@@ -6,7 +6,7 @@ import './HomeCarousel.css'
 
 const HomeCarousel = () => {
 	return (
-		<Carousel controls={true} indicators={false} interval={100000} pause={false} fade={false}>
+		<Carousel controls={true} indicators={false} interval={3000} pause={false} fade={false}>
 			{
 				data.map((data,index) => (
 					<Carousel.Item key={index}>

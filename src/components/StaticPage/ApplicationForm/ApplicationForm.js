@@ -41,6 +41,8 @@ const ApplicationForm = ( props ) => {
             essentialFunction: false,
             essentialFunctionExplain: '',
             certificate: '',
+            isForeignLanguage: false,
+            foreignLanguage: '',
         },
         educationHistory: [],
         referenceHistory: [],
@@ -54,8 +56,6 @@ const ApplicationForm = ( props ) => {
         yearsCompleted: '',
         isGraduate: false,
         schoolDegree: '',
-        isForeignLanguage: false,
-        foreignLanguage: '',
     })
 
     console.log(formFields.applicationForm.daysAvailable)
@@ -78,8 +78,6 @@ const ApplicationForm = ( props ) => {
         yearsCompleted: '',
         isGraduate: false,
         schoolDegree: '',
-        isForeignLanguage: false,
-        foreignLanguage: '',
     })
 
     const [employee, setEmployee] = useState({
@@ -413,6 +411,9 @@ const ApplicationForm = ( props ) => {
                                 fullTimeWork={formFields.applicationForm.fullTimeWork}
                                 timeRangeAvailableFrom={timeRangeAvailableFrom}
                                 timeRangeAvailableTo={timeRangeAvailableTo}
+                                isForeignLanguage={formFields.applicationForm.isForeignLanguage}
+                                vocationalIsForeignLanguage={formFields.applicationForm.isForeignLanguage}
+                                vocationalForeignLanguage={formFields.applicationForm.foreignLanguage}
                                 onChangeFrom={fromTime}
                                 onChangeTo={toTime}
                                 onSubmit={_next}
@@ -461,8 +462,6 @@ const ApplicationForm = ( props ) => {
                                 vocationalYearsCompleted={vocational.yearsCompleted}
                                 vocationalIsGraduate={vocational.isGraduate}
                                 vocationalDegree={vocational.schoolDegree}
-                                vocationalIsForeignLanguage={vocational.isForeignLanguage}
-                                vocationalForeignLanguage={vocational.foreignLanguage}
 
                             />}
 
@@ -894,6 +893,34 @@ const Step5 = ( props ) => {
         <form onSubmit={onNext}>
             <fieldset className="fieldset">
                 <div className="p-5">
+                    <div className="form-group row align-items-center">
+                        <label htmlFor="isForeignLanguage" className="col-lg-5 col-sm-6 col-form-label">Do you
+                            speak, write or understand any foreign languages?</label>
+                        <div className="col-lg-7 col-sm-6">
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="isForeignLanguage" required
+                                       id="yes" value={true} onChange={props.handleChange}  />
+                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="isForeignLanguage" id="no" required
+                                       value={false} onChange={props.handleChange}  />
+                                <label className="form-check-label" htmlFor="no">No</label>
+                            </div>
+                        </div>
+                        {
+                            props.isForeignLanguage === "true" ?
+                                <div className="form-group row align-items-center">
+                                    <label htmlFor="foreignLanguage" className="col-lg-5 col-sm-6 col-form-label">If yes, list which
+                                        languages(s) and how fluent you consider yourself to be: </label>
+                                    <div className="col-lg-7 col-sm-6">
+                                        <input type="text" className="form-control" required id="" name="foreignLanguage" value={props.vocationalForeignLanguage} onChange={props.handleChange}  />
+                                    </div>
+                                </div>
+                                : ''
+                        }
+
+                    </div>
                     <h4>Salary and Availability</h4>
                     <div className="form-group row align-items-center">
                         <label htmlFor="desiredSalary" className="col-sm-4 col-form-label">Please suggest your desired monthly salary using your homeland currency acronym.  Ex: 5000 JPY, or 5000 CHY, 5000 XAF or 5000 AUD etc.:</label>
@@ -1272,30 +1299,6 @@ const Step8 = ( props ) => {
                                 earned:* </label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" required id="" name="schoolDegree" value={props.vocationalDegree} onChange={props.vocationalHandleChange} />
-                            </div>
-                        </div>
-
-                        <div className="form-group row align-items-center">
-                            <label htmlFor="isForeignLanguage" className="col-lg-5 col-sm-6 col-form-label">Do you
-                                speak, write or understand any foreign languages?</label>
-                            <div className="col-lg-7 col-sm-6">
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="isForeignLanguage" required
-                                           id="yes" value={true} onChange={props.vocationalHandleChange}  />
-                                    <label className="form-check-label" htmlFor="yes">Yes</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="isForeignLanguage" id="no" required
-                                           value={props.vocationalIsForeignLanguage} onChange={props.vocationalHandleChange}  />
-                                    <label className="form-check-label" htmlFor="no">No</label>
-                                </div>
-                            </div>
-                            <div className="form-group row align-items-center">
-                                <label htmlFor="foreignLanguage" className="col-lg-5 col-sm-6 col-form-label">If yes, list which
-                                    languages(s) and how fluent you consider yourself to be: </label>
-                                <div className="col-lg-7 col-sm-6">
-                                    <input type="text" className="form-control" required id="" name="foreignLanguage" value={props.vocationalForeignLanguage} onChange={props.vocationalHandleChange}  />
-                                </div>
                             </div>
                         </div>
                     </div> : <h3> Never Attended Vocational</h3>}

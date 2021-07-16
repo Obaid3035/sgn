@@ -33,7 +33,8 @@ const Questionare = (props) => {
         pricePerUnit: 0,
         howSoon: '',
         checkAddress: false,
-        Address: ''
+        Address: '',
+        productName: '',
     })
     const successNotify = (msg) => toast.success(msg, {
         position: "top-center",
@@ -43,6 +44,17 @@ const Questionare = (props) => {
         pauseOnHover: true,
         draggable: true,
     });
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleOnChange = () => {
+        setFormFields({
+            ...formFields,
+            checkAddress: !formFields.checkAddress
+        })
+        console.log(formFields)
+
+    };
 
     const fileUploadHandler = ( id ) => {
         console.log(id)
@@ -70,6 +82,8 @@ const Questionare = (props) => {
 
     const inputChangeHandler = (e) => {
         const {name, value} = e.target
+        console.log(name, value);
+        console.log(formFields.checkAddress)
         const updated = {...formFields}
         updated[name] = value
         setFormFields(updated)
@@ -88,6 +102,7 @@ const Questionare = (props) => {
         e.preventDefault()
         setLoaded(false)
         formFields.timeToReach = timeToReach
+        console.log(formFields.checkAddress);
         axios.post('/quote', formFields)
             .then((res) => {
                 console.log(res.data.id)
@@ -199,6 +214,7 @@ const Questionare = (props) => {
                                     currentStep={formFields.currentStep}
                                     handleChange={inputChangeHandler}
                                     industry={formFields.industry}
+                                    productName={formFields.productName}
                                     onSubmit={_next}
                                     previousPage={_prev}
                                 />}
@@ -233,6 +249,7 @@ const Questionare = (props) => {
                                     checkAddress={formFields.checkAddress}
                                     Address={formFields.Address}
                                     onSubmit={handleSubmit}
+                                    handleOnChange={handleOnChange}
                                     handleChange={inputChangeHandler}
                                     previousPage={_prev}
                                     loaded={loaded}
@@ -429,7 +446,7 @@ const Step6 = ( props ) => {
                     <div className="col-md-12">
                         <div className="form-group">
                             <select className="form-control" name="industry" required onChange={props.handleChange}>
-                                <option>Select Option</option>
+                                <option disabled selected>Select Option</option>
                                 <option value="Agricultural industry">Agricultural industry</option>
                                 <option value="Manufacturing industry">Manufacturing industry</option>
                                 <option value="Service industry">Service industry</option>
@@ -437,6 +454,15 @@ const Step6 = ( props ) => {
                         </div>
                     </div>
                 </div>
+                {
+                    props.industry === 'Agricultural industry' || props.industry === 'Manufacturing industry' || props.industry === 'Service industry'  ? <div className="col-md-6">
+                        <div className="form-group">
+                            <label htmlFor="last">Please type the name of the products or services you are looking for here separated by commas</label>
+                            <input type="text" className="form-control" placeholder="product " name="productName"
+                                   required onChange={props.handleChange} value={props.productName}/>
+                        </div>
+                    </div> : ''
+                }
             </fieldset>
             <div className={'text-center'}>
                 <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
@@ -545,14 +571,17 @@ const Step10 = ( props ) => {
 
                 <h2>Where do you want the product to be delivered?</h2>
                 <div className="row">
-                    <div className="col-md-6">
-                        <label>Or Check the box below if it’s the same as the company’s address above</label>
-                        <input type="checkbox" name="check" className="check" required onChange={props.handleChange} value={props.checkAddress} />
-                    </div>
-                    <div className="col-md-6">
+                            <div className="col-md-6">
+                                <label>Or Check the box below if it’s the same as the company’s address above</label>
+                                <input type="checkbox" name="checkAddress" className="check" checked={props.checkAddress} onChange={props.handleOnChange} value={'Yes'} />
+                            </div>
+                    {
+                        !props.checkAddress ? <div className="col-md-6">
                         <label>Address</label>
                         <textarea className="form-control" name="Address" placeholder="Address..." required onChange={props.handleChange} value={props.Address} />
-                    </div>
+                        </div> : ''
+                    }
+
                 </div>
 
 

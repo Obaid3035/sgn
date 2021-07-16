@@ -6,16 +6,16 @@ import ReactPlayer from "react-player";
 import HomeCarousel from "../../UI/HomeCarousel/HomeCarousel";
 
 const Home = ( props ) => {
-    const [loader, setLoader] = useState(false);
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        if (localStorage.getItem('video') === 'true') {
-           setLoader(false)
-        } else  {
-            localStorage.setItem('video', 'true')
-            setLoader(true)
-        }
+        // if (localStorage.getItem('video') === 'true') {
+        //    setLoader(false)
+        // } else  {
+        //     localStorage.setItem('video', 'true')
+        //     setLoader(true)
+        // }
 
     }, [])
 
