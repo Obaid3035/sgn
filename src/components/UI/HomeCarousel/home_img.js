@@ -98,7 +98,7 @@ export const data = [
 	{
 		img: HomeHeader17,
 		text: 'Appliance Industry: Washing machine',
-		css: 'col-md-12  text-center standard__font'
+		css: 'col-md-4  text-left home__banner__text'
 	},
 	{
 		img: HomeHeader3,
@@ -131,7 +131,9 @@ export const data = [
 	},
 	{
 		img: HomeHeader23,
-		text: 'Automobile Industry: a wide selection of cars.'
+		text: 'Automobile Industry: a wide selection of cars.',
+		css: 'col-md-12  standard__font text-center',
+
 	},
 	{
 		img: HomeHeader24,
@@ -142,19 +144,23 @@ export const data = [
 	{
 		img: HomeHeader25,
 		text: 'Appliance industry: Refrigerators, dishwasher, garbage disposal, water purifiers, oven, microwave oven, vacuum cleaner, air purifier, air conditioner…etc.',
-		css: 'col-md-12 home__banner__text text-right yellow',
+		css: 'offset-md-5 col-md-9 home__banner__text text-right ',
 	},
 	{
 		img: HomeHeader26,
-		text: 'Agricultural industry:  Rice production and more.'
+		text: 'Agricultural industry:  Rice production and more.',
+		css: 'col-md-12 home__banner__text text-center white',
+
 	},
 	{
 		img: HomeHeader27,
-		text: 'Telecommunication Industry:  Cell tower'
+		text: 'Telecommunication Industry:  Cell tower',
+		css: 'offset-md-4 col-md-8  standard__font text-center',
 	},
 	{
 		img: HomeHeader28,
-		text: 'Energy industry: We are not limited to solar panels.'
+		text: 'Energy industry: We are not limited to solar panels.',
+		css: 'col-md-12  standard__font text-center',
 	}
 
 ]
