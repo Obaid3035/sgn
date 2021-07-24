@@ -1,3 +1,9 @@
 .yellow {
     color: #ffc107!important
 }
+
+.standard__font h1 {
+    font-size: 3.2rem!important;
+    font-weight: 500!important;
+    text-transform: uppercase!important;
+}

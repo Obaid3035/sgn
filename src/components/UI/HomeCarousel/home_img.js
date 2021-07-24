@@ -43,7 +43,7 @@ export const data = [
 	{
 		img: HomeHeader6,
 		text: 'Construction Industry: excavator',
-		css: 'col-md-8 text-left home__banner__text align-items-center text-left black'
+		css: 'col-md-4 home__banner__text align-items-center text-left black'
 	},
 	{
 		img: HomeHeader8,
@@ -54,7 +54,7 @@ export const data = [
 	{
 		img: HomeHeader9,
 		text: 'Construction industry: Dump truck',
-		css: 'col-md-12 justify-content-end home__banner__text text-right black',
+		css: 'offset-md-6 col-md-6 justify-content-end home__banner__text text-right black',
 		parent: 'text-right'
 	},
 	// {
@@ -64,13 +64,13 @@ export const data = [
 	{
 		img: HomeHeader11,
 		text: 'Transportation Industry: Pickup truck',
-		css: 'col-md-12 justify-content-end home__banner__text text-right black',
+		css: 'offset-md-5 col-md-7 justify-content-end home__banner__text text-right black',
 		parent: 'text-right'
 	},
 	{
 		img: HomeHeader12,
 		text: 'Telecommunication Industry: Communication tower',
-		css: 'col-md-12 justify-content-end home__banner__text text-right white',
+		css: 'offset-md-4 col-md-8 justify-content-end home__banner__text text-right white',
 
 	},
 	{
@@ -86,6 +86,8 @@ export const data = [
 	{
 		img: HomeHeader15,
 		text: 'Textile Industry: Fabric manufacturing',
+		css: 'col-md-12  home__banner__text text-center',
+
 	},
 	{
 		img: HomeHeader16,
@@ -95,7 +97,8 @@ export const data = [
 	},
 	{
 		img: HomeHeader17,
-		text: 'Appliance Industry: Washing machine'
+		text: 'Appliance Industry: Washing machine',
+		css: 'col-md-12  text-center standard__font'
 	},
 	{
 		img: HomeHeader3,
@@ -105,21 +108,25 @@ export const data = [
 	{
 		img: HomeHeader19,
 		text: 'Medical industry: Advanced equipment for operating rooms such as operating tables, surgical lights, displays, booms…etc.',
-		css: 'col-md-12  home__banner__text text-center',
+		css: 'col-md-12  standard__font text-center',
 
 	},
 	{
 		img: HomeHeader20,
-		text: 'Electronics Industry: Digital spectrum analyzer'
+		text: 'Electronics Industry: Digital spectrum analyzer',
+		css: 'col-md-12  standard__font text-center',
+
+
 	},
 	{
 		img: HomeHeader21,
-		text: 'Textile Industry: An extensive range of fabrics'
+		text: 'Textile Industry: An extensive range of fabrics',
+		css: 'col-md-12  standard__font text-center',
 	},
 	{
 		img: HomeHeader22,
 		text: 'Communication Industry: vast assortment of smartphones.',
-		css: 'col-md-12  home__banner__text text-center',
+		css: 'offset-md-5 col-md-9  home__banner__text text-center',
 
 	},
 	{
