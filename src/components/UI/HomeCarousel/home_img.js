@@ -48,7 +48,7 @@ export const data = [
 	{
 		img: HomeHeader8,
 		text: 'Construction Industry: Caterpillar tractor',
-		css: 'col-md-8 text-left home__banner__text text-left'
+		css: 'col-md-4 text-left home__banner__text text-left'
 
 	},
 	{
@@ -64,7 +64,7 @@ export const data = [
 	{
 		img: HomeHeader11,
 		text: 'Transportation Industry: Pickup truck',
-		css: 'offset-md-5 col-md-7 justify-content-end home__banner__text text-right black',
+		css: 'offset-md-7 col-md-7 justify-content-end home__banner__text text-right black',
 		parent: 'text-right'
 	},
 	{
