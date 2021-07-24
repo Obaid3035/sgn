@@ -11,6 +11,7 @@ const GetInTouch = props => {
 		axios.get('/admin/getInTouch')
 			.then((res) => {
 				setLoaded(true)
+				console.log(res.data)
 				setGetInTouchData(res.data)
 			})
 	}, [loaded])
