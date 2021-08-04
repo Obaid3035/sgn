@@ -83,6 +83,7 @@ const Employee = ( props ) => {
                                     <div className="tab-pane fade" id="inActiveEmp" role="tabpanel"
                                          aria-labelledby="inActiveEmp">
                                         <EmployeeTable
+                                            fired={true}
                                             loaded={loaded}
                                             employee={inActiveUser}
                                         />

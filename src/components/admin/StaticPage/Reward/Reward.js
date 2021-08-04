@@ -62,7 +62,6 @@ const Reward = ( props ) => {
                 setUser([])
                 setLimit(0)
                 successNotify('Rewards Created SuccessFully');
-
             })
 
     }

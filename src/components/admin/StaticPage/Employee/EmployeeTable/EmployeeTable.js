@@ -16,8 +16,13 @@ const EmployeeTable = ( props ) => {
                     <th>Location</th>
                     <th>Role</th>
                     <th>Status</th>
-                    <th>Benefits</th>
-                    <th>Action</th>
+                    {
+                        props.fired ? null :
+                            <>
+                                <th>Benefits</th>
+                                <th>Action</th>
+                            </>
+                    }
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +38,7 @@ const EmployeeTable = ( props ) => {
                         jobCity={employee.applicationForm.jobListing.jobCity}
                         applicationStatus={employee.applicationForm.applicationStatus}
                         inActive={props.inActiveHandler}
+                        fired={props.fired}
                     />
                 ))}
                 </tbody>
