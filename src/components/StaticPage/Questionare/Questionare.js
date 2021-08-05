@@ -147,8 +147,10 @@ const Questionare = (props) => {
                 <div className="container">
                     <div className="col-md-12">
                         <h2 className={'font-weight-bold'}>How can we help you</h2>
-                        <p>Please fill out the form below. We reassure you that our company does not disclose, nor
-                            sale any personal information to any third party.</p>
+                        <p>
+                            Please fill out the form below. We reassure you that our company does not disclose, nor
+                            sale any personal information to any third party.
+                        </p>
                     </div>
                 </div>
             </section>
