@@ -4,7 +4,8 @@ import Aux from "../../../hoc/Aux/Aux";
 import CustomCarousel from "../../UI/OwlCarousel/OwlCarousel";
 import ReactPlayer from "react-player";
 import HomeCarousel from "../../UI/HomeCarousel/HomeCarousel";
-
+import video from '../../../assets/video/logo.mp4'
+//https://thedigitalmonk.org/sgn/assets/img/logo2.mp4
 const Home = ( props ) => {
     const [loader, setLoader] = useState(true);
 
@@ -18,12 +19,13 @@ const Home = ( props ) => {
         // }
 
     }, [])
+    console.log(video)
 
     const preLoader = (
        <>
            <div className="bg_load" />
            <div className="splash__wrapper d-flex justify-content-center">
-               <ReactPlayer url={'https://thedigitalmonk.org/sgn/assets/img/logo2.mp4'} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
+               <ReactPlayer url={video} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
            </div>
        </>
     )

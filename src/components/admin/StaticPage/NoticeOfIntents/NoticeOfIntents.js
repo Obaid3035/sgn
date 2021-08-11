@@ -26,15 +26,6 @@ const NoticeOfIntents = () => {
 
 
 
-
-
-
-
-
-
-
-
-
     const table =  noticeOfIntent.map((notice, index) => {
         return (
             <NoticeOfIntent
