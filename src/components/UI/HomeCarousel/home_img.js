@@ -4,8 +4,10 @@ import HomeHeader from "../../../assets/img/career-header.jpg";
 import HomeHeader4 from "../../../assets/img/contact-header.jpg"
 import HomeHeader5 from "../../../assets/img/0.2.jpg";
 import HomeHeader6 from "../../../assets/img/0.3.jpg";
+import HomeHeader7 from "../../../assets/img/0.4.jpg";
 import HomeHeader8 from "../../../assets/img/0.5.jpg";
 import HomeHeader9 from "../../../assets/img/0.6.jpg";
+import HomeHeader10 from "../../../assets/img/0.7.jpg";
 // import HomeHeader10 from "../../../assets/img/0.7.jpg";
 import HomeHeader11 from "../../../assets/img/0.8.jpg";
 import HomeHeader12 from "../../../assets/img/0.9.jpg";
@@ -27,6 +29,8 @@ import HomeHeader26 from "../../../assets/img/0.23.jpg";
 import HomeHeader27 from "../../../assets/img/0.24.jpg";
 import HomeHeader28 from "../../../assets/img/0.25.jpg";
 
+
+
 export const data = [
 	{
 		img: HomeHeader4,
@@ -46,6 +50,11 @@ export const data = [
 		css: 'col-md-4 home__banner__text align-items-center text-left black'
 	},
 	{
+		img: HomeHeader7,
+		text: '',
+		css: 'col-md-4 truck__margin home__banner__text align-items-center text-left black'
+	},
+	{
 		img: HomeHeader8,
 		text: 'Construction Industry: Caterpillar tractor',
 		css: 'col-md-4 text-left home__banner__text text-left'
@@ -57,10 +66,12 @@ export const data = [
 		css: 'offset-md-6 col-md-6 justify-content-end home__banner__text text-right black',
 		parent: 'text-right'
 	},
-	// {
-	// 	img: HomeHeader10,
-	// 	text: 'Automobile Industry: All types of wheels'
-	// },
+	{
+		img: HomeHeader10,
+		text: '',
+		css: 'col-md-12 ml-5'
+
+	},
 	{
 		img: HomeHeader11,
 		text: 'Transportation Industry: Pickup truck',
@@ -92,7 +103,7 @@ export const data = [
 	{
 		img: HomeHeader16,
 		text: 'Appliance industry: Washing and drying machines',
-		css: 'col-md-12  home__banner__text text-center ',
+		css: 'offset-9 col-md-5 drying  home__banner__text text-center ',
 
 	},
 	{
@@ -108,7 +119,7 @@ export const data = [
 	{
 		img: HomeHeader19,
 		text: 'Medical industry: Advanced equipment for operating rooms such as operating tables, surgical lights, displays, booms…etc.',
-		css: 'col-md-12  standard__font text-center',
+		css: ' offset-9 col-md-5 standard__font text-center medical',
 
 	},
 	{
@@ -138,7 +149,7 @@ export const data = [
 	{
 		img: HomeHeader24,
 		text: 'Electronic Industry: broad array of electronic components suitable for engineering students’ experiments.  This includes but is not limited to microcontrollers, breadboard IR receivers, different types of motors, potentiometers, different types of sensors, 7 segment displays, resistors, transistors and connecting wires.',
-		css: 'col-md-12 home__banner__text text-center white',
+		css: 'col-md-12 home__banner__text text-center electronic',
 
 	},
 	{
