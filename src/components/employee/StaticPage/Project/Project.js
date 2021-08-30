@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import ProjectTable from "./ProjectTable/ProjectTable";
 import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const EmployeeProject = ( props ) => {
 
@@ -27,7 +28,7 @@ const EmployeeProject = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Completed Projects</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="comp_proj" /></h4>
                             </div>
 
                             <div className="card-body">
@@ -36,12 +37,12 @@ const EmployeeProject = ( props ) => {
                                         <li className="nav-item" role="presentation">
                                             <a className="nav-link btn btn-sm btn-outline btn-outline-warning active mr-2"
                                                id="all-tab" data-toggle="pill" href="#all" role="tab"
-                                               aria-controls="all" aria-selected="false">Completed</a>
+                                               aria-controls="all" aria-selected="false"><IntlMessages id="completed" /></a>
                                         </li>
                                         <li className="nav-item" role="presentation">
                                             <a className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
                                                id="completed-tab" data-toggle="pill" href="#completed" role="tab"
-                                               aria-controls="completed" aria-selected="true">Commissioned</a>
+                                               aria-controls="completed" aria-selected="true"><IntlMessages id="commission" /></a>
                                         </li>
                                     </ul>
                                     <div className="tab-content" id="pills-tabContent">
@@ -50,7 +51,7 @@ const EmployeeProject = ( props ) => {
                                             <div className="table-responsive">
                                                 {loaded ? successProject.length > 0
                                                     ? <ProjectTable project={successProject}/>
-                                                    : <h4 className="text-center">No Project Found</h4>
+                                                    : <h4 className="text-center"><IntlMessages id="no_proj" /></h4>
                                                         : <div className="text-center"><Spinner /></div>
                                                 }
                                             </div>
@@ -60,7 +61,7 @@ const EmployeeProject = ( props ) => {
                                             <div className="table-responsive">
                                                 {loaded ? commissionedProject.length > 0
                                                     ? <ProjectTable project={commissionedProject}/>
-                                                    : <h4 className="text-center">No Project Found</h4>
+                                                    : <h4 className="text-center"><IntlMessages id="no_proj" /></h4>
                                                     : <div className="text-center"><Spinner /></div>
                                                 }
                                             </div>

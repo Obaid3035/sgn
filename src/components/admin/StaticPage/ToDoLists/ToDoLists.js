@@ -7,6 +7,7 @@ import {toast, ToastContainer} from "react-toastify";
 import {Button, Modal} from "react-bootstrap";
 import Input from "../../../UI/Input/Input";
 import formConfig from "../../../../helpers/formConfig";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const ToDoLists = (props ) => {
 
@@ -34,16 +35,23 @@ const ToDoLists = (props ) => {
     const [toDoList, setToDoList] = useState([]);
     const [show, setShow] = useState(false);
 
-    const token = localStorage.getItem('token');
-
+    const role = localStorage.getItem('role')
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
-        axios.get('/admin/successnotice')
-            .then((res) => {
-
-                setToDoList(res.data);
-                setLoaded(true)
-            });
+        if(role.includes('subAdmin')) {
+            axios.get('/successnotice-subadmin', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setToDoList(res.data);
+                    setLoaded(true)
+                });
+        } else {
+            axios.get('/admin/successnotice')
+                .then((res) => {
+                    setToDoList(res.data);
+                    setLoaded(true)
+                });
+        }
 
 
     },[loaded])
@@ -88,7 +96,7 @@ const ToDoLists = (props ) => {
 
 
     const table = (
-        toDoList.map((todo, index) => (
+        toDoList && toDoList.map((todo, index) => (
             <ToDoList
                 key={index}
                 name={todo.User.applicationForm.firstName}
@@ -113,7 +121,7 @@ const ToDoLists = (props ) => {
 
         updatedFormElement.value = event.target.value;
         updatedNoticeForm[inputIdentifier] = updatedFormElement;
-
+        console.log(updatedNoticeForm)
         setNoticeOfIntentForm(updatedNoticeForm);
     }
 
@@ -126,23 +134,41 @@ const ToDoLists = (props ) => {
     }
 
 
-
     const toDoHandleShow = () => {
+
         setShow(!show)
-        axios.get('/admin/users')
-            .then((res) => {
-                const data = res.data;
-                data.unshift({label: 'Select', value: ''})
-                const updatedState = {
-                    ...noticeOfIntentForm
-                }
-                const updatedElement = {
-                    ...updatedState['users']
-                }
-                updatedElement.elementConfig.option = res.data;
-                updatedState['users'] = updatedElement
-                setNoticeOfIntentForm(updatedState)
-            });
+        if(role.includes('subAdmin')) {
+            axios.get('/subadmin-users', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    const data = res.data;
+                    data.unshift({label: 'Select', value: ''})
+                    const updatedState = {
+                        ...noticeOfIntentForm
+                    }
+                    const updatedElement = {
+                        ...updatedState['users']
+                    }
+                    updatedElement.elementConfig.option = res.data;
+                    updatedState['users'] = updatedElement
+                    setNoticeOfIntentForm(updatedState)
+                });
+        } else {
+            axios.get('/admin/users')
+                .then((res) => {
+                    const data = res.data;
+                    data.unshift({label: 'Select', value: ''})
+                    const updatedState = {
+                        ...noticeOfIntentForm
+                    }
+                    const updatedElement = {
+                        ...updatedState['users']
+                    }
+                    updatedElement.elementConfig.option = res.data;
+                    updatedState['users'] = updatedElement
+                    setNoticeOfIntentForm(updatedState)
+                });
+        }
+
     };
 
     const Notify = () => toast.success('Notice Of Intent Updated Successfully', {
@@ -168,6 +194,7 @@ const ToDoLists = (props ) => {
 
         updatedFormElement.value = date;
         updatedNoticeForm[inputIdentifier] = updatedFormElement;
+
 
         setNoticeOfIntentForm(updatedNoticeForm);
     }
@@ -214,7 +241,7 @@ const ToDoLists = (props ) => {
                     />
                 ))}
             </div>
-            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Create Intent</Button>
+            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}><IntlMessages id="create_intent" /></Button>
         </form>
     )
 
@@ -238,26 +265,26 @@ const ToDoLists = (props ) => {
                             <div className="card">
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0">To-Dos</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="to_dos" /></h4>
                                     <button type="button" onClick={toDoHandleShow}
-                                            className="btn btn-primary btn-lg">Add
+                                            className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />
                                     </button>
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">
-                                        {loaded ? toDoList.length > 0 ? <table className="table table-striped">
+                                        {loaded ? toDoList.length > 0 ? <table className="table">
                                             <thead className="">
                                             <tr>
-                                                <th>Employee Name</th>
-                                                <th>Business Name</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
+                                                <th><IntlMessages id="emp_name" /></th>
+                                                <th><IntlMessages id="bus_name" /></th>
+                                                <th><IntlMessages id="status" /></th>
+                                                <th><IntlMessages id="action" /></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             {table}
                                             </tbody>
-                                        </table> : <h3 className="text-center">No Todo's Found</h3>
+                                        </table> : <h3 className="text-center"><IntlMessages id="no_todo" /></h3>
                                             : <div className="text-center"> <Spinner /></div>}
                                     </div>
                                 </div>
@@ -284,7 +311,7 @@ const ToDoLists = (props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Notice</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_notice" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}

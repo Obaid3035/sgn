@@ -3,6 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import formConfig from "../../../../../helpers/formConfig";
 import useFormFields from "../../../../../helpers/useFormFields";
 import axios from "axios";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const ViewJob = ( props ) => {
     const [loaded, setLoaded] = useState(false);
@@ -46,12 +47,12 @@ const ViewJob = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Details</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="details" /></h4>
                             </div>
                             <div className="card-body">
                                 <Form className="pt-5" id="addIntentForm" onSubmit={onSubmitHandler}>
                                     <Form.Group className="mb-4">
-                                        <Form.Label>Job Title</Form.Label>
+                                        <Form.Label><IntlMessages id="job_title" /></Form.Label>
                                         <Form.Control type="text"
                                                       name="businessName"
                                                       value= {formFields.jobTitle}
@@ -60,7 +61,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-4">
-                                        <Form.Label>Job Country</Form.Label>
+                                        <Form.Label><IntlMessages id="job_country" /></Form.Label>
                                         <Form.Control type="text"
                                                       name="potential"
                                                       value= {formFields.jobCountry}
@@ -69,7 +70,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Job State</Form.Label>
+                                        <Form.Label><IntlMessages id="job_state" /></Form.Label>
                                         <Form.Control type="text"
                                                       name="planOnGoing"
                                                       value= {formFields.jobState}
@@ -78,7 +79,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Job City</Form.Label>
+                                        <Form.Label><IntlMessages id="job_city" /></Form.Label>
                                         <Form.Control type="tel"
                                                       name="businessPhoneNumber"
                                                       value= {formFields.jobCity}
@@ -87,7 +88,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Job Description</Form.Label>
+                                        <Form.Label><IntlMessages id="job_descrip" /></Form.Label>
                                         <Form.Control as={'textarea'} className="text-left" rows="6"
                                                       name="additionalInformation"
                                                       value= {formFields.jobDescription}
@@ -96,7 +97,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Job Benefit</Form.Label>
+                                        <Form.Label><IntlMessages id="job_benefit" /></Form.Label>
                                         <Form.Control as={'textarea'} className="text-left" rows="6"
                                                       name="additionalInformation"
                                                       value= {formFields.jobBenefit}
@@ -105,7 +106,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Job Requirement</Form.Label>
+                                        <Form.Label><IntlMessages id="job_req" /></Form.Label>
                                         <Form.Control as={'textarea'} className="text-left" rows="6"
                                                       name="additionalInformation"
                                                       value= {formFields.jobRequirement}
@@ -114,7 +115,7 @@ const ViewJob = ( props ) => {
                                         />
                                     </Form.Group>
                                     <div className={'float-right'}>
-                                        <Button variant={'primary'} type={'submit'} size={'lg'} className={'mx-4  mb-4'}>Update</Button>
+                                        <Button variant={'primary'} type={'submit'} size={'lg'} className={'mx-4  mb-4'}><IntlMessages id="update" /></Button>
                                     </div>
                                 </Form>
                             </div>

@@ -1,10 +1,11 @@
 import React  from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import Logo from '../../../assets/img/logo.png'
-
+import IntlMessages from '../../../Util/IntlMessages';
 import { Nav } from "react-bootstrap";
 
 function Sidebar({ color, image, user }) {
+  console.log(user)
   const location = useLocation();
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
@@ -31,7 +32,7 @@ function Sidebar({ color, image, user }) {
             </div>
           </a>
           <a className="simple-text" href="http://www.creative-tim.com">
-            SGN
+          <IntlMessages id="sgn_head" /> 
           </a>
         </div>
         <Nav>
@@ -43,7 +44,7 @@ function Sidebar({ color, image, user }) {
                       className="nav-link"
                       activeClassName="active">
                     <i className={'fa fa-home'} />
-                    <p>{'Dashboard'}</p>
+                    <p><IntlMessages id="Dashboard" /></p>
                   </NavLink>
                 </li> : ''}
 
@@ -56,9 +57,23 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-user-tie'} />
-                    <p>{'Sub Admin'}</p>
+                    <p><IntlMessages id="sub_admin" /></p>
                   </NavLink>
                 </li> : ''
+            }
+
+            {
+              user.roleDetail.chat ?
+                  <li className={activeRoute('/employee/chat-subadmin')}>
+                    <NavLink
+                        to={'/employee/chat-subadmin'}
+                        className="nav-link"
+                        activeClassName="active"
+                    >
+                      <i className={'fas fa-comment-dots'} />
+                      <p><IntlMessages id="message" /></p>
+                    </NavLink>
+                  </li> : ''
             }
 
             {
@@ -70,7 +85,7 @@ function Sidebar({ color, image, user }) {
                         activeClassName="active"
                     >
                       <i className={'fas fa-users'} />
-                      <p>{'Employee'}</p>
+                      <p><IntlMessages id="ad_employee" /></p>
                     </NavLink>
                   </li>
                   : ''
@@ -85,7 +100,7 @@ function Sidebar({ color, image, user }) {
                         activeClassName="active"
                     >
                       <i className={'fas fa-briefcase'} />
-                      <p>{'Job'}</p>
+                      <p><IntlMessages id="ad_job" /></p>
                     </NavLink>
                   </li>
                   : ''
@@ -100,7 +115,7 @@ function Sidebar({ color, image, user }) {
                         activeClassName="active"
                     >
                       <i className={'fas fa-clipboard-list'} />
-                      <p>{'Application'}</p>
+                      <p><IntlMessages id="application" /></p>
                     </NavLink>
                   </li>
                   : ''
@@ -108,14 +123,14 @@ function Sidebar({ color, image, user }) {
 
             {
               user.roleDetail.project ?
-                  <li className={activeRoute('/employee/project')}>
+                  <li className={activeRoute('/employee/project-subadmin')}>
                     <NavLink
-                        to={'/employee/project'}
+                        to={'/employee/project-subadmin'}
                         className="nav-link"
                         activeClassName="active"
                     >
                       <i className={'fas fa-project-diagram'} />
-                      <p>{'Project'}</p>
+                      <p><IntlMessages id="project" /></p>
                     </NavLink>
                   </li>
                   : ''
@@ -123,29 +138,29 @@ function Sidebar({ color, image, user }) {
 
             {
               user.roleDetail.noticeOfIntent ?
-                  <li className={activeRoute('/employee/noticeofintent')}>
+                  <li className={activeRoute('/employee/noticeofintent-subadmin')}>
                     <NavLink
-                        to={'/employee/noticeofintent'}
+                        to={'/employee/noticeofintent-subadmin'}
                         className="nav-link"
                         activeClassName="active"
                     >
                       <i className={'fas fa-clipboard-check'} />
-                      <p>{'Notice Of Intent'}</p>
+                      <p><IntlMessages id="intent" /></p>
                     </NavLink>
                   </li>
                   : ''
             }
 
             {
-              user.roleDetail.todoList ?
-                  <li className={activeRoute('/employee/todoList')}>
+              user.roleDetail.toDoList ?
+                  <li className={activeRoute('/employee/todoList-subadmin')}>
                     <NavLink
-                        to={'/employee/todoList'}
+                        to={'/employee/todoList-subadmin'}
                         className="nav-link"
                         activeClassName="active"
                     >
                       <i className={'fas fa-list'} />
-                      <p>{'Todo List'}</p>
+                      <p><IntlMessages id="to_do" /></p>
                     </NavLink>
                   </li>
                   : ''
@@ -160,7 +175,7 @@ function Sidebar({ color, image, user }) {
                         activeClassName="active"
                     >
                       <i className={'fa fa-credit-card'} />
-                      <p>{'Payment'}</p>
+                      <p><IntlMessages id="payment" /></p>
                     </NavLink>
                   </li>
                   : ''
@@ -175,85 +190,92 @@ function Sidebar({ color, image, user }) {
                         activeClassName="active"
                     >
                       <i className={'fa fa-magic'} />
-                      <p>{'Benefit'}</p>
+                      <p><IntlMessages id="benefit" /></p>
                     </NavLink>
                   </li>
                   : ''
             }
 
-            <li className={activeRoute('/employee/profile')}>
-              <NavLink
-                  to={'/employee/profile'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'fa fa-user'} />
-                <p>{'Profile'}</p>
-              </NavLink>
-            </li>
-            <li className={activeRoute('/employee/noticeofintent')}>
-              <NavLink
-                  to={'/employee/noticeofintent'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'fas fa-clipboard-check'} />
-                <p>{'Current Notice'}</p>
-              </NavLink>
-            </li>
+            {
+              user.role.includes('employee') ?
+                  (
+                      <>
+                        <li className={activeRoute('/employee/profile')}>
+                          <NavLink
+                              to={'/employee/profile'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'fa fa-user'} />
+                            <p><IntlMessages id="profile" /></p>
+                          </NavLink>
+                        </li>
+                        <li className={activeRoute('/employee/noticeofintent')}>
+                          <NavLink
+                              to={'/employee/noticeofintent'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'fas fa-clipboard-check'} />
+                            <p><IntlMessages id="curr_notice" /></p>
+                          </NavLink>
+                        </li>
 
-            <li className={activeRoute('/employee/todoList')}>
-              <NavLink
-                  to={'/employee/todoList'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'nc-icon nc-alien-33'} />
-                <p>{'Current TodoList'}</p>
-              </NavLink>
-            </li>
-            <li className={activeRoute('/employee/project')}>
-              <NavLink
-                  to={'/employee/project'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'fas fa-list'} />
-                <p>{'Current Project'}</p>
-              </NavLink>
-            </li>
-            <li className={activeRoute('/employee/reward')}>
-              <NavLink
-                  to={'/employee/reward'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'fas fa-trophy'} />
-                <p>{'Current Rewards'}</p>
-              </NavLink>
-            </li>
+                        <li className={activeRoute('/employee/todoList')}>
+                          <NavLink
+                              to={'/employee/todoList'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'nc-icon nc-alien-33'} />
+                            <p><IntlMessages id="curr_todo" /></p>
+                          </NavLink>
+                        </li>
+                        <li className={activeRoute('/employee/project')}>
+                          <NavLink
+                              to={'/employee/project'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'fas fa-list'} />
+                            <p><IntlMessages id="curr_proj" /></p>
+                          </NavLink>
+                        </li>
+                        <li className={activeRoute('/employee/reward')}>
+                          <NavLink
+                              to={'/employee/reward'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'fas fa-trophy'} />
+                            <p><IntlMessages id="curr_rewards" /></p>
+                          </NavLink>
+                        </li>
 
-            <li className={activeRoute('/employee/chat')}>
-              <NavLink
-                  to={'/employee/chat'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'fas fa-comment-dots'} />
-                <p>{'Message'}</p>
-              </NavLink>
-            </li>
+                        <li className={activeRoute('/employee/chat')}>
+                          <NavLink
+                              to={'/employee/chat'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'fas fa-comment-dots'} />
+                            <p><IntlMessages id="curr_msg" /></p>
+                          </NavLink>
+                        </li>
 
-            <li className={activeRoute('/employee/help')}>
-              <NavLink
-                  to={'/employee/help'}
-                  className="nav-link"
-                  activeClassName="active"
-              >
-                <i className={'fa fa-question-circle'} />
-                <p>{'Help'}</p>
-              </NavLink>
-            </li>
+                        <li className={activeRoute('/employee/help')}>
+                          <NavLink
+                              to={'/employee/help'}
+                              className="nav-link"
+                              activeClassName="active"
+                          >
+                            <i className={'fa fa-question-circle'} />
+                            <p><IntlMessages id="help" /></p>
+                          </NavLink>
+                        </li>
+                      </>
+                  ) : ''
+            }
 
           </> : ''}
 

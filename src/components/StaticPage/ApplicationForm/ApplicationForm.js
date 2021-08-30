@@ -4,10 +4,17 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import Spinner from "../../UI/ProgressBar/ProgressBar";
 import TimePicker from 'react-time-picker';
+import IntlMessages from '../../../Util/IntlMessages';
+import AsyncSelect from "react-select/async/dist/react-select.esm";
 
 
 const ApplicationForm = ( props ) => {
     const id = props.match.params.id;
+
+    const [subAdmins, setSubAdmins] = useState(true);
+    const handleInputChange = (newValue) => {
+        setSubAdmins(newValue)
+    };
     const [loaded, setLoaded] = useState(true);
     const [progress, setProgress] = useState(10)
     const [timeRangeAvailableFrom, setTimeRangeAvailableFrom] = useState(null);
@@ -177,7 +184,7 @@ const ApplicationForm = ( props ) => {
         formData.employmentHistory.push(employee3)
         formData.timeRangeAvailableTo = timeRangeAvailableTo;
         formData.timeRangeAvailableFrom = timeRangeAvailableFrom
-
+        formData.subAdmins = subAdmins;
 
         console.log(formData)
         axios.post('/register', formData)
@@ -186,7 +193,7 @@ const ApplicationForm = ( props ) => {
                 fileUploadHandler(res.data.id)
             }).catch((res) => {
                 setLoaded(true)
-                alert(res.data)
+                alert('Something went wrong')
         })
     }
 
@@ -347,7 +354,7 @@ const ApplicationForm = ( props ) => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <h2>Form</h2>
+                        <h2><IntlMessages id="form" /></h2>
                     </div>
                 </div>
                 <div className="row">
@@ -506,6 +513,8 @@ const ApplicationForm = ( props ) => {
                             />}
 
                             {formFields.currentStep === 10 && <Step10
+                                handleInputChange={handleInputChange}
+                                subAdmins={subAdmins}
                                 referenceHandleChange={referenceHandleChange}
                                 firstName={reference.firstName}
                                 lastName={reference.lastName}
@@ -563,56 +572,56 @@ const Step1 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">First Name:*</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="first_name" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" name="firstName" required value={props.firstName} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">Middle Name:</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="middle_name" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" id="" name="middleName" value={props.middleName} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">Last Name:*</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="last_name" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" required id="" name="lastName" value={props.lastName} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">Street Address:</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="street_address" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" id="" name="streetAddress" value={props.streetAddress} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="city_state" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">Phone Number:*</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="phone_no" /></label>
                         <div className="col-sm-8">
                             <input type="tel" className="form-control" required id="" name="phoneNumber" value={props.phoneNumber} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="" className="col-sm-4 col-form-label">Email Address:*</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="email_address" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" required id="" name="email" value={props.email} onChange={props.emailChangeHandler} />
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <div className={'text-center'}><button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button></div>
+            <div className={'text-center'}><button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button></div>
         </form>
     )
 }
@@ -626,7 +635,7 @@ const Step2 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <div className="form-group row align-items-center">
-                        <label htmlFor="" className="col-sm-4 col-form-label">Please upload your resume:*</label>
+                        <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="upload_resume" /></label>
                         <div className="col-sm-8">
                             <input type="file" onChange={props.fileSelectHandler} name={'resume'} required id="resume"
                                    className="form-control form-control-file" />
@@ -635,8 +644,8 @@ const Step2 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
 
         </form>
@@ -652,16 +661,15 @@ const Step3 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <div className="form-group row align-items-center">
-                        <label htmlFor="workedForSGN" className="col-sm-8 col-form-label">Have you ever applied to / worked
-                            for SGN before?</label>
+                        <label htmlFor="workedForSGN" className="col-sm-8 col-form-label"><IntlMessages id="applied_worked" /></label>
                         <div className="col-sm-4">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="workedForSGN" required type="radio" id="yes" value={true}  onChange={props.handleChange}/>
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="workedForSGN" required type="radio" id="no" value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
@@ -677,26 +685,24 @@ const Step3 = ( props ) => {
                     }
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="haveAnyFriendsAtSGN" className="col-sm-8 col-form-label">Do you have any friends,
-                            relatives, or acquaintances working for SGN?</label>
+                        <label htmlFor="haveAnyFriendsAtSGN" className="col-sm-8 col-form-label"><IntlMessages id="friends_working" /></label>
                         <div className="col-sm-4">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="haveAnyFriendsAtSGN" required type="radio" id="yes"
                                        value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="haveAnyFriendsAtSGN" required type="radio" id="no"
                                        value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     {props.anyfriends === 'true' ?
                         <div className="form-group row align-items-center">
-                            <label htmlFor="haveAnyFriendAtSGNName" className="col-sm-4 col-form-label">If yes, state name &
-                                relationship:</label>
+                            <label htmlFor="haveAnyFriendAtSGNName" className="col-sm-4 col-form-label"><IntlMessages id="friends_state" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" required id="" name="haveAnyFriendAtSGNName"  value={props.haveAnyFriendAtSGNName} onChange={props.handleChange} />
                             </div>
@@ -704,8 +710,8 @@ const Step3 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -720,48 +726,45 @@ const Step4 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <div className="form-group row align-items-center">
-                        <label htmlFor="age" className="col-lg-8 col-sm-12 col-form-label">Are you over the age of
-                            18?</label>
+                        <label htmlFor="age" className="col-lg-8 col-sm-12 col-form-label"><IntlMessages id="over_age" /></label>
                         <div className="col-lg-4 col-sm-12">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="overAge" required type="radio" id="yes" value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="overAge" type="radio" required id="no" value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="presentYourIdentificationCard" className="col-lg-8 col-sm-12 col-form-label">If
-                            hired, would you be able to present your identification card when requested?</label>
+                        <label htmlFor="presentYourIdentificationCard" className="col-lg-8 col-sm-12 col-form-label"><IntlMessages id="if_hired" /></label>
                         <div className="col-lg-4 col-sm-12">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="presentYourIdentificationCard" required type="radio"
                                        id="yes" value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="presentYourIdentificationCard" required type="radio"
                                        id="no" value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="pleadedFelony" className="col-lg-8 col-sm-12 col-form-label">Have you been convicted
-                            of or pleaded no contest to a felony within the last five years? </label>
+                        <label htmlFor="pleadedFelony" className="col-lg-8 col-sm-12 col-form-label"><IntlMessages id="convicted" /> </label>
                         <div className="col-lg-4 col-sm-12">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="pleadedFelony" type="radio" required id="yes" value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="pleadedFelony" type="radio" required id="no" value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
@@ -769,17 +772,15 @@ const Step4 = ( props ) => {
                     {props.felony === 'true' ?  <div className="form-group row">
 
                         <div className="form-group">
-                            <label htmlFor="pleadedFelonyExplain">If yes, please describe the crime - state the nature of the
-                                crime(s), when and where
-                                convicted, and the disposition (final settlement) of the case: </label>
+                            <label htmlFor="pleadedFelonyExplain"><IntlMessages id="describe_crime" /> </label>
                             <input type="text" className="form-control" id="" name="pleadedFelonyExplain" required value={props.pleadedFelonyExplain} onChange={props.handleChange} />
                         </div>
                     </div> : null}
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -894,25 +895,23 @@ const Step5 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <div className="form-group row align-items-center">
-                        <label htmlFor="isForeignLanguage" className="col-lg-5 col-sm-6 col-form-label">Do you
-                            speak, write or understand any foreign languages?</label>
+                        <label htmlFor="isForeignLanguage" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="do_speak" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" name="isForeignLanguage" required
                                        id="yes" value={true} onChange={props.handleChange}  />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" name="isForeignLanguage" id="no" required
                                        value={false} onChange={props.handleChange}  />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                         {
                             props.isForeignLanguage === "true" ?
                                 <div className="form-group row align-items-center">
-                                    <label htmlFor="foreignLanguage" className="col-lg-5 col-sm-6 col-form-label">If yes, list which
-                                        languages(s) and how fluent you consider yourself to be: </label>
+                                    <label htmlFor="foreignLanguage" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="list_language" /></label>
                                     <div className="col-lg-7 col-sm-6">
                                         <input type="text" className="form-control" required id="" name="foreignLanguage" value={props.vocationalForeignLanguage} onChange={props.handleChange}  />
                                     </div>
@@ -921,82 +920,78 @@ const Step5 = ( props ) => {
                         }
 
                     </div>
-                    <h4>Salary and Availability</h4>
+                    <h4><IntlMessages id="salary_avail" /></h4>
                     <div className="form-group row align-items-center">
-                        <label htmlFor="desiredSalary" className="col-sm-4 col-form-label">Please suggest your desired monthly salary using your homeland currency acronym.  Ex: 5000 JPY, or 5000 CHY, 5000 XAF or 5000 AUD etc.:</label>
+                        <label htmlFor="desiredSalary" className="col-sm-4 col-form-label"><IntlMessages id="desired_salary" /></label>
                         <div className="col-sm-8">
                             <input type="text" className="form-control" id="" required name="desiredSalary" value={props.desiredSalary} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="partTimeWork" className="col-sm-8 col-form-label">Are you applying for part-time
-                            work?</label>
+                        <label htmlFor="partTimeWork" className="col-sm-8 col-form-label"><IntlMessages id="apply_partTime" /></label>
                         <div className="col-sm-4">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" required name="partTimeWork" required type="radio" id="yes" value={true} onChange={props.handleChange} />
-                                <label className="form-check-label"  htmlFor="yes">Yes</label>
+                                <label className="form-check-label"  htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" required name="partTimeWork" type="radio" id="no" value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="fullTimeWork" className="col-sm-8 col-form-label">Are you applying for full-time
-                            work?</label>
+                        <label htmlFor="fullTimeWork" className="col-sm-8 col-form-label"><IntlMessages id="apply_fullTime" /></label>
                         <div className="col-sm-4">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" required name="fullTimeWork" type="radio" id="yes" value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" required name="fullTimeWork" type="radio" id="no" value={false} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="daysAvailable" className="col-lg-5 col-sm-12 col-form-label">Please select your
-                            available days:</label>
+                        <label htmlFor="daysAvailable" className="col-lg-5 col-sm-12 col-form-label"><IntlMessages id="avail_days" /></label>
                         <div className="col-lg-7 col-sm-12">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="monday" value={monday} onChange={onChange}  />
-                                    <label className="form-check-label" htmlFor="monday">Mon</label>
+                                    <label className="form-check-label" htmlFor="monday"><IntlMessages id="mon" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="tuesday" value={tuesday} onChange={onChange}    />
-                                    <label className="form-check-label" htmlFor="tuesday">Tues</label>
+                                    <label className="form-check-label" htmlFor="tuesday"><IntlMessages id="tues" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="wednesday" value={wednesday} onChange={onChange}   />
-                                    <label className="form-check-label" htmlFor="wednesday">Wed</label>
+                                    <label className="form-check-label" htmlFor="wednesday"><IntlMessages id="wed" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="thursday" value={thursday} onChange={onChange}   />
-                                    <label className="form-check-label" htmlFor="thursday">Thurs</label>
+                                    <label className="form-check-label" htmlFor="thursday"><IntlMessages id="thurs" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="friday" value={friday} onChange={onChange}    />
-                                    <label className="form-check-label" htmlFor="friday">Fri</label>
+                                    <label className="form-check-label" htmlFor="friday"><IntlMessages id="fri" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="saturday" value={saturday} onChange={onChange}   />
-                                    <label className="form-check-label" htmlFor="saturday">Sat</label>
+                                    <label className="form-check-label" htmlFor="saturday"><IntlMessages id="sat" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="checkbox" name="sunday" value={sunday} onChange={onChange}  />
-                                    <label className="form-check-label" htmlFor="sunday">Sun</label>
+                                    <label className="form-check-label" htmlFor="sunday"><IntlMessages id="sun" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="time-range" className=" col-lg-6 col-sm-12 col-form-label">Enter your available time
-                            range:</label>
+                        <label htmlFor="time-range" className=" col-lg-6 col-sm-12 col-form-label"><IntlMessages id="avail_time" /></label>
                         <div className="col-lg-3 col-sm-6">
                             <TimePicker value={props.timeRangeAvailableFrom} onChange={props.onChangeFrom} />;
                         </div>
@@ -1007,8 +1002,8 @@ const Step5 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -1023,34 +1018,30 @@ const Step6 = ( props ) => {
             <fieldset className="fieldset">
                 <div className="p-5">
                     <div className="form-group row align-items-center">
-                        <label htmlFor="start-date" className="col-lg-6 col-sm-12 col-form-label">If hired, on what date can
-                            you start working?</label>
+                        <label htmlFor="start-date" className="col-lg-6 col-sm-12 col-form-label"><IntlMessages id="work_start" /></label>
                         <div className="col-lg-6 col-sm-12">
                             <DatePicker selected={props.startWorkingDate} onChange={(e) => props.datePickerHandler(e, 'startWorkingDate') } />
                         </div>
                     </div>
                     <div className="form-group row align-items-center">
-                        <label htmlFor="essentialFunction" className="col-lg-8 col-sm-12 col-form-label">Are you able to
-                            perform the essential functions of the job for which you are applying,
-                            either with / without reasonable accommodation?</label>
+                        <label htmlFor="essentialFunction" className="col-lg-8 col-sm-12 col-form-label"><IntlMessages id="perform_essential" /></label>
                         <div className="col-lg-4 col-sm-12">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" required name="essentialFunction" type="radio" id="yes"
                                        value={true} onChange={props.handleChange}  />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" required name="essentialFunction" type="radio" id="no"
                                        value={false} onChange={props.handleChange}  />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     {props.essentialFunction === 'false' ?
                         <div className="form-group row row align-items-center">
-                            <label htmlFor="essentialFunctionExplain" className="col-lg-6 col-sm-12 col-form-label">If no,
-                                describe the functions that cannot be performed:</label>
+                            <label htmlFor="essentialFunctionExplain" className="col-lg-6 col-sm-12 col-form-label"><IntlMessages id="perform_function" /></label>
                             <div className="col-lg-6 col-sm-12">
                                 <input type="text" className="form-control" required id="" name="essentialFunctionExplain" value={props.essentialFunctionExplain} onChange={props.handleChange} />
                             </div>
@@ -1061,8 +1052,8 @@ const Step6 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -1076,61 +1067,55 @@ const Step7 = ( props ) => {
         <form onSubmit={props.onSubmit}>
             <fieldset className="fieldset">
                 <div className="p-5">
-                    <h4>Education, Training and Experience</h4>
-                    <h5>High School</h5>
+                    <h4><IntlMessages id="education_training" /></h4>
+                    <h5><IntlMessages id="high_school" /></h5>
                     <div id="detailhighSchool">
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolName" className="col-lg-5 col-sm-6 col-form-label">School
-                                Name:*</label>
+                            <label htmlFor="schoolName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_name" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" required className="form-control" id="" name="schoolName" placeholder="" value={props.schoolName} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolAddress" className="col-lg-5 col-sm-6 col-form-label">School
-                                Address:</label>
+                            <label htmlFor="schoolAddress" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_address" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="schoolAddress" value={props.schoolAddress} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label">School City,
-                                State, Zip:</label>
+                            <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_city" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="schoolZipCode" value={props.schoolZipCode} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label">Number Of Years
-                                Completed:*</label>
+                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="years_completed" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="number" className="form-control" required id="" name="yearsCompleted" value={props.yearsCompleted} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="isGraduate" className="col-lg-5 col-sm-6 col-form-label">Did you
-                                graduate?</label>
+                            <label htmlFor="isGraduate" className="col-lg-5 col-sm-6 col-form-label"> <IntlMessages id="graduated" /></label>
                             <div className="col-lg-7 col-sm-7">
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" name="isGraduate" type="radio"
                                            value={true} onChange={props.handleChange}  />
-                                    <label className="form-check-label">Yes</label>
+                                    <label className="form-check-label"><IntlMessages id="yes" /></label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" name="isGraduate" type="radio"
                                            value={false} onChange={props.handleChange}  />
-                                    <label className="form-check-label">No</label>
+                                    <label className="form-check-label"><IntlMessages id="no" /></label>
                                 </div>
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="degree" className="col-lg-5 col-sm-6 col-form-label">Degree / Diploma
-                                earned:* </label>
+                            <label htmlFor="degree" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="degree_earned" /> </label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="schoolDegree" value={props.schoolDegree} onChange={props.handleChange}/>
                             </div>
@@ -1139,8 +1124,8 @@ const Step7 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -1166,9 +1151,9 @@ const Step8 = ( props ) => {
         <form onSubmit={props.onSubmit}>
             <fieldset className="fieldset">
                 <div className="p-5">
-                    <h4>College / University</h4>
+                    <h4><IntlMessages id="collage_uni" /></h4>
                     <div className="form-group row align-items-center">
-                        <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">College / University:</label>
+                        <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="col_uni" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" onClick={hideContentHandler} inline label="Never attended College / University" />
@@ -1178,65 +1163,59 @@ const Step8 = ( props ) => {
 
                     {show ? <div id="detail-college">
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolName" className="col-lg-5 col-sm-6 col-form-label">School
-                                Name:*</label>
+                            <label htmlFor="schoolName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_name" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="schoolName" required placeholder="" value={props.collegeName} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolAddress"  className="col-lg-5 col-sm-6 col-form-label">School
-                                Address:</label>
+                            <label htmlFor="schoolAddress"  className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_address" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="schoolAddress" value={props.collegeAddress} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label">School City,
-                                State, Zip:</label>
+                            <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_city" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="schoolZipCode" value={props.collegeZipCode} onChange={props.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label">Number Of Years
-                                Completed:*</label>
+                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="years_completed" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="number" className="form-control" id="" required name="yearsCompleted" value={props.collegeYearsCompleted} onChange={props.handleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="isGraduate"  className="col-lg-5 col-sm-6 col-form-label">Did you
-                                graduate?</label>
+                            <label htmlFor="isGraduate"  className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="graduated" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" name="isGraduate" type="radio" id="yes"
                                            value={true} onChange={props.handleChange}  />
-                                    <label className="form-check-label" htmlFor="yes">Yes</label>
+                                    <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" name="isGraduate" type="radio" id="no"
                                            value={false} onChange={props.handleChange}  />
-                                    <label className="form-check-label" htmlFor="no">No</label>
+                                    <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                                 </div>
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">Degree / Diploma
-                                earned:* </label>
+                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="degree_earned" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="schoolDegree" value={props.collegeDegree} onChange={props.handleChange}  />
                             </div>
                         </div>
-                    </div> : <h3>College Not Attended</h3>}
+                    </div> : <h3><IntlMessages id="college_notAttend" /></h3>}
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">Vocational School: </label>
+                        <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="vocation_school" /> </label>
                         <div className="col-lg-7 col-sm-6">
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" onClick={hideVocationalHandler}  inline label="Never attended Vocational School" />
@@ -1246,68 +1225,62 @@ const Step8 = ( props ) => {
 
                     {showVocational ? <div id="detail-vocational">
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolName" className="col-lg-5 col-sm-6 col-form-label">School
-                                Name:*</label>
+                            <label htmlFor="schoolName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_name" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="schoolName" placeholder="" value={props.vocationalName} onChange={props.vocationalHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolAddress" className="col-lg-5 col-sm-6 col-form-label">School
-                                Address:</label>
+                            <label htmlFor="schoolAddress" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_address" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="schoolAddress" value={props.vocationalAddress} onChange={props.vocationalHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label">School City,
-                                State, Zip:</label>
+                            <label htmlFor="schoolZipCode" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="school_city" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id=""  name="schoolZipCode" value={props.vocationalZipCode} onChange={props.vocationalHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label">Number Of Years
-                                Completed:*</label>
+                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="years_completed" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="number" className="form-control" id="" required name="yearsCompleted" value={props.vocationalYearsCompleted} onChange={props.vocationalHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="isGraduate" className="col-lg-5 col-sm-6 col-form-label">Did you
-                                graduate?</label>
+                            <label htmlFor="isGraduate" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="graduated" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" name="isGraduate" type="radio" id="yes"
                                            value={true} onChange={props.vocationalHandleChange}  />
-                                    <label className="form-check-label" htmlFor="yes">Yes</label>
+                                    <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" name="isGraduate" type="radio" id="no"
                                            value={false} onChange={props.vocationalHandleChange}  />
-                                    <label className="form-check-label" htmlFor="no">No</label>
+                                    <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                                 </div>
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">Degree / Diploma
-                                earned:* </label>
+                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="degree_earned" /> </label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" required id="" name="schoolDegree" value={props.vocationalDegree} onChange={props.vocationalHandleChange} />
                             </div>
                         </div>
-                    </div> : <h3> Never Attended Vocational</h3>}
+                    </div> : <h3><IntlMessages id="never_vocational" /> </h3>}
 
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
 
@@ -1328,271 +1301,254 @@ const Step9 = ( props ) => {
         <form onSubmit={props.onSubmit}>
             <fieldset className="fieldset">
                 <div className="p-5">
-                    <h4 className="mb-5">Employment History</h4>
+                    <h4 className="mb-5"><IntlMessages id="emp_history" /></h4>
                     <div className={'form-group row align-items-center'}>
-                        <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label">Currently employed or not</label>
+                        <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="curr_employed" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" required name="currentlyEmployed" id="yes"
                                        value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" name="currentlyEmployed" id="no" required
                                        value={false} onChange={props.handleChange}  />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label">If you are currently
-                            employed, may we contact your current employer?</label>
+                        <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="contact_emp" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" required name="contactEmployer" id="yes"
                                        value={true} onChange={props.handleChange} />
-                                <label className="form-check-label" htmlFor="yes">Yes</label>
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                             </div>
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" type="radio" name="contactEmployer" id="no" required
                                        value={false} onChange={props.handleChange}  />
-                                <label className="form-check-label" htmlFor="no">No</label>
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                             </div>
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="employerName" className="col-lg-5 col-sm-6 col-form-label">Name of
-                            Employer:*</label>
+                        <label htmlFor="employerName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_name" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="employerName" required placeholder="" value={props.employerName} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="telephoneName" className="col-lg-5 col-sm-6 col-form-label">Telephone
-                            Number*</label>
+                        <label htmlFor="telephoneName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_number" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="tel" className="form-control" id="" name="telephoneName" required value={props.telephoneName} onChange={props.handleChange}  />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="businessType" className="col-lg-5 col-sm-6 col-form-label">Business Type:*</label>
+                        <label htmlFor="businessType" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_business" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="businessType" required value={props.businessType} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:</label>
+                        <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_address" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="address" value={props.address} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label">City, State, Zip:</label>
+                        <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_city" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">Length of Employment (Include
-                            Dates):* </label>
+                        <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="length_emp" /> </label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="employmentLength" required value={props.employmentLength} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="salary" className="col-lg-5 col-sm-6 col-form-label">SALARY/MONTH RATE OF PAY? please put in monthly payment you used to earn at your previous job:*</label>
+                        <label htmlFor="salary" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_salary" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="salary" required placeholder="" value={props.salary} onChange={props.handleChange} />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="position" className="col-lg-5 col-sm-6 col-form-label">Position & Duties:*</label>
+                        <label htmlFor="position" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_position" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" name="position" required  value={props.position} onChange={props.handleChange}  />
                         </div>
                     </div>
 
                     <div className="form-group row align-items-center">
-                        <label htmlFor="reasonOfLeaving" className="col-lg-5 col-sm-6 col-form-label">Reason for
-                            Leaving:*</label>
+                        <label htmlFor="reasonOfLeaving" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="reason_leave" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <input type="text" className="form-control" id="" required name="reasonOfLeaving" value={props.reasonOfLeaving} onChange={props.handleChange} />
                         </div>
                     </div>
 
-                    <Button variant={'success'} size={'lg'} className={'text-center btn btn-lg px-4 float-right'} onClick={() => { setJob2(!job2)}}>Add More Detail</Button>
+                    <Button variant={'success'} size={'lg'} className={'text-center btn btn-lg px-4 float-right'} onClick={() => { setJob2(!job2)}}><IntlMessages id="add_details" /></Button>
                     {job2 ? <>
-                        <h3>Job 2</h3>
+                        <h3><IntlMessages id="emp_job2" /></h3>
                         <div className="form-group row align-items-center">
-                            <label htmlFor="employerName" className="col-lg-5 col-sm-6 col-form-label">Name of
-                                Employer:*</label>
+                            <label htmlFor="employerName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_name" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="employerName" placeholder="" value={props.employerName1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="telephoneName" className="col-lg-5 col-sm-6 col-form-label">Telephone
-                                Number*</label>
+                            <label htmlFor="telephoneName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_number" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="tel" className="form-control" id="" required name="telephoneName" value={props.telephoneName1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="businessType" className="col-lg-5 col-sm-6 col-form-label">Business Type:*</label>
+                            <label htmlFor="businessType" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_business" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="businessType" value={props.businessType1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:</label>
+                            <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_address" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="address" value={props.address1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label">City, State, Zip:</label>
+                            <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_city" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode1} onChange={props.employeeHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">Length of Employment (Include
-                                Dates):* </label>
+                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="length_emp" /> </label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="employmentLength" value={props.employmentLength1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="salary" className="col-lg-5 col-sm-6 col-form-label">Salary/Hourly Rate of
-                                Pay:*</label>
+                            <label htmlFor="salary" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp2_sal" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="salary" placeholder="" value={props.salary1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="position" className="col-lg-5 col-sm-6 col-form-label">Position & Duties:*</label>
+                            <label htmlFor="position" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_position" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="position" value={props.position1} onChange={props.employeeHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="reasonOfLeaving" className="col-lg-5 col-sm-6 col-form-label">Reason for
-                                Leaving:*</label>
+                            <label htmlFor="reasonOfLeaving" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="reason_leave" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="reasonOfLeaving" value={props.reasonOfLeaving1} onChange={props.employeeHandleChange}  />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label">Number Of Years
-                                Completed:*</label>
+                            <label htmlFor="yearsCompleted" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp2_years" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="number" className="form-control" id="" required name="yearsCompleted" value={props.yearsCompleted1} onChange={props.employeeHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label">May we contact this
-                                employer for references?</label>
+                            <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="reference" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="radio" required name="contactEmployer"
                                            value={true} onChange={props.employeeHandleChange} />
-                                    <label className="form-check-label">Yes</label>
+                                    <label className="form-check-label"><IntlMessages id="yes" /></label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="radio" required name="contactEmployer"
                                            value={false} onChange={props.employeeHandleChange} />
-                                    <label className="form-check-label">No</label>
+                                    <label className="form-check-label"><IntlMessages id="no" /></label>
                                 </div>
                             </div>
                         </div>
-                        <Button variant={'success'} size={'lg'} className={'text-center btn btn-lg px-4 float-right'} onClick={() => { setJob3(!job3)}}>Add More Detail</Button>
+                        <Button variant={'success'} size={'lg'} className={'text-center btn btn-lg px-4 float-right'} onClick={() => { setJob3(!job3)}}><IntlMessages id="add_details" /></Button>
 
                     </> : ''}
 
                     {job3 ? <>
-                        <h3>Job 3</h3>
+                        <h3><IntlMessages id="job3" /></h3>
                         <div className="form-group row align-items-center">
-                            <label htmlFor="employerName" className="col-lg-5 col-sm-6 col-form-label">Name of
-                                Employer:*</label>
+                            <label htmlFor="employerName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_name" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="employerName" placeholder="" value={props.employerName2} onChange={props.employeeHandleChange2}   />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="telephoneName" className="col-lg-5 col-sm-6 col-form-label">Telephone
-                                Number*</label>
+                            <label htmlFor="telephoneName" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_number" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="tel" className="form-control" id="" required name="telephoneName" value={props.telephoneName2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="businessType" className="col-lg-5 col-sm-6 col-form-label">Business Type:*</label>
+                            <label htmlFor="businessType" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_business" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="businessType" value={props.businessType2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label">Address:</label>
+                            <label htmlFor="address" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_address" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="address" value={props.address2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label">City, State, Zip:</label>
+                            <label htmlFor="zipCode" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_city" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" name="zipCode" value={props.zipCode2} onChange={props.employeeHandleChange2}/>
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label">Length of Employment (Include
-                                Dates):* </label>
+                            <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="length_emp" /> </label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="employmentLength" value={props.employmentLength2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="salary" className="col-lg-5 col-sm-6 col-form-label">Salary/Hourly Rate of
-                                Pay:*</label>
+                            <label htmlFor="salary" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp2_sal" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="salary" placeholder="" value={props.salary2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="position" className="col-lg-5 col-sm-6 col-form-label">Position & Duties:*</label>
+                            <label htmlFor="position" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="emp_position" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="position" value={props.position2} onChange={props.employeeHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="reasonOfLeaving" className="col-lg-5 col-sm-6 col-form-label">Reason for
-                                Leaving:*</label>
+                            <label htmlFor="reasonOfLeaving" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="reason_leave" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <input type="text" className="form-control" id="" required name="reasonOfLeaving" value={props.reasonOfLeaving2} onChange={props.employeeHandleChange2} />
                             </div>
@@ -1600,18 +1556,17 @@ const Step9 = ( props ) => {
 
 
                         <div className="form-group row align-items-center">
-                            <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label">May we contact this
-                                employer for references?</label>
+                            <label htmlFor="contactEmployer" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="reference" /></label>
                             <div className="col-lg-7 col-sm-6">
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="radio" name="contactEmployer" id="yes" required
                                            value={true} onChange={props.employeeHandleChange2} />
-                                    <label className="form-check-label" htmlFor="yes">Yes</label>
+                                    <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="radio" name="contactEmployer" id="no" required
                                            value={false} onChange={props.employeeHandleChange2} />
-                                    <label className="form-check-label" htmlFor="no">No</label>
+                                    <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                                 </div>
                             </div>
                         </div>
@@ -1620,80 +1575,114 @@ const Step9 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
 }
 
 const Step10 = ( props ) => {
+    const [showSubAdmin, setShowSubAdmin] = useState(false)
+
     if (props.currentStep === 10) {
         return null
     }
 
+    const servicesPromiseHandler = () =>
+        new Promise(resolve => {
+            axios.get('/subAdmin-select')
+                .then((services) => {
+                    resolve(services.data)
+                })
+        });
     const date = new Date();
     return  (
         <form onSubmit={props.onSubmit}>
             <fieldset className="fieldset">
                 <div className="p-5">
-                    <h4 className="mb-5">References</h4>
-                    <p>List below three persons who have knowledge of your work performance within the last four years.
-                        Please include professional references only.</p>
+                    <h4 className="mb-5"><IntlMessages id="reference_head" /></h4>
+                    <p><IntlMessages id="reference_para" /></p>
+                    <div className="form-group row align-items-center">
+                        <label htmlFor="haveAnyFriendsAtSGN" className="col-sm-8 col-form-label">Assign it to Sub Admin</label>
+                        <div className="col-sm-4">
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" name="showSubAdmin" required type="radio" id="yes"
+                                       value={true} onChange={() => setShowSubAdmin(true)} />
+                                <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" name="showSubAdmin" required type="radio" id="no"
+                                       value={false} onChange={() => setShowSubAdmin(false)} />
+                                <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
+                            </div>
+                        </div>
+                    </div>
 
+                    {showSubAdmin ?
+                        <Form.Group controlId="exampleForm.SelectCustom">
+                            <Form.Label><IntlMessages id="user" /></Form.Label>
+                            <AsyncSelect
+                                name="services"
+                                cacheOptions
+                                defaultOptions
+                                value={props.subAdmins}
+                                onChange={props.handleInputChange}
+                                loadOptions={servicesPromiseHandler}
+                            />                </Form.Group> : null }
                     <div className="my-5">
-                        <h5 className="text-center">First Person</h5>
+                        <h5 className="text-center"><IntlMessages id="first_person" /></h5>
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">First Name:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_firstName" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" required id="" name="firstName"   value={props.firstName} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Last Name:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_lastName" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" required name="lastName" value={props.lastName} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Telephone Number:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_number" /></label>
                             <div className="col-sm-8">
                                 <input type="tel" className="form-control" id="" required name="phoneNumber" value={props.phoneNumber} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Email Addess:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_email" /></label>
                             <div className="col-sm-8">
                                 <input type="email" className="form-control" id="" required name="email" value={props.email} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Address:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_address" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="address" value={props.address} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_city" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="city" value={props.city} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Occupation:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_occup" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="occupation" value={props.occupation} onChange={props.referenceHandleChange} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Number of Years Acquainted: </label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_years" /> </label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="yearsAcquainted" value={props.yearsAcquainted} onChange={props.referenceHandleChange} />
                             </div>
@@ -1701,58 +1690,58 @@ const Step10 = ( props ) => {
                     </div>
 
                     <div className="my-5">
-                        <h5 className="text-center">Second Person</h5>
+                        <h5 className="text-center"><IntlMessages id="second_person" /></h5>
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">First Name:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_firstName" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" required name="firstName" value={props.firstName2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Last Name:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_lastName" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" required name="lastName" value={props.lastName2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Telephone Number:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_number" /></label>
                             <div className="col-sm-8">
                                 <input type="tel" className="form-control" id="" required name="phoneNumber" value={props.phoneNumber2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Email Address:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_email" /></label>
                             <div className="col-sm-8">
                                 <input type="email" className="form-control" id="" required name="email" value={props.email2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Address:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_address" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="address" value={props.address2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_city" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="city" value={props.city2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Occupation:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_occup" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="occupation" value={props.occupation2} onChange={props.referenceHandleChange2} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Number of Years Acquainted: </label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_years" /> </label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="yearsAcquainted" value={props.yearsAcquainted2} onChange={props.referenceHandleChange2} />
                             </div>
@@ -1760,81 +1749,80 @@ const Step10 = ( props ) => {
                     </div>
 
                     <div className="my-5">
-                        <h5 className="text-center">Third Person</h5>
+                        <h5 className="text-center"><IntlMessages id="third_person" /></h5>
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">First Name:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_firstName" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" required name="firstName" value={props.firstName3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Last Name:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_lastName" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" required name="lastName" value={props.lastName3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Telephone Number:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_number" /></label>
                             <div className="col-sm-8">
                                 <input type="tel" className="form-control" id="" required name="phoneNumber" value={props.phoneNumber3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Email Address:*</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_email" /></label>
                             <div className="col-sm-8">
                                 <input type="email" className="form-control" id="" required name="email" value={props.email3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Address:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_address" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="address" value={props.address3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">City, State, Zip Code:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_city" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="city" value={props.city3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Occupation:</label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_occup" /></label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="occupation" value={props.occupation3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="" className="col-sm-4 col-form-label">Number of Years Acquainted: </label>
+                            <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="person_years" /> </label>
                             <div className="col-sm-8">
                                 <input type="text" className="form-control" id="" name="yearsAcquainted" value={props.yearsAcquainted3} onChange={props.referenceHandleChange3} />
                             </div>
                         </div>
                     </div>
 
+
+
                     <div className="my-5">
-                        <h4 className="mb-0 text-center">Certification</h4>
-                        <p className="certificate-content text-center">I certify that the information contained in this
-                            application is true and complete. I understand that false information may be grounds for not
-                            hiring me or for immediate termination of employment if I am hired. I
-                            authorize the verification of any and all information listed above.
+                        <h4 className="mb-0 text-center"><IntlMessages id="certificate" /></h4>
+                        <p className="certificate-content text-center"><IntlMessages id="certificate_details" />
                         </p>
                         <div className="form-row align-items-center">
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label htmlFor="">Signature: [type in your full name]</label>
+                                    <label htmlFor=""><IntlMessages id="signature" /></label>
                                     <input type="text" className="form-control" id="" required placeholder="" name="certificate" value={props.certificate} onChange={props.handleChange} />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label htmlFor="">Date:</label>
+                                    <label htmlFor=""><IntlMessages id="date" /></label>
                                     <input type="text" className="form-control" id="" readOnly value={`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} placeholder="" />
                                 </div>
                             </div>
@@ -1843,8 +1831,8 @@ const Step10 = ( props ) => {
                 </div>
             </fieldset>
             {props.loaded ?  <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Submit</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="submit_btn" /></button>
             </div> : <div className={'text-center'}><Spinner /></div>}
         </form>
     )

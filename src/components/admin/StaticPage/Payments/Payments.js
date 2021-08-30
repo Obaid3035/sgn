@@ -1,20 +1,32 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const Payments = ( props ) => {
 
     const [commissionedProject, setCommissionedProject] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
-
+    const role = localStorage.getItem('role')
+    const token = localStorage.getItem('token')
     useEffect(() => {
-        axios.get('/admin/commissioned')
+
+        if(role.includes('subAdmin')) {
+            axios.get('/subadmin-commissioned', {headers: {"Authorization": `Bearer ${token}`}})
             .then((res) => {
                 setCommissionedProject(res.data.commissionedIntent);
-                console.log(res.data.commissionedIntent)
+                console.log(res.data)
                 setLoaded(true)
             })
+        } else {
+            axios.get('/admin/commissioned')
+                .then((res) => {
+                    setCommissionedProject(res.data.commissionedIntent);
+                    console.log(res.data.commissionedIntent)
+                    setLoaded(true)
+                })
+        }
     },[loaded])
 
     return (
@@ -24,7 +36,7 @@ const Payments = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Payments</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="payment" /></h4>
                             </div>
                             <div className="card-body">
                                 <div className="project-section">
@@ -32,14 +44,14 @@ const Payments = ( props ) => {
                                         <div className="tab-pane fade active show" id="all" role="tabpanel"
                                              aria-labelledby="all-tab">
                                             <div className="table-responsive">
-                                                {loaded ? commissionedProject.length > 0
+                                                {loaded ?commissionedProject && commissionedProject.length > 0
                                                     ? <table className="table">
                                                         <thead className="">
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Employee Name</th>
-                                                            <th>Status</th>
-                                                            <th>Created At</th>
+                                                            <th><IntlMessages id="emp_name" /></th>
+                                                            <th><IntlMessages id="status" /></th>
+                                                            <th><IntlMessages id="created_at" /></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -47,13 +59,13 @@ const Payments = ( props ) => {
                                                             <tr key={index}>
                                                                 <td>{project.id}</td>
                                                                 <td>{project.User.applicationForm.firstName}</td>
-                                                                <td><button disabled className={'btn-warning'} style={{'border-radius': '20px'}}>Commissioned</button></td>
+                                                                <td><button disabled className={'btn-warning'} style={{'border-radius': '20px'}}><IntlMessages id="commisioned" /></button></td>
                                                                 <td>{project.createdAt}</td>
                                                             </tr>
                                                         ))}
                                                         </tbody>
                                                     </table>
-                                                    : <h3 className="text-center">No Project Found</h3>
+                                                    : <h3 className="text-center"><IntlMessages id="no_project" /></h3>
                                                     : <div className="text-center"><Spinner /></div>}
                                             </div>
                                         </div>

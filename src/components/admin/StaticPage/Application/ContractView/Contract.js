@@ -3,6 +3,8 @@ import axios from "axios";
 import {Button, Form, Modal} from "react-bootstrap";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../../Util/IntlMessages';
+
 
 const ContractView = ( props ) => {
 
@@ -82,7 +84,7 @@ const ContractView = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Contract</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_contract" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={fileUploadHandler} className={'mb-4'}>
@@ -93,7 +95,7 @@ const ContractView = ( props ) => {
                         />
 
                         <div className="float-right mt-3">
-                            {contract ? <Button type="submit"  variant={'outline-warning'}>SEND</Button> : <Button type="submit" disabled  variant={'outline-warning'}>SEND</Button>}
+                            {contract ? <Button type="submit"  variant={'outline-warning'}><IntlMessages id="send" /></Button> : <Button type="submit" disabled  variant={'outline-warning'}><IntlMessages id="send" /></Button>}
                         </div>
                     </Form>
                 </Modal.Body>
@@ -118,7 +120,7 @@ const ContractView = ( props ) => {
                                         </div>
                                         <div className="col-lg-12">
                                             <div className="card rounded shadow border mb-4 project-view-card">
-                                                <h4 className="card-header">Contracts</h4>
+                                                <h4 className="card-header"><IntlMessages id="contract" /></h4>
                                                 <div className="card-body">
                                                     {console.log(loaded)}
                                                     {loaded ? contractData.length > 0 ? <div className="table-responsive">
@@ -126,9 +128,9 @@ const ContractView = ( props ) => {
                                                             <thead className="">
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>Date</th>
-                                                                <th>File</th>
-                                                                <th>Status</th>
+                                                                <th><IntlMessages id="date" /></th>
+                                                                <th><IntlMessages id="file" /></th>
+                                                                <th><IntlMessages id="status" /></th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -146,7 +148,7 @@ const ContractView = ( props ) => {
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                        : <h4 className={'text-center'}>No Contract Found</h4>
+                                                        : <h4 className={'text-center'}><IntlMessages id="no_contract" /></h4>
                                                         : <div className="text-center"><Spinner /></div>}
                                                 </div>
                                             </div>

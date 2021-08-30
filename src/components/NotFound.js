@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
+import IntlMessages from '../Util/IntlMessages';
 
 const NotFound = () => (
     <div>
-        <h1>404 - Not Found!</h1>
+        <h1><IntlMessages id="404_error" /></h1>
         <NavLink to="/">
-            Go Home
+        <IntlMessages id="go_home" />    
         </NavLink>
     </div>
 )

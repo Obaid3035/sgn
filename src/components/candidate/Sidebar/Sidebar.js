@@ -1,7 +1,7 @@
 import React  from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import Logo from '../../../assets/img/logo.png'
-
+import IntlMessages from '../../../Util/IntlMessages';
 import { Nav } from "react-bootstrap";
 
 function Sidebar({ color, image, user }) {
@@ -31,7 +31,7 @@ function Sidebar({ color, image, user }) {
             </div>
           </a>
           <a className="simple-text" href="http://www.creative-tim.com">
-            SGN
+          <IntlMessages id="sgn_head" /> 
           </a>
         </div>
         <Nav>
@@ -44,7 +44,7 @@ function Sidebar({ color, image, user }) {
                   activeClassName="active"
               >
                 <i className={'fa fa-user'} />
-                <p>{'Profile'}</p>
+                <p><IntlMessages id="profile" /></p>
               </NavLink>
             </li>
           </> : ''}

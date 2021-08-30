@@ -1,6 +1,8 @@
 import React from 'react';
 import './Contact.css'
 import {NavLink} from "react-router-dom";
+import IntlMessages from '../../../Util/IntlMessages';
+
 
 const Contact = ( props ) => {
 
@@ -11,13 +13,12 @@ const Contact = ( props ) => {
                     <div className="row">
                         <div className="col-12 text-center">
                             <div className="header-content">
-                                <h1>Contact Us</h1>
-                                <p>Thank you for visiting our website, we are here to help. Contact our sales department
-                                    at sales@sitchaglobalnetwork.com ,or click below to fill out the form.
+                                <h1><IntlMessages id="contact_us" /></h1>
+                                <p><IntlMessages id="contact_para" />
                                 </p>
                                 <a className="custom-scroll" href="#contact-details" role="button"
                                    data-target="#contact-details">
-                                    scroll
+                                   <IntlMessages id="scroll" /> 
                                     <span>
 							<img src="img/arrow-scroll.png" alt="scroll-arrow" className="img-fluid pt-3 pr-1" />
 						</span>
@@ -32,22 +33,22 @@ const Contact = ( props ) => {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-12 text-center">
-                            <NavLink to={'/questionare'}><a role="button" className="btn get-quote w-25">Fill out the form</a></NavLink>
+                            <NavLink to={'/questionare'} className=" get-form-btn btn get-quote " ><IntlMessages id="fill_form" /></NavLink>
                         </div>
                         <div className="col-md-9">
                             <div className="card div_1 p-5 text-left bg-primary">
-                                <h3>Contact Us</h3>
+                                <h3><IntlMessages id="contact_us" /></h3>
                                 <img src="img/contact-page-border-bottom.png" alt="border image"
                                      className="w-75" />
-                                    <p>You may reach out to us using the contact information below.</p>
+                                    <p><IntlMessages id="contactus_para" /></p>
                                     <div className="d-flex align-items-center mb-5">
                                         <div>
                                             <img src="img/phone-icon.png" alt="phone icon"
                                                  className="w-75 pr-3" />
                                         </div>
                                         <div>
-                                            <h6>Call Us</h6>
-                                            <a href="tel:+123456789">+123456789</a>
+                                            <h6><IntlMessages id="call_us" /></h6>
+                                            <a href="tel:+123456789"><IntlMessages id="call_number" /></a>
                                         </div>
                                     </div>
 
@@ -57,8 +58,8 @@ const Contact = ( props ) => {
                                                  className="w-75 pr-3" />
                                         </div>
                                         <div>
-                                            <h6>Mail Us</h6>
-                                            <a href="mailto:loremipsum@gmail.com">loremipsum@gmail.com</a>
+                                            <h6><IntlMessages id="mail_head" /></h6>
+                                            <a href="mailto:loremipsum@gmail.com"><IntlMessages id="mail" /></a>
                                         </div>
                                     </div>
 
@@ -68,8 +69,8 @@ const Contact = ( props ) => {
                                                  className="w-75 pr-3" />
                                         </div>
                                         <div>
-                                            <h6>Address</h6>
-                                            <p className="m-0">Street Lorem Ipsum, 123 rd, Berlin</p>
+                                            <h6><IntlMessages id="contact_address" /></h6>
+                                            <p className="m-0"><IntlMessages id="contact_addressPara" /></p>
                                         </div>
                                     </div>
                             </div>

@@ -5,6 +5,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 function Dashboard() {
   return (
@@ -22,8 +23,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Number</p>
-                      <Card.Title as="h4">150GB</Card.Title>
+                      <p className="card-category"><IntlMessages id="number" /></p>
+                      <Card.Title as="h4"><IntlMessages id="150GB" /></Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -32,7 +33,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1" />
-                  Update Now
+                  <IntlMessages id="update_now" /> 
                 </div>
               </Card.Footer>
             </Card>
@@ -48,8 +49,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Revenue</p>
-                      <Card.Title as="h4">$ 1,345</Card.Title>
+                      <p className="card-category"><IntlMessages id="revenue" /></p>
+                      <Card.Title as="h4"><IntlMessages id="revenue_price" /></Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -58,7 +59,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="far fa-calendar-alt mr-1" />
-                  Last day
+                  <IntlMessages id="last_day" />  
                 </div>
               </Card.Footer>
             </Card>
@@ -74,8 +75,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Errors</p>
-                      <Card.Title as="h4">23</Card.Title>
+                      <p className="card-category"><IntlMessages id="errors" /></p>
+                      <Card.Title as="h4"><IntlMessages id="errors_num" /></Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -84,7 +85,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="far fa-clock-o mr-1" />
-                  In the last hour
+                  <IntlMessages id="last_hous" /> 
                 </div>
               </Card.Footer>
             </Card>
@@ -100,8 +101,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Followers</p>
-                      <Card.Title as="h4">+45K</Card.Title>
+                      <p className="card-category"><IntlMessages id="followers" /></p>
+                      <Card.Title as="h4"><IntlMessages id="follow_num" /></Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -110,7 +111,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update now
+                  <IntlMessages id="update_now" />
                 </div>
               </Card.Footer>
             </Card>

@@ -1,33 +1,51 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Button, Modal, Form} from "react-bootstrap";
-import Aux from "../../../../hoc/Aux/Aux";
+import Aux from "../../../../hoc/wrapper/Wrapper";
 import Input from "../../../UI/Input/Input";
 import formConfig from "../../../../helpers/formConfig";
 import NoticeOfIntent from "./NoticeOfIntent/NoticeOfIntent";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const NoticeOfIntents = () => {
 
     const [noticeOfIntent, setNoticeOfIntent] = useState([]);
     const [show, setShow] = useState(false);
     const [loaded, setLoaded] = useState(false);
-
+    const role = localStorage.getItem('role')
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
-        axios.get('/admin/noticeofintents')
-            .then((res) => {
-                setNoticeOfIntent(res.data);
-                console.log(noticeOfIntent)
-                setLoaded(true)
-            })
+
+        if(role.includes('subAdmin')) {
+            axios.get('/subadmin-noticeofintents', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setNoticeOfIntent(res.data);
+                    console.log('MY NOTICE',res.data)
+                    setLoaded(true)
+                })
+        } else {
+            axios.get('/admin/noticeofintents')
+                .then((res) => {
+                    setNoticeOfIntent(res.data);
+                    console.log('NOTICE OF INTENT',res.data)
+                    setLoaded(true)
+                })
+        }
+
+
     }, [loaded])
 
 
 
-    const table =  noticeOfIntent.map((notice, index) => {
+    const table =  noticeOfIntent && noticeOfIntent.length > 0 && noticeOfIntent.map((notice, index) => {
+        if(notice.User) {
+            console.log('FIRSTNAME',notice.User.applicationForm)
+        }
         return (
+            notice.User && notice.User.applicationForm ?
             <NoticeOfIntent
                 key={index}
                 id={notice.id}
@@ -35,7 +53,7 @@ const NoticeOfIntents = () => {
                 businessName={notice.businessName}
                 createdAt={notice.createdAt}
                 status={notice.status}
-            />
+            /> : null
         )
     })
 
@@ -58,7 +76,7 @@ const NoticeOfIntents = () => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0">Notice Of Intent</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="notice_intent" /></h4>
 
                                 </div>
                                 <div className="card-body">
@@ -67,17 +85,17 @@ const NoticeOfIntents = () => {
                                             <thead className="">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Created By</th>
-                                                <th>Business Name</th>
-                                                <th>Date/Time</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
+                                                <th><IntlMessages id="created_by" /></th>
+                                                <th><IntlMessages id="business_time" /></th>
+                                                <th><IntlMessages id="date_time" /></th>
+                                                <th><IntlMessages id="status" /></th>
+                                                <th><IntlMessages id="action" /></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             {table}
                                             </tbody>
-                                        </table> : <h4 className={'text-center'}>No Notice Of Intent Found</h4> : <div className="text-center"><Spinner /></div>}
+                                        </table> : <h4 className={'text-center'}><IntlMessages id="no_notice" /></h4> : <div className="text-center"><Spinner /></div>}
                                     </div>
                                 </div>
                             </div>

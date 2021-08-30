@@ -151,6 +151,11 @@
         }
     }
 
+    .table tbody tr td {
+        background-color: grey!important;
+    }
+
+
     .alert{
         border-radius: $border-radius-base;
         position: relative;

@@ -18,7 +18,7 @@
 import React  from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
-
+import IntlMessages from '../../../Util/IntlMessages';
 import routes from "../../../routes";
 
 function Header(props) {
@@ -66,7 +66,7 @@ function Header(props) {
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
-                <span className="no-icon">Account</span>
+                <span className="no-icon"><IntlMessages id="cand_account" /></span>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -75,7 +75,7 @@ function Header(props) {
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
-                <button onClick={logOutHandler} className="btn-warning btn-lg">Log out</button>
+                <button onClick={logOutHandler} className="btn-warning btn-lg"><IntlMessages id="log_out" /></button>
               </Nav.Link>
             </Nav.Item>
           </Nav>

@@ -166,9 +166,9 @@ function Admin(  ) {
                         <Route path='/admin/job/:id' component={ViewJob}/>
                         <Route path='/admin/application/:id' component={ApplicationReview}/>
                         <Route path='/admin/reward/:id' component={RewardView}/>
-                        <Route path='/admin/noticeofintent/:id' component={ViewNoticeOfIntent}/>
+                        <Route path='/admin/noticeofintent-subadmin/:id' component={ViewNoticeOfIntent}/>
                         <Route path='/admin/benefit/:id' component={BenefitForm}/>
-                        <Route path={'/admin/chat'} exact component={Chats} />
+                        <Route path={'/admin/chat-subadmin'} exact component={Chats} />
                         <Route path='/admin/contract/:id' exact component={ContractView}/>
                         <Route path={'/admin/report'} exact component={Report} />
                         <Route path='/admin/benefit' exact component={Benefits}/>

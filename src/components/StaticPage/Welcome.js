@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import IntlMessages from '../../Util/IntlMessages';
 
 const Welcome = ( props ) => {
     useEffect(() => {
@@ -8,11 +9,11 @@ const Welcome = ( props ) => {
         <div className={'container'}>
             <div className="card text-center mt-5">
                 <div className="card-body">
-                    <p className="card-text">Thank you for completing the application form.  A confirmation email will be sent to you shortly.</p>
-                    <h5 className="card-title">Human Resource</h5>
+                    <p className="card-text"><IntlMessages id="welcome_para" /></p>
+                    <h5 className="card-title"><IntlMessages id="welcome_head" /></h5>
                 </div>
                 <div className="card-footer text-muted">
-                    HR@sitchaglobalnetwork.com
+                <IntlMessages id="welcome_email" />  
                 </div>
             </div>
         </div>

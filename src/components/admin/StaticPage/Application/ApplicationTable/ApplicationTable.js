@@ -1,6 +1,7 @@
 import React from "react";
 import ApplicationList from "../ApplicationList/ApplicationList";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const ApplicationTable = ( props ) => (
     <div className="table-responsive">
@@ -8,23 +9,23 @@ const ApplicationTable = ( props ) => (
             <thead className="">
             <tr>
                 <th>
-                    ID
+                <IntlMessages id="main_id" />  
                 </th>
                 <th>
-                    Applicant Name
+                <IntlMessages id="appli_name" />     
                 </th>
                 <th>
-                    Location
+                <IntlMessages id="loc" />        
                 </th>
                 <th>
-                    Applied For
+                <IntlMessages id="applied_for" />   
                 </th>
-                {props.all ? <th>Status</th>: ''}
+                {props.all ? <th><IntlMessages id="status" /></th>: ''}
                 <th>
-                    Applied on
+                <IntlMessages id="applied_on" />   
                 </th>
                 <th>
-                    Action
+                <IntlMessages id="action" />   
                 </th>
             </tr>
 
@@ -48,7 +49,7 @@ const ApplicationTable = ( props ) => (
                 />
             ))}
             </tbody>
-        </table> : <h3 className={'text-center'}>No Application Found</h3>) : <div className="text-center"><Spinner /></div>}
+        </table> : <h3 className={'text-center'}><IntlMessages id="no_appli_found" /></h3>) : <div className="text-center"><Spinner /></div>}
     </div>
 )
 

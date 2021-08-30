@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const BenefitForm = ( props ) => {
 
@@ -26,6 +27,9 @@ const BenefitForm = ( props ) => {
         // setBenefitData(updatedBenefits)
     }
 
+    const role = localStorage.getItem('role')
+
+
     const submitHandler = (e) => {
         e.preventDefault();
         const idArr = []
@@ -36,7 +40,18 @@ const BenefitForm = ( props ) => {
             .then((res) => {
                 console.log(res)
             })
-        props.history.replace('/admin/employee');
+        if (role.includes('subAdmin')) {
+            props.history.replace('/employee');
+        } else {
+            props.history.replace('/admin/employee');
+        }
+
+    }
+
+    let btn = <NavLink to={'/admin/subAdmin'} replace={true} className="btn btn-lg btn-warning mx-3 px-4"><IntlMessages id="close" /></NavLink>
+    if(role.includes('subAdmin')) {
+        btn = <NavLink to={'/employee/subAdmin'} replace={true} className="btn btn-lg btn-warning mx-3 px-4"><IntlMessages id="close" /></NavLink>
+
     }
 
     let form = (
@@ -66,12 +81,12 @@ const BenefitForm = ( props ) => {
                             </div>
                         </div>
                     </div>
-                )) : <h4 className="text-center">No Benefit Found</h4>
+                )) : <h4 className="text-center"><IntlMessages id="no_benefit" /></h4>
                 : <div className="text-center"><Spinner /></div>}
             </div>
             <div className="float-right">
-                <NavLink to={'/admin/subAdmin'} replace={true} className="btn btn-lg btn-warning mx-3 px-4">Close</NavLink>
-                {loaded ? <button type="submit" className="btn btn-lg btn-primary btn-save px-4">Save Changes</button> : <Spinner />}
+                { btn }
+                {loaded ? <button type="submit" className="btn btn-lg btn-primary btn-save px-4"><IntlMessages id="save_change" /></button> : <Spinner />}
             </div>
         </form>
     )
@@ -82,7 +97,7 @@ const BenefitForm = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card permission-card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Benefits</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="benefits" /></h4>
                             </div>
                             <div className="card-body">
                                 <div className="row justify-content-center">

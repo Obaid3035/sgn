@@ -3,6 +3,8 @@ import './ApplicationStatus.css'
 import axios from "axios";
 import Spinner from "../../UI/ProgressBar/ProgressBar";
 import moment from 'moment-timezone';
+import IntlMessages from '../../../Util/IntlMessages';
+
 
 const ApplicationStatus = ( props ) => {
 
@@ -25,7 +27,7 @@ const ApplicationStatus = ( props ) => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-12 text-center mb-5">
-                        <h3>Application Form Status</h3>
+                        <h3><IntlMessages id="app_formStatus" /></h3>
                     </div>
                     <div className="col-md-12">
                         <div className="table-responsive">
@@ -34,13 +36,13 @@ const ApplicationStatus = ( props ) => {
                                 {loaded ? ApplicationData.map((application, index) => (
                                     <tr className="" key={index}>
                                         <td>
-                                            <span>applied for</span> {application.jobListing.jobTitle}
+                                            <span><IntlMessages id="applied_for" /></span> {application.jobListing.jobTitle}
                                         </td>
                                         <td>
-                                            <span>location</span> {application.jobListing.jobCity}, {application.jobListing.jobCountry}
+                                            <span><IntlMessages id="location" /></span> {application.jobListing.jobCity}, {application.jobListing.jobCountry}
                                         </td>
                                         <td>
-                                            <span>applied on</span> {moment.tz(application.createdAt, 'America/New_York').format()}
+                                            <span><IntlMessages id="applied_on" /></span> {moment.tz(application.createdAt, 'America/New_York').format()}
                                         </td>
                                         <td className="status status-approved">
                                             <a href="#">{application.applicationStatus}</a>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const Quote = () => {
     const [quoteData, setQuoteData] = useState([]);
@@ -33,7 +34,7 @@ const Quote = () => {
                 <td>
                     <NavLink to={'/admin/quote/'+ query.id} className="btn btn-sm btn-warning mx-3"><i
                         className="fas fa-eye"/></NavLink>
-                    <button type="button" onClick={() => quoteDelete(query.id)} className="btn btn-danger">Delete
+                    <button type="button" onClick={() => quoteDelete(query.id)} className="btn btn-danger"><IntlMessages id="delete" />
                     </button>
                 </td>
             </tr>
@@ -47,7 +48,7 @@ const Quote = () => {
                         <div className="card">
                             <div className="card-body">
                                 <div className="col-md-12 my-5">
-                                    <h4>Quote</h4>
+                                    <h4><IntlMessages id="quote" /></h4>
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="table-responsive">
@@ -56,19 +57,19 @@ const Quote = () => {
                                                         <thead className="">
                                                         <tr>
                                                             <th>
-                                                                ID
+                                                            <IntlMessages id="main_id" />  
                                                             </th>
                                                             <th>
-                                                                Name
+                                                            <IntlMessages id="name" /> 
                                                             </th>
                                                             <th>
-                                                                Company Name
+                                                            <IntlMessages id="company" />   
                                                             </th>
                                                             <th>
-                                                                Email
+                                                            <IntlMessages id="emai" />   
                                                             </th>
                                                             <th>
-                                                                Action
+                                                            <IntlMessages id="action" />   
                                                             </th>
                                                         </tr>
                                                         </thead>
@@ -76,7 +77,7 @@ const Quote = () => {
                                                         {table}
                                                         </tbody>
                                                     </table>
-                                                    : <h4 className="text-center">No Quote Found</h4>
+                                                    : <h4 className="text-center"><IntlMessages id="no_quote" /></h4>
                                                     : <div className="text-center"><Spinner /></div>
                                                 }
                                             </div>

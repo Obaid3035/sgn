@@ -10,3 +10,13 @@
     display: block;
     width: 100%;
 }
+
+.career-row{
+    display: flex !important;
+    justify-content: space-around !important;
+    flex-wrap: wrap !important;
+}
+
+.header-content h1{
+   font-size: 25px !important;
+}

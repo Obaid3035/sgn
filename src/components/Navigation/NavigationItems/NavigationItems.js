@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import NavigationItem from "./NavigationItem/NavigationItem";
-import {Button, Form, Modal} from "react-bootstrap";
-
-import {useAuth} from "../../../context/AuthContext";
-import {toast, ToastContainer} from "react-toastify";
+import { Button, Form, Modal } from "react-bootstrap";
+import { IconButton, Drawer, AppBar, Toolbar, Tooltip }from '@material-ui/core';
+import { useAuth } from "../../../context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../../UI/ProgressBar/ProgressBar";
-
-
+import LanguageProvider from '../LanguageProvider';
+import IntlMessages from '../../../Util/IntlMessages';
+import "./NavigationItems.css";
 //gROpNls
-const NavigationItems = ( props ) =>{
+const NavigationItems = (props) => {
     const [show, setShow] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +20,7 @@ const NavigationItems = ( props ) =>{
         email,
         password
     }
-    const errorNotify = (msg) => toast.error(msg===401 || msg===400 ? 'Invalid Email or Password' : '', {
+    const errorNotify = (msg) => toast.error(msg === 401 || msg === 400 ? 'Invalid Email or Password' : '', {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -29,7 +30,7 @@ const NavigationItems = ( props ) =>{
     });
 
     const handleShow = () => setShow(!show);
-    const onSubmitHandler = ( e ) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault();
         setLoaded(false)
         login(data, errorNotify, setEmail, setPassword, setLoaded)
@@ -62,54 +63,63 @@ const NavigationItems = ( props ) =>{
     const form = (
         <Form className="my-5" onSubmit={onSubmitHandler}>
             <Form.Group >
-                <Form.Label>Email</Form.Label>
+                <Form.Label><IntlMessages id="main_email" /></Form.Label>
                 <Form.Control type="email" className="form-control" required placeholder="Enter Email/Username" onChange={(e) => emailChangeHandler(e)} value={email} />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" className="form-control" required placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password}  />
+                <Form.Label><IntlMessages id="main_password" /></Form.Label>
+                <Form.Control type="password" className="form-control" required placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password} />
             </Form.Group>
-            <Button type={'submit'} href="" variant={'primary'} size={'lg'}>Login</Button>
+            <Button type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button>
         </Form>
     )
-    return(
-       <>
-           <ul className={'nav navbar-nav align-items-center ml-auto'}>
-               <ToastContainer
-                   position="top-center"
-                   autoClose={2000}
-                   hideProgressBar={false}
-                   newestOnTop={false}
-                   closeOnClick
-                   rtl={false}
-                   pauseOnFocusLoss={false}
-                   draggable
-                   pauseOnHover
-               />
-               <NavigationItem link={'/'} exact>Home</NavigationItem>
-               <NavigationItem link={'/about'} >About Us</NavigationItem>
-               <NavigationItem link={'/career'} >Career</NavigationItem>
-               <NavigationItem link={'/contact'}>Contact</NavigationItem>
-               {(loggedIn === 'true') ? <NavigationItem link={'/applicationStatus'}>Application Status</NavigationItem> : ''}
-               {(loggedIn !== 'true') ? loaded ? <button onClick={handleShow} className={'btn btn-lg btn-warning'} >Sign In</button> : <Spinner /> : <button onClick={() => logout(setEmail, setPassword)} className={'btn btn-lg btn-warning'} >Sign Out</button>}
+    return (
+        <>
+            <ul className={'nav navbar-nav align-items-center ml-auto'}>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable
+                    pauseOnHover
+                />
+                <NavigationItem link={'/'} exact><IntlMessages id="home_nav" /></NavigationItem>
+                <NavigationItem link={'/about'} ><IntlMessages id="home_about" /></NavigationItem>
+                <NavigationItem link={'/career'} ><IntlMessages id="home_career" /></NavigationItem>
+                <NavigationItem link={'/contact'}><IntlMessages id="home_contact" /></NavigationItem>
+                {(loggedIn === 'true') ? <NavigationItem link={'/applicationStatus'}><IntlMessages id="home_application" /></NavigationItem> : ''}
+                {(loggedIn !== 'true') ? loaded ? <button onClick={handleShow} className={'btn btn-lg btn-warning'} ><IntlMessages id="sign_in" /></button> : <Spinner /> : <button onClick={() => logout(setEmail, setPassword)} className={'btn btn-lg btn-warning'} ><IntlMessages id="sign_out" /></button>}
 
-           </ul>
+            </ul>
 
-           <Modal
-               show={show}
-               onHide={handleShow}
-               animation={false}
-               size={'md'}
-               centered
-           >
-               <Modal.Header closeButton>
-                   <Modal.Title>Login</Modal.Title>
-               </Modal.Header>
-               <Modal.Body>
-                   {form}
-               </Modal.Body>
-           </Modal>
-       </>
+            <ul className="lang-prov list-inline mb-0">
+                <LanguageProvider />
+                <li className="list-inline-item">
+                    <IconButton aria-label="settings" >
+                        <i className="zmdi zmdi-power" />
+                    </IconButton>
+                </li>
+            </ul>
+
+            <Modal
+                show={show}
+                onHide={handleShow}
+                animation={false}
+                size={'md'}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title><IntlMessages id="login_btn" /></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {form}
+                </Modal.Body>
+            </Modal>
+        </>
     );
 }
 

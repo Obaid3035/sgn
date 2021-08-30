@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-import Aux from "../../../../hoc/Aux/Aux";
+import Aux from "../../../../hoc/wrapper/Wrapper";
 import axios from "axios";
 import formConfig from "../../../../helpers/formConfig";
 import Input from "../../../UI/Input/Input";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../Util/IntlMessages';
+
 
 const Benefits = ( props ) => {
     const [benefitData, setBenefitData] = useState([]);
@@ -16,13 +18,23 @@ const Benefits = ( props ) => {
         title: formConfig('input', 'col-md-12','text', 'Title'),
         description: formConfig('textarea', 'col-md-12','text', 'Description'),
     })
-
+    const role = localStorage.getItem('role')
+    const token = localStorage.getItem('token')
     useEffect(() => {
-        axios.get('/admin/benefits')
-            .then((res) => {
-                setBenefitData(res.data);
-                setLoaded(true)
-            })
+
+        if(role.includes('subAdmin')) {
+            axios.get('/subAdmin-benefits', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setBenefitData(res.data);
+                    setLoaded(true)
+                })
+        } else {
+            axios.get('/admin/benefits')
+                .then((res) => {
+                    setBenefitData(res.data);
+                    setLoaded(true)
+                })
+        }
     },[loaded])
 
     const inputChangeHandler = (event, inputIdentifier) => {
@@ -94,7 +106,7 @@ const Benefits = ( props ) => {
                     />
                 ))}
             </div>
-            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Create Benefit</Button>
+            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}><IntlMessages id="create_benefit" /></Button>
         </form>
     )
 
@@ -130,9 +142,9 @@ const Benefits = ( props ) => {
                             <div className="card">
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0">Benefits List</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="benefit_list" /></h4>
                                     <button type="button" onClick={handleShow}
-                                            className="btn btn-primary">Add Benefit
+                                            className="btn btn-primary"><IntlMessages id="add_benefit" />
                                     </button>
                                 </div>
                                 <div className="card-body">
@@ -145,13 +157,13 @@ const Benefits = ( props ) => {
                                                             <thead className="">
                                                             <tr>
                                                                 <th>
-                                                                    ID
+                                                                <IntlMessages id="main_id" /> 
                                                                 </th>
                                                                 <th>
-                                                                    Title
+                                                                <IntlMessages id="title" />     
                                                                 </th>
                                                                 <th>
-                                                                    Description
+                                                                <IntlMessages id="description" />   
                                                                 </th>
                                                             </tr>
                                                             </thead>
@@ -159,7 +171,7 @@ const Benefits = ( props ) => {
                                                             {table}
                                                             </tbody>
                                                         </table>
-                                                        : <h4 className="text-center">No Benefits Found</h4>
+                                                        : <h4 className="text-center"><IntlMessages id="no_benefit" /></h4>
                                                         : <div className="text-center"><Spinner /></div>
                                                     }
                                                 </div>
@@ -180,7 +192,7 @@ const Benefits = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Benefit</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_benefit" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}

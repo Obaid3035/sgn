@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const RewardView = ( props ) => {
 
@@ -27,14 +28,14 @@ const RewardView = ( props ) => {
                                 <div className="row mt-2 align-items-start">
                                     <div className="col-lg-8">
                                         <div className="card rounded shadow border mb-4 project-view-card">
-                                            <div className="card-header">Employees</div>
+                                            <div className="card-header"><IntlMessages id="employe" /></div>
                                             <div className="card-body">
                                                 <div className="table-responsive">
                                                     <table className="table table-striped to-do-list">
                                                         <thead className="">
-                                                        <th>ID</th>
-                                                        <th>Name</th>
-                                                        <th>Project Score</th>
+                                                        <th><IntlMessages id="main_id" /></th>
+                                                        <th><IntlMessages id="name" /></th>
+                                                        <th><IntlMessages id="pro_score" /></th>
                                                         </thead>
                                                         <tbody>
                                                         {rewardData.employee.map((user) => (

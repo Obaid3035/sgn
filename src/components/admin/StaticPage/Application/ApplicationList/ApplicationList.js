@@ -13,6 +13,14 @@ const ApplicationList = (props ) => {
             props.active(props.id)
         } else {dummy();}
     }
+
+    const role = localStorage.getItem('role')
+    let btn = <NavLink to={'/admin/contract/'+ props.id} className="btn btn-sm btn-warning"><i
+        className="fas fa-eye"/></NavLink>
+if (role.includes('subAdmin')) {
+    btn = <NavLink to={'/employee/contract/'+ props.id} className="btn btn-sm btn-warning"><i
+        className="fas fa-eye"/></NavLink>
+}
     return (
         <>
             <tr>
@@ -33,8 +41,7 @@ const ApplicationList = (props ) => {
                     {props.createdAt}
                 </td>
                 <td>
-                    {props.Hired ? <NavLink to={'/admin/contract/'+ props.id} className="btn btn-sm btn-warning"><i
-                        className="fas fa-eye"/></NavLink> : <NavLink to={"application/" + props.id}
+                    {props.Hired ?  btn : <NavLink to={"application/" + props.id}
                                                                       className="btn btn-sm btn-primary"><i
                         className="fas fa-eye"/></NavLink>}
                     {props.all ? '': <>

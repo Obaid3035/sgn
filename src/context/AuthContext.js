@@ -25,6 +25,8 @@ const AuthProvider = ( props ) => {
                     history.replace('/employee/profile')
                 } else if(status === 'Hired') {
                     history.replace('/candidate/profile')
+                } else if (status === 'SubAdmin') {
+                    history.replace('/employee');
                 }
 
             })
@@ -62,11 +64,30 @@ const AuthProvider = ( props ) => {
             })
     }
 
+    const semiAdminLogin = ( data, notify, email, password, loader ) => {
+        axios.post('/semiAdmin/login', data)
+            .then((res) => {
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('role', 'semiAdmin')
+                localStorage.setItem('loggedIn', 'true')
+                setLoggedIn(true)
+                loader(true);
+                history.replace('/semiAdmin')
+            })
+            .catch((err) => {
+                notify(err.response.status);
+                loader(true);
+                email('');
+                password('')
+            })
+    }
+
     const authContextValue = {
         login,
         loggedIn,
         logout,
-        adminLogin
+        adminLogin,
+        semiAdminLogin
     };
 
     return <AuthContext.Provider value={authContextValue} {...props} />

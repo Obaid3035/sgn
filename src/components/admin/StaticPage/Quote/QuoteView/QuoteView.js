@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
 import {NavLink} from "react-router-dom";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const QuoteView = (props) => {
     const id = props.match.params.id;
@@ -22,58 +23,58 @@ const QuoteView = (props) => {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 mb-5">
-                            <NavLink to={'/admin/quote'} className="btn btn-warning">Back</NavLink>
+                            <NavLink to={'/admin/quote'} className="btn btn-warning"><IntlMessages id="back_btn" /></NavLink>
                         </div>
                         {quoteData.file ?  <div className="col-md-4 mb-5">
-                            <p>File:</p>
+                            <p><IntlMessages id="file" /></p>
                             <a href={'https://sleepy-savannah-00668.herokuapp.com/file/'+quoteData.file.id}>{quoteData.file.name}</a>
                         </div> : ''}
                         <div className="col-md-12 job-list">
                             <div className="card">
                                 <div className="card-header card-header-primary">
-                                    <h4 className="card-title mb-0">Review Quotes</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="review_quote" /></h4>
                                 </div>
                                 <div className="card-body">
                                     <form action="" className="pt-5" id="reviewApplication">
                                         <div className="form-row">
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">First Name</label>
+                                                    <label htmlFor=""><IntlMessages id="first_name" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="firstName" value={quoteData.firstName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Last Name</label>
+                                                    <label htmlFor=""><IntlMessages id="last_name" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="lastName" value={quoteData.lastName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Company Name</label>
+                                                    <label htmlFor=""><IntlMessages id="company" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="companyName" value={quoteData.companyName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Company Address</label>
+                                                    <label htmlFor=""><IntlMessages id="company_add" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="companyAddress" value={quoteData.companyAddress} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Email</label>
+                                                    <label htmlFor=""><IntlMessages id="email" />Email</label>
                                                     <input type="text" className="form-control" id="" name="email" readOnly
                                                            value={quoteData.email}/>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Phone Number</label>
+                                                    <label htmlFor=""><IntlMessages id="phone_no" /></label>
                                                     <input type="tel" className="form-control" id="" name="phoneNumber"
                                                            readOnly value={quoteData.phoneNumber} />
                                                 </div>
@@ -81,70 +82,69 @@ const QuoteView = (props) => {
 
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Best Way to Reach Out</label>
+                                                    <label htmlFor=""><IntlMessages id="best_way" /></label>
                                                     <input type="text" className="form-control" id="" name="wayToReach"
                                                            readOnly value={quoteData.bestOption} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Best Date and Time</label>
+                                                    <label htmlFor=""><IntlMessages id="best_date" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="dateTime" value={quoteData.timeToReach} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Industry Of Product</label>
+                                                    <label htmlFor=""><IntlMessages id="industry" /></label>
                                                     <input type="text" className="form-control" id="" name="ProductIndustry"
                                                            readOnly value={quoteData.industry} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Name Of Product</label>
+                                                    <label htmlFor=""><IntlMessages id="name_product" /></label>
                                                     <input type="text" className="form-control" id="" name="productName"
                                                            readOnly value={quoteData.productName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Picture Of Document / Document</label>
+                                                    <label htmlFor=""><IntlMessages id="picture_doc" /></label>
                                                     <input type="text" className="form-control" readOnly value="abc.pdf" />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Quantity Of Product</label>
+                                                    <label htmlFor=""><IntlMessages id="quality_pro" /></label>
                                                     <input type="text" className="form-control" id="" name="productQuantity"
                                                            readOnly value={quoteData.quantity} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Target Price</label>
+                                                    <label htmlFor=""><IntlMessages id="target_price" /></label>
                                                     <input type="text" className="form-control" readOnly id="" name="price"
                                                            value={quoteData.pricePerUnit} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">How soon do you want it?</label>
+                                                    <label htmlFor=""><IntlMessages id="soon" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="ExpectedTimeofDelivery" value={quoteData.howSoon} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Delivery Adress would be the same as the company’s
-                                                        address?</label>
+                                                    <label htmlFor=""><IntlMessages id="delivery_add" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="sameDeliveryAddress" value={quoteData.checkAddress ? 'Yes' : 'No'} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Delivery Address</label>
+                                                    <label htmlFor=""><IntlMessages id="delivery_add" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.Address} />
                                                 </div>
@@ -152,7 +152,7 @@ const QuoteView = (props) => {
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
                                                     <label htmlFor="">
-                                                        On the scale of 1 to 10, how satisfied were you with your last interaction with our representative?</label>
+                                                    <IntlMessages id="scale_10" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.lastInteractive} />
                                                 </div>
@@ -161,7 +161,7 @@ const QuoteView = (props) => {
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
                                                     <label htmlFor="">
-                                                        On the scale of 1 to 10, how clear was our representative’s presentation?</label>
+                                                    <IntlMessages id="scale_repres" /> </label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.representative} />
                                                 </div>
@@ -170,7 +170,7 @@ const QuoteView = (props) => {
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
                                                     <label htmlFor="">
-                                                        On the scale of 1 to 10, how likely would you recommend our company to friends and family?</label>
+                                                    <IntlMessages id="scale_recom" /> </label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.recommend} />
                                                 </div>
@@ -179,7 +179,7 @@ const QuoteView = (props) => {
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
                                                     <label htmlFor="">
-                                                        REFERRAL CODE</label>
+                                                    <IntlMessages id="ref_code" /> </label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.code} />
                                                 </div>
@@ -188,7 +188,7 @@ const QuoteView = (props) => {
                                             <div className="col-lg-6 mb-4">
                                                 <div className="form-group">
                                                     <label htmlFor="">
-                                                        On the scale of 1 to 10, how satisfied were you with your last interaction with our representative?</label>
+                                                    <IntlMessages id="interaction" />  </label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            name="deliveryAddress" value={quoteData.representative} />
                                                 </div>
@@ -200,7 +200,7 @@ const QuoteView = (props) => {
                         </div>
                     </div>
                 </div>
-            </div> : <h3 className={'text-center'}>No Quote Found</h3>
+            </div> : <h3 className={'text-center'}><IntlMessages id="no_quote" /></h3>
 
             : <div className={'text-center'}>
         <Spinner />

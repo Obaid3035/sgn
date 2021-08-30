@@ -18,6 +18,7 @@
 import React  from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
+import IntlMessages from '../../../Util/IntlMessages';
 
 import routes from "../../../routes";
 
@@ -74,7 +75,7 @@ function Header(props) {
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
-                <button onClick={logOutHandler} className="btn-warning btn-lg">Log out</button>
+                <button onClick={logOutHandler} className="btn-warning btn-lg"><IntlMessages id="log_out" /></button>
               </Nav.Link>
             </Nav.Item>
           </Nav>

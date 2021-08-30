@@ -1,4 +1,5 @@
 import React from "react";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const ProjectTable = ( props ) => {
     return (
@@ -6,9 +7,9 @@ const ProjectTable = ( props ) => {
             <thead className="">
             <tr>
                 <th>#</th>
-                <th>Assigned By</th>
-                <th>Business Name</th>
-                <th>Status</th>
+                <th><IntlMessages id="assign_by" /></th>
+                <th><IntlMessages id="bus_name" /></th>
+                <th><IntlMessages id="status" /></th>
             </tr>
             </thead>
             <tbody>
@@ -18,7 +19,7 @@ const ProjectTable = ( props ) => {
                     <td>{project.User.applicationForm.firstName}</td>
                     <td>{project.businessName}</td>
                     <td className="">
-                        <span className="badge badge-pill badge-info" >{project.status}</span>
+                        {project.status}
                     </td>
                 </tr>
             ))}

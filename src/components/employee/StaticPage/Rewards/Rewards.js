@@ -3,7 +3,7 @@ import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {ProgressBar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const EmployeeRewards = ( props ) => {
     const token = localStorage.getItem('token')
@@ -27,7 +27,7 @@ const EmployeeRewards = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Rewards</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="rewards" /></h4>
                             </div>
                             <div className="card-body">
                                 <div className="project-section">
@@ -40,11 +40,11 @@ const EmployeeRewards = ( props ) => {
                                                         <thead className="">
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Name</th>
-                                                            <th>Status</th>
-                                                            <th>Progress</th>
-                                                            <th>Created At</th>
-                                                            <th>Action</th>
+                                                            <th><IntlMessages id="name" /></th>
+                                                            <th><IntlMessages id="status" /></th>
+                                                            <th><IntlMessages id="progress" /></th>
+                                                            <th><IntlMessages id="created_at" /></th>
+                                                            <th><IntlMessages id="action" /></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -67,7 +67,7 @@ const EmployeeRewards = ( props ) => {
                                                         )) }
                                                         </tbody>
                                                     </table>
-                                                    : <h3 className="text-center">No Reward Found</h3>
+                                                    : <h3 className="text-center"><IntlMessages id="no_reward" /></h3>
                                                     : <div className="text-center"><Spinner /></div>}
                                             </div>
                                         </div>

@@ -17,6 +17,7 @@
 */
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
+import IntlMessages from '../../../Util/IntlMessages';
 
 class Footer extends Component {
   render() {
@@ -27,29 +28,28 @@ class Footer extends Component {
             <ul className="footer-menu">
               <li>
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Home
+                <IntlMessages id="foot_home" />
                 </a>
               </li>
               <li>
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Company
+                <IntlMessages id="foot_company" />
                 </a>
               </li>
               <li>
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Portfolio
+                <IntlMessages id="foot_portfolio" />
                 </a>
               </li>
               <li>
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Blog
+                <IntlMessages id="foot_blog" />
                 </a>
               </li>
             </ul>
             <p className="copyright text-center">
               © {new Date().getFullYear()}{" "}
-              <a href="http://www.creative-tim.com">Creative Tim</a>, made with
-              love for a better web
+              <a href="http://www.creative-tim.com"><IntlMessages id="creative_Tim" /></a>, <IntlMessages id="better_web" />
             </p>
           </nav>
         </Container>

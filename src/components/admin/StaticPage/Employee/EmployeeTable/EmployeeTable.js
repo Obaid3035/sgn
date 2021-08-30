@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import EmployeeList from "./EmployeeList/EmployeeList";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../../Util/IntlMessages';
+
 
 const EmployeeTable = ( props ) => {
     console.log(props.loaded)
@@ -10,17 +12,17 @@ const EmployeeTable = ( props ) => {
             <table className="table table-striped to-do-list">
                 <thead className="">
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Location</th>
-                    <th>Role</th>
-                    <th>Status</th>
+                    <th><IntlMessages id="main_id" /></th>
+                    <th><IntlMessages id="name" /></th>
+                    <th><IntlMessages id="position" /></th>
+                    <th><IntlMessages id="location" /></th>
+                    <th><IntlMessages id="role" /></th>
+                    <th><IntlMessages id="status" /></th>
                     {
                         props.fired ? null :
                             <>
-                                <th>Benefits</th>
-                                <th>Action</th>
+                                <th><IntlMessages id="benefits" /></th>
+                                <th><IntlMessages id="Action" /></th>
                             </>
                     }
                 </tr>
@@ -43,7 +45,7 @@ const EmployeeTable = ( props ) => {
                 ))}
                 </tbody>
             </table>
-        </div> : <h4 className="text-center">No Employee Found</h4> : <div className="text-center"><Spinner /></div>
+        </div> : <h4 className="text-center"><IntlMessages id="no_emp" /></h4> : <div className="text-center"><Spinner /></div>
     );
 }
 export default EmployeeTable;

@@ -3,6 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import {useAuth} from "../../../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import Spinner from "../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../Util/IntlMessages';
 
 
 const Login = ( props ) => {
@@ -61,19 +62,19 @@ const Login = ( props ) => {
                     <div className="col-md-5">
                         <div className="card text-center">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title font-weight-bold">Login</h4>
+                                <h4 className="card-title font-weight-bold"><IntlMessages id="login_btn" /></h4>
                             </div>
                             <div className="card-body">
                                 <Form onSubmit={onSubmitHandler} className="my-5" >
                                     <Form.Group className="mb-4">
-                                        <Form.Label>Email</Form.Label>
+                                        <Form.Label><IntlMessages id="Email" /></Form.Label>
                                         <Form.Control type="email" required className="form-control" placeholder="Enter Email/Username" onChange={(e) => emailChangeHandler(e)} value={email} />
                                     </Form.Group>
                                     <Form.Group className="mb-4">
-                                        <Form.Label>Password</Form.Label>
+                                        <Form.Label><IntlMessages id="main_password" /></Form.Label>
                                         <Form.Control type="password" required className="form-control" placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password}  />
                                     </Form.Group>
-                                    {loaded ? <Button type={'submit'} href="" variant={'primary'} size={'lg'}>Login</Button> : <Spinner />}
+                                    {loaded ? <Button type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button> : <Spinner />}
                                 </Form>
                             </div>
                         </div>

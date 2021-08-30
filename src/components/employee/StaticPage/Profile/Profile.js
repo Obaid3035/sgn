@@ -3,6 +3,7 @@ import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
 import {Button, Form, Modal} from "react-bootstrap";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const EmployeeProfile = ( props ) => {
 
@@ -127,7 +128,7 @@ const EmployeeProfile = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Contract</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_contract" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={contractUploadHandler} className={'mb-4'}>
@@ -138,7 +139,7 @@ const EmployeeProfile = ( props ) => {
                         />
 
                         <div className="float-right mt-3">
-                            {contract ? <Button type="submit"  variant={'outline-warning'}>SEND</Button> : <Button type="submit" disabled  variant={'outline-warning'}>SEND</Button>}
+                            {contract ? <Button type="submit"  variant={'outline-warning'}><IntlMessages id="send" /></Button> : <Button type="submit" disabled  variant={'outline-warning'}><IntlMessages id="send" /></Button>}
                         </div>
                     </Form>
                 </Modal.Body>
@@ -160,73 +161,73 @@ const EmployeeProfile = ( props ) => {
                         <div className="col-lg-7">
                             <div className="card">
                                 <div className="card-header card-header-primary">
-                                    <h4 className="card-title">Edit Profile</h4>
-                                    <p className="card-category">Complete your profile</p>
+                                    <h4 className="card-title"><IntlMessages id="edit_pro" /></h4>
+                                    <p className="card-category"><IntlMessages id="com_pro" /></p>
                                 </div>
                                 {loaded ? profileData ? <div className="card-body">
                                     <form action="" className="pt-5" id="reviewApplication">
                                         <div className="form-row">
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">First Name</label>
+                                                    <label htmlFor=""><IntlMessages id="first_name" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            value={profileData.profile.firstName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Middle Name</label>
+                                                    <label htmlFor=""><IntlMessages id="middle_name" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            value={profileData.profile.middleName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Last Name</label>
+                                                    <label htmlFor=""><IntlMessages id="last_name" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            value={profileData.profile.lastName} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-12 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Street Address</label>
+                                                    <label htmlFor=""><IntlMessages id="street_address" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            value={profileData.profile.streetAddress} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">City, State, Zip Code</label>
+                                                    <label htmlFor=""><IntlMessages id="city_state" /></label>
                                                     <input type="text" className="form-control" readOnly id=""
                                                            value={profileData.profile.zipCode} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Phone Number</label>
+                                                    <label htmlFor=""><IntlMessages id="phone_no" /></label>
                                                     <input type="tel" className="form-control" id="" name="phoneNumber"
                                                            readOnly value={profileData.profile.phoneNumber} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-4 mb-4">
                                                 <div className="form-group">
-                                                    <label htmlFor="">Email</label>
+                                                    <label htmlFor=""><IntlMessages id="email" /></label>
                                                     <input type="text" className="form-control" id="" name="email" readOnly
                                                            value={profileData.email} />
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
-                                </div> : <h3 className={'text-center'}>No Profile Found</h3> : <div className="text-center"><Spinner /></div>}
+                                </div> : <h3 className={'text-center'}><IntlMessages id="no_profile" /></h3> : <div className="text-center"><Spinner /></div>}
                             </div>
                         </div>
                         <div className="col-lg-5">
                             <div className="card">
                                 <div className="card-header card-header-primary d-flex justify-content-between">
-                                    <h4 className="card-title ">Contracts</h4>
+                                    <h4 className="card-title "><IntlMessages id="contract" /></h4>
                                     <button type="button" onClick={contractShowHandler}
                                             className="btn btn-attachment btn-warning mx-4">
-                                        Add Contract
+                                      <IntlMessages id="add_contract" />  
                                     </button>
                                 </div>
                                 <div className="card-body">
@@ -236,13 +237,13 @@ const EmployeeProfile = ( props ) => {
                                                     <thead className=" text-primary">
                                                     <tr>
                                                         <th>
-                                                            ID
+                                                        <IntlMessages id="main_id" /> 
                                                         </th>
                                                         <th>
-                                                            Name
+                                                        <IntlMessages id="name" />    
                                                         </th>
                                                         <th>
-                                                            Date
+                                                        <IntlMessages id="date" /> 
                                                         </th>
                                                     </tr>
                                                     </thead>
@@ -259,7 +260,7 @@ const EmployeeProfile = ( props ) => {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            : <h5 className="text-center">No Contract Found</h5>
+                                            : <h5 className="text-center"><IntlMessages id="no_contract" /></h5>
                                             : <div className="text-center"><Spinner /></div>
                                     }
                                 </div>
@@ -273,8 +274,8 @@ const EmployeeProfile = ( props ) => {
                                     <thead className="">
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
+                                        <th><IntlMessages id="title" /></th>
+                                        <th><IntlMessages id="description" /></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -286,14 +287,14 @@ const EmployeeProfile = ( props ) => {
                                         </tr>
                                     ))}
                                     </tbody>
-                                </table> : <h4> No Benefit Found</h4>
+                                </table> : <h4><IntlMessages id="no_benefit" /> </h4>
                                 : <div className="text-center"><Spinner /></div>
                             }
                         </div>
                         <div className="col-lg-6">
                             <div className="card">
                                 <div className="card-header card-header-primary d-flex justify-content-between">
-                                    <h4 className="card-title ">Payment Receipt</h4>
+                                    <h4 className="card-title "><IntlMessages id="pay_receipt" /></h4>
                                 </div>
                                 <div className="card-body">
                                     {
@@ -302,13 +303,13 @@ const EmployeeProfile = ( props ) => {
                                                     <thead className=" text-primary">
                                                     <tr>
                                                         <th>
-                                                            ID
+                                                        <IntlMessages id="main_id" />   
                                                         </th>
                                                         <th>
-                                                            Name
+                                                        <IntlMessages id="name" />    
                                                         </th>
                                                         <th>
-                                                            Date
+                                                        <IntlMessages id="date" />    
                                                         </th>
                                                     </tr>
                                                     </thead>
@@ -325,7 +326,7 @@ const EmployeeProfile = ( props ) => {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            : <h5 className="text-center">No Payment Found</h5>
+                                            : <h5 className="text-center"><IntlMessages id="no_pay" /></h5>
                                             : <div className="text-center"><Spinner /></div>
                                     }
                                 </div>

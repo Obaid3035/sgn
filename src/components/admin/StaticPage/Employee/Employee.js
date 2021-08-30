@@ -3,6 +3,8 @@ import './Employee.css'
 import axios from "axios";
 import EmployeeTable from "./EmployeeTable/EmployeeTable";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../Util/IntlMessages';
+
 
 const Employee = ( props ) => {
     const [loaded, setLoaded] = useState(false)
@@ -17,14 +19,26 @@ const Employee = ( props ) => {
         pauseOnHover: true,
         draggable: true,
     });
-
+    const role = localStorage.getItem('role')
+    const token = localStorage.getItem('token')
     useEffect(() => {
-        axios.get('/admin/employees')
-            .then((res) => {
-                setActiveUser(res.data.usersActive);
-                setInActiveUser(res.data.usersInActive);
-                setLoaded(true)
-            })
+
+        if(role.includes('subAdmin')) {
+            axios.get('/subAdmin-employees', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setActiveUser(res.data.usersActive);
+                    setInActiveUser(res.data.usersInActive);
+                    setLoaded(true)
+                })
+        } else {
+            axios.get('/admin/employees')
+                .then((res) => {
+                    setActiveUser(res.data.usersActive);
+                    setInActiveUser(res.data.usersInActive);
+                    setLoaded(true)
+                })
+        }
+
     }, [loaded]);
 
     const inActiveEmployeeHandler = ( id ) => {
@@ -54,7 +68,7 @@ const Employee = ( props ) => {
                     <div className="card">
                             <div
                                 className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">List Of Employees</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="list_emp" /></h4>
                             </div>
                         <div className="card-body">
 
@@ -63,12 +77,12 @@ const Employee = ( props ) => {
                                     <li className="nav-item" role="presentation">
                                         <a className="nav-link btn btn-lg btn-outline btn-outline-success mr-2"
                                            id="activeEmp-tab" data-toggle="pill" href="#activeEmp" role="tab"
-                                           aria-controls="activeEmp" aria-selected="false">Active</a>
+                                           aria-controls="activeEmp" aria-selected="false"><IntlMessages id="active" /></a>
                                     </li>
                                     <li className="nav-item" role="presentation">
                                         <a className="nav-link btn btn-lg btn-outline btn-outline-danger mr-2"
                                            id="inActiveEmp-tab" data-toggle="pill" href="#inActiveEmp" role="tab"
-                                           aria-controls="inActiveEmp" aria-selected="true">In-Active</a>
+                                           aria-controls="inActiveEmp" aria-selected="true"><IntlMessages id="in_active" /></a>
                                     </li>
                                 </ul>
                                 <div className="tab-content" id="pills-tabContent">

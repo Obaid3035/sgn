@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import './JobReview.css'
 import axios from "axios";
 import {NavLink} from "react-router-dom";
+import IntlMessages from '../../../../Util/IntlMessages';
+
 
 const JobReview = ( props ) => {
 
@@ -21,12 +23,11 @@ const JobReview = ( props ) => {
                   <div className="row">
                       <div className="col-md-12">
                           <div className="padding">
-                              <h2>job description</h2>
+                              <h2><IntlMessages id="job_desc" /></h2>
                               <h3>{jobData.jobTitle}</h3>
                               <p className="mb-0">{jobData.jobCity}, {jobData.jobCountry}</p>
-                              <p className="font-weight-bold">Please have your resume ready before continuing the
-                                  application.</p>
-                              <NavLink to={'/application/'+id} className="apply-btn get-quote btn">Apply Now</NavLink>
+                              <p className="resume font-weight-bold"><IntlMessages id="resume_ready" /></p>
+                              <NavLink to={'/application/'+id} className="apply-btn get-quote btn"><IntlMessages id="apply_now" /></NavLink>
                           </div>
                       </div>
                   </div>
@@ -36,8 +37,8 @@ const JobReview = ( props ) => {
           <section className="job-desc-detail">
               <div className="container">
                   <div className="row">
-                      <div className="col-md-12 mb-3">
-                          <h3>Description</h3>
+                      <div className="col-md-10 mb-3">
+                          <h3><IntlMessages id="description" /></h3>
                       </div>
                       <div className="col-md-12">
                           <div className="card">
@@ -45,11 +46,11 @@ const JobReview = ( props ) => {
                                   <p>{jobData.jobDescription}
                                   </p>
                                   <ul className="job-description">
-                                      <li className="heading">Benefits:</li>
+                                      <li className="heading"><IntlMessages id="benefits" /></li>
                                      <li>{jobData.jobBenefit}</li>
                                   </ul>
                                   <ul>
-                                      <li className="heading"> Requirements:</li>
+                                      <li className="heading"><IntlMessages id="requirement" /> </li>
                                       <li>{jobData.jobRequirement}</li>
                                   </ul>
                               </div>

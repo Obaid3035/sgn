@@ -3,6 +3,10 @@ html {
   height: 100%;
 }
 
+td {
+  color: black !important;
+}
+
 .card {
   background-color: white !important;
   cursor: auto !important;

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Form, Dropdown, Button} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import axios from "axios";
-
+import IntlMessages from '../../../../Util/IntlMessages';
 const Report = ( props ) => {
 
     const [fromDate, setFromDate] = useState('');
@@ -66,13 +66,13 @@ const Report = ( props ) => {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Report</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="report" /></h4>
                             </div>
                             <div className="card-body">
                                 <Form onSubmit={onSubmitHandler} className={'d-flex justify-content-around'}>
                                     <Form.Group>
                                         <select value={user} onChange={handleChange}>
-                                            <option selected value={''}>--Select--</option>
+                                            <option selected value={''}><IntlMessages id="select" /></option>
                                             {userArr.map((user, index) =>  (
                                                     <option key={index} value={user.value}>{user.label}</option>
                                                 )
@@ -80,33 +80,33 @@ const Report = ( props ) => {
                                         </select>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Label> From</Form.Label>
+                                        <Form.Label> <IntlMessages id="from" /></Form.Label>
                                         <DatePicker selected={fromDate}
                                                     onChange={fromDateHandler}
                                         />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Label> To</Form.Label>
+                                        <Form.Label> <IntlMessages id="too" /></Form.Label>
                                         <DatePicker selected={toDate}
                                                     onChange={toDateHandler}
                                         />
                                     </Form.Group>
 
-                                    <Button type={'submit'} className={'px-4 h-25'} variant={'warning'}>Search</Button>
+                                    <Button type={'submit'} className={'px-4 h-25'} variant={'warning'}><IntlMessages id="search" /></Button>
                                 </Form>
 
                                <div className={'d-flex justify-content-between'}>
                                    <div>
-                                       <h4>Completed Task</h4>
-                                       {completedTask ? <h4 className={'text-center'}>{completedTask.length}</h4>  : <h5>No Task Found</h5> }
+                                       <h4><IntlMessages id="com_task" /></h4>
+                                       {completedTask ? <h4 className={'text-center'}>{completedTask.length}</h4>  : <h5><IntlMessages id="no_task" /></h5> }
                                    </div>
                                    <div>
-                                       <h4>Approved Task</h4>
-                                       {approvedTask ? <h4 className={'text-center'}>{approvedTask.length}</h4>  : <h5>No Task Found</h5> }
+                                       <h4><IntlMessages id="app_task" /></h4>
+                                       {approvedTask ? <h4 className={'text-center'}>{approvedTask.length}</h4>  : <h5><IntlMessages id="no_task" /></h5> }
                                    </div>
                                    <div>
-                                       <h4>UnderReview Task</h4>
-                                       {underReviewTask ? <h4 className={'text-center'}>{underReviewTask.length}</h4>  : <h5>No Task Found</h5> }
+                                       <h4><IntlMessages id="un_task" /></h4>
+                                       {underReviewTask ? <h4 className={'text-center'}>{underReviewTask.length}</h4>  : <h5><IntlMessages id="no_task" /></h5> }
                                    </div>
                                </div>
                             </div>

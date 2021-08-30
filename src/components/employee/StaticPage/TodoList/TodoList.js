@@ -3,6 +3,7 @@ import axios from "axios";
 import { NavLink} from "react-router-dom";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const EmployeeTodoList = ( props ) => {
 
@@ -56,7 +57,7 @@ const EmployeeTodoList = ( props ) => {
                         <div className="card">
                             <div
                                 className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">To-Dos</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="to_dos" /></h4>
                             </div>
                             <div className="card-body">
                                 <div className="table-responsive">
@@ -64,9 +65,9 @@ const EmployeeTodoList = ( props ) => {
                                         <table className="table table-striped">
                                         <thead className="">
                                         <tr>
-                                            <th>Business Name</th>
-                                            <th>Task Done</th>
-                                            <th>Actions</th>
+                                            <th><IntlMessages id="bus_name" /></th>
+                                            <th><IntlMessages id="task_done" /></th>
+                                            <th><IntlMessages id="action" /></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -85,7 +86,7 @@ const EmployeeTodoList = ( props ) => {
                                         )) }
 
                                         </tbody>
-                                    </table>  : <h4 className="text-center">No Todo's Found</h4>  : <div className="text-center"><Spinner /></div>}
+                                    </table>  : <h4 className="text-center"><IntlMessages id="no_todos" /></h4>  : <div className="text-center"><Spinner /></div>}
                                 </div>
                             </div>
                         </div>

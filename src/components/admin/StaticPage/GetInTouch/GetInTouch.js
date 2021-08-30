@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import axios from "axios";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const GetInTouch = props => {
 	const [getInTouchData, setGetInTouchData] = useState([]);
@@ -31,7 +32,7 @@ const GetInTouch = props => {
 				<td>{getInTouch.email}</td>
 				<td>{getInTouch.description}</td>
 				<td>
-					<button type="button" onClick={() => getInTouchDelete(getInTouch.id)} className="btn btn-danger">Delete
+					<button type="button" onClick={() => getInTouchDelete(getInTouch.id)} className="btn btn-danger"><IntlMessages id="delete" />
 					</button>
 				</td>
 			</tr>
@@ -45,7 +46,7 @@ const GetInTouch = props => {
 						<div className="card">
 							<div className="card-body">
 								<div className="col-md-12 my-5">
-									<h4>Get In Touch</h4>
+									<h4><IntlMessages id="get_touch" /></h4>
 									<div className="row">
 										<div className="col-md-12">
 											<div className="table-responsive">
@@ -54,19 +55,19 @@ const GetInTouch = props => {
 														<thead className="">
 														<tr>
 															<th>
-																ID
+															<IntlMessages id="main_id" />
 															</th>
 															<th>
-																Name
+															<IntlMessages id="main" />	
 															</th>
 															<th>
-																Email
+															<IntlMessages id="email" />	
 															</th>
 															<th>
-																Description
+															<IntlMessages id="description" />	
 															</th>
 															<th>
-																Action
+															<IntlMessages id="action" />
 															</th>
 														</tr>
 														</thead>
@@ -74,7 +75,7 @@ const GetInTouch = props => {
 														{table}
 														</tbody>
 													</table>
-													: <h4 className="text-center">No Get In Touch Found</h4>
+													: <h4 className="text-center"><IntlMessages id="no_touch" /></h4>
 													: <div className="text-center"><Spinner /></div>
 												}
 											</div>

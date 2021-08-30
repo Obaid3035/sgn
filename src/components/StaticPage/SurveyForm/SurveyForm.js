@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import ProgressBar from "../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../Util/IntlMessages';
 
 const SurveyForm = props => {
 
@@ -34,7 +35,7 @@ const SurveyForm = props => {
 	return (
 		<>
 			<div id={'top'} className={'d-flex justify-content-center'}>
-				<h2 className={'survey__heading'}>Quick Survey Of Our Representatives</h2>
+				<h2 className={'survey__heading'}><IntlMessages id="quick_servey" /></h2>
 			</div>
 
 			<section className="py-5">
@@ -43,14 +44,10 @@ const SurveyForm = props => {
 						<div className="col-md-12">
 							<div className="card text-center bg-white survey-card border-0">
 								<div className="py-5 px-4">
-									<p className="text-center">We train our representatives to be professional and to
-										meet set standards. Your feedback is valuable and will help us provide the best
-										possible service to all our customers. Please do you mind taking a minute to
-										answer this
-										survey regarding your last engagement with one of our representatives? </p>
+									<p className="text-center"><IntlMessages id="quick_para" /> </p>
 									<form action="" className="mt-5 survey-form" onSubmit={onSubmitHandler}>
 										<div className="form-group">
-											<label htmlFor="">1. On the scale of 1 to 10, how satisfied were you with your last interaction with our representative?</label>
+											<label htmlFor=""><IntlMessages id="quick_scale" /></label>
 											<div className="d-inline-flex justify-content-center">
 												<div className="form-check form-check-inline">
 													<input className="form-check-input" type="radio"
@@ -126,7 +123,7 @@ const SurveyForm = props => {
 										</div>
 
 										<div className="form-group">
-											<label htmlFor="">2. On the scale of 1 to 10, how clear was our representative’s presentation?</label>
+											<label htmlFor=""><IntlMessages id="quick_scale2" /></label>
 											<div className="d-inline-flex justify-content-center">
 												<div className="form-check form-check-inline">
 													<input className="form-check-input" type="radio"
@@ -202,7 +199,7 @@ const SurveyForm = props => {
 										</div>
 
 										<div className="form-group">
-											<label htmlFor="">3. On the scale of 1 to 10, how likely would you recommend our company to friends and family?</label>
+											<label htmlFor=""><IntlMessages id="quick_scale3" /></label>
 											<div className="d-inline-flex justify-content-center">
 												<div className="form-check form-check-inline">
 													<input className="form-check-input" type="radio"
@@ -287,18 +284,18 @@ const SurveyForm = props => {
 										</div>
 
 										<div className="form-group">
-											<label htmlFor="">4. Please enter your referral code</label>
+											<label htmlFor=""><IntlMessages id="enter_ref" /></label>
 											<input type="text" className="form-control" name={'code'} value={surveyField.code}
 											       required
 											       onChange={lastInteractiveHandler}
 											       aria-describedby="referralcode" />
 										</div>
 
-										<p className="para">All done, Thank you for your feedback!</p>
+										<p className="para"><IntlMessages id="feedback_done" /></p>
 										{
 											loader ?
 												<button  role="button" type="submit"
-												         className="get-quote submit btn">submit</button>
+												         className="get-quote submit btn"><IntlMessages id="submit_btn" /></button>
 												: <ProgressBar />
 										}
 									</form>

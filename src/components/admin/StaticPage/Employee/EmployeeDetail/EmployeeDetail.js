@@ -3,6 +3,8 @@ import {Button, Form, Modal} from 'react-bootstrap'
 import axios from "axios";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../../Util/IntlMessages';
+
 
 const EmployeeDetail = ( props ) => {
 
@@ -101,14 +103,14 @@ const EmployeeDetail = ( props ) => {
     const form = (
         <form onSubmit={onSubmitHandler}>
             <div className="form-group">
-                <label htmlFor="">Enter New Position:</label>
+                <label htmlFor=""><IntlMessages id="new_pos" /></label>
                 <input type="text" className="form-control" id="" name="jobTitle" onChange={onInputHandler}
                        value={jobTitle} />
             </div>
             <div className="pull-right">
-                <button type="button" onClick={handleShow} className="btn btn-secondary" data-dismiss="modal">Close
+                <button type="button" onClick={handleShow} className="btn btn-secondary" data-dismiss="modal"><IntlMessages id="close" />
                 </button>
-                <button type="submit" className="btn btn-primary btn-save">UPDATE</button>
+                <button type="submit" className="btn btn-primary btn-save"><IntlMessages id="update" /></button>
             </div>
         </form>
     )
@@ -163,14 +165,14 @@ const EmployeeDetail = ( props ) => {
     const notesForm = (
         <form onSubmit={onNotesSubmitHandler}>
             <div className="form-group">
-                <label htmlFor="">Add/Edit Notes:</label>
+                <label htmlFor=""><IntlMessages id="add_edit" /></label>
                 <input type="text" className="form-control" id="" name="notes" onChange={onNotesChangeHandler}
                        value={notes} />
             </div>
             <div className="pull-right">
-                <button type="button" onClick={notesShowHandler} className="btn btn-secondary" data-dismiss="modal">Close
+                <button type="button" onClick={notesShowHandler} className="btn btn-secondary" data-dismiss="modal"><IntlMessages id="close" />
                 </button>
-                <button type="submit" className="btn btn-primary btn-save">UPDATE</button>
+                <button type="submit" className="btn btn-primary btn-save"><IntlMessages id="update" /></button>
             </div>
         </form>
     )
@@ -178,7 +180,8 @@ const EmployeeDetail = ( props ) => {
     const descriptionChangeHandler = (e) => {
         setDescription(e.target.value)
     }
-    //https://sleepy-savannah-00668.herokuapp.com/upload/
+    const role = localStorage.getItem('role')
+
     return (
       <>
 
@@ -190,7 +193,7 @@ const EmployeeDetail = ( props ) => {
               centered
           >
               <Modal.Header closeButton>
-                  <Modal.Title>Add Contract</Modal.Title>
+                  <Modal.Title><IntlMessages id="add_contract" /></Modal.Title>
               </Modal.Header>
               <Modal.Body>
                   <Form onSubmit={contractUploadHandler} className={'mb-4'}>
@@ -201,7 +204,7 @@ const EmployeeDetail = ( props ) => {
                       />
 
                       <div className="float-right mt-3">
-                          {contract ? <Button type="submit"  variant={'outline-warning'}>SEND</Button> : <Button type="submit" disabled  variant={'outline-warning'}>SEND</Button>}
+                          {contract ? <Button type="submit"  variant={'outline-warning'}><IntlMessages id="send" /></Button> : <Button type="submit" disabled  variant={'outline-warning'}><IntlMessages id="send" /></Button>}
                       </div>
                   </Form>
               </Modal.Body>
@@ -214,7 +217,7 @@ const EmployeeDetail = ( props ) => {
               centered
           >
               <Modal.Header closeButton>
-                  <Modal.Title>Add Payment</Modal.Title>
+                  <Modal.Title><IntlMessages id="add_pay" /></Modal.Title>
               </Modal.Header>
               <Modal.Body>
                   <Form onSubmit={fileUploadHandler} className={'mb-4'}>
@@ -226,7 +229,7 @@ const EmployeeDetail = ( props ) => {
                       <Form.Control type={'text'} value={description} onChange={descriptionChangeHandler}/>
 
                       <div className="float-right mt-3">
-                          {receipt ? <Button type="submit"  variant={'outline-warning'}>SEND</Button> : <Button type="submit" disabled  variant={'outline-warning'}>SEND</Button>}
+                          {receipt ? <Button type="submit"  variant={'outline-warning'}><IntlMessages id="send" /></Button> : <Button type="submit" disabled  variant={'outline-warning'}><IntlMessages id="send" /></Button>}
                       </div>
                   </Form>
               </Modal.Body>
@@ -239,7 +242,7 @@ const EmployeeDetail = ( props ) => {
               centered
           >
               <Modal.Header closeButton>
-                  <Modal.Title>Edit Position</Modal.Title>
+                  <Modal.Title><IntlMessages id="edit_pos" /></Modal.Title>
               </Modal.Header>
               <Modal.Body>
                   {form}
@@ -254,7 +257,7 @@ const EmployeeDetail = ( props ) => {
               centered
           >
               <Modal.Header closeButton>
-                  <Modal.Title>Add Notes</Modal.Title>
+                  <Modal.Title><IntlMessages id="add_note" /></Modal.Title>
               </Modal.Header>
               <Modal.Body>
                   {notesForm}
@@ -289,26 +292,26 @@ const EmployeeDetail = ( props ) => {
                                               <button type="button"
                                                       onClick={notesShowHandler}
                                                       className="btn btn-attachment btn-warning">
-                                                  Add Notes
+                                                  <IntlMessages id="add_note" />
                                               </button>
                                               <button type="button"
                                                       onClick={handleShow}
                                                       className="btn btn-attachment btn-warning mx-4">
-                                                  Edit Position
+                                                  <IntlMessages id="edit_pos" />
                                               </button>
                                               <button type="button" onClick={receiptShowHandler}
                                                       className="btn btn-attachment btn-warning">
-                                                  Pay
+                                                <IntlMessages id="pay" />  
                                               </button>
                                               <button type="button" onClick={contractShowHandler}
                                                       className="btn btn-attachment btn-warning mx-4">
-                                                  Add Contract
+                                                  <IntlMessages id="add_contract" />
                                               </button>
                                               {
-                                                  !employee.roles.includes('subAdmin') ?
+                                                  !role.includes('subAdmin')  ?
                                                       <button type="button" onClick={makeAdminHandler}
                                                               className="btn btn-attachment btn-warning mx-4">
-                                                          Make Admin
+                                                        <IntlMessages id="make_admin" />  
                                                       </button>
                                                       : ''
                                               }
@@ -319,19 +322,19 @@ const EmployeeDetail = ( props ) => {
                                               <div className="card-body">
                                                   <div className="row align-items-start">
                                                       <div className="col-md-6 col-lg-3 my-3 text-center border-right">
-                                                          <h4>Position</h4>
+                                                          <h4><IntlMessages id="position" /></h4>
                                                           <p>{employee.applicationForm.jobListing.jobTitle}</p>
                                                       </div>
                                                       <div className="col-md-6 col-lg-2 my-3 text-center border-right">
-                                                          <h4>Projects</h4>
+                                                          <h4><IntlMessages id="projects" /></h4>
                                                           <p>{employee.noticeOfIntents.length}</p>
                                                       </div>
                                                       <div className="col-md-6 col-lg-3 my-3 text-center border-right">
-                                                          <h4>Email</h4>
+                                                          <h4><IntlMessages id="email" /></h4>
                                                           <p>{employee.email}</p>
                                                       </div>
                                                       <div className="col-md-6 col-lg-3 my-3 text-center">
-                                                          <h4>Contact#</h4>
+                                                          <h4><IntlMessages id="contact" /></h4>
                                                           <p>{employee.applicationForm.phoneNumber}</p>
                                                       </div>
                                                   </div>
@@ -340,15 +343,15 @@ const EmployeeDetail = ( props ) => {
                                       </div>
                                       <div className="col-lg-7">
                                           <div className="card rounded shadow border mb-4 project-view-card">
-                                              <div className="card-header">Contracts</div>
+                                              <div className="card-header"><IntlMessages id="contract" /></div>
                                               <div className="card-body">
                                                   <div className="table-responsive">
                                                       <table className="table table-striped to-do-list">
                                                           <thead className="">
                                                           <th>#</th>
-                                                          <th>Date</th>
-                                                          <th>File</th>
-                                                          <th>Uploader</th>
+                                                          <th><IntlMessages id="date" /></th>
+                                                          <th><IntlMessages id="file" /></th>
+                                                          <th><IntlMessages id="uploader" /></th>
                                                           </thead>
                                                           <tbody>
                                                           {employee.contracts.length > 0 ?
@@ -362,7 +365,7 @@ const EmployeeDetail = ( props ) => {
                                                                       <td>{i.status}</td>
                                                                   </tr>
                                                               ))
-                                                              : <h4 className={'text-center'}>No Contract Found</h4>
+                                                              : <h4 className={'text-center'}><IntlMessages id="noContract_found" /></h4>
                                                           }
                                                           </tbody>
                                                       </table>
@@ -372,14 +375,14 @@ const EmployeeDetail = ( props ) => {
                                       </div>
                                       <div className="col-lg-5">
                                           <div className="card rounded shadow border mb-4 project-view-card">
-                                              <div className="card-header">Benefits</div>
+                                              <div className="card-header"><IntlMessages id="benefits" /></div>
                                               <div className="card-body">
                                                   <div className="table-responsive">
                                                       <table className="table recent-files">
                                                           <thead>
                                                           <tr><th>#</th>
-                                                              <th>Title</th>
-                                                              <th>Description</th></tr>
+                                                              <th><IntlMessages id="title" /></th>
+                                                              <th><IntlMessages id="descrip" /></th></tr>
                                                           </thead>
                                                           <tbody>
                                                           {employee.benefits.map((i, index) => (
@@ -401,7 +404,7 @@ const EmployeeDetail = ( props ) => {
                       </div>
                   </div>
               </div>
-          </div> : <h4>No Employee Found</h4> : <div className="text-center"><Spinner /></div>}
+          </div> : <h4><IntlMessages id="no_emp" /></h4> : <div className="text-center"><Spinner /></div>}
       </>
     );
 }

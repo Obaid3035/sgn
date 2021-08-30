@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-
+import IntlMessages from '../../../../../../Util/IntlMessages';
 const EmployeeList = ( props ) => {
 
 
@@ -19,7 +19,7 @@ const EmployeeList = ( props ) => {
                         <td className="">
                             <NavLink to={'benefit/' + props.id}
                                      className="btn btn-sm btn-info"><i
-                                className="fas fa-trophy text-primary mr-2" />Benefits</NavLink>
+                                className="fas fa-trophy text-primary mr-2" /><IntlMessages id="benefits" /></NavLink>
                         </td>
                         <td>
                             <NavLink to={'employee/' + props.id}

@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-import Aux from "../../../../hoc/Aux/Aux";
+import Aux from "../../../../hoc//wrapper/Wrapper";
 import axios from "axios";
 import Input from "../../../UI/Input/Input";
 import formConfig from "../../../../helpers/formConfig";
 import {NavLink} from "react-router-dom";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const EmployeeNoticeOfIntents = (props ) => {
     const [noticeOfIntent, setNoticeOfIntent] = useState([]);
@@ -122,7 +123,7 @@ const EmployeeNoticeOfIntents = (props ) => {
                     />
                 ))}
             </div>
-            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Create Intent</Button>
+            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}><IntlMessages id="create_intent" /></Button>
         </form>
     )
 
@@ -141,7 +142,7 @@ const EmployeeNoticeOfIntents = (props ) => {
                     ? 'Under Review'
                     : notice.status}</span></td>
                 <td>
-                    <NavLink to={'noticeofintent/' + notice.id} role="button" className="btn btn-lg btn-primary ">View</NavLink>
+                    <NavLink to={'noticeofintent/' + notice.id} role="button" className="btn btn-lg btn-primary "><IntlMessages id="view" /></NavLink>
                 </td>
             </tr>
         )
@@ -165,9 +166,9 @@ const EmployeeNoticeOfIntents = (props ) => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center">
-                                    <h4 className="card-title mb-0">Notice Of Intent</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="intent" /></h4>
                                     <button type="button" onClick={handleShow}
-                                            className="btn btn-primary btn-lg">Add
+                                            className="btn btn-primary btn-lg"><IntlMessages id="add" />
                                     </button>
                                 </div>
                                 <div className="card-body">
@@ -176,16 +177,16 @@ const EmployeeNoticeOfIntents = (props ) => {
                                             <thead className="">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Business Name</th>
-                                                <th>Date/Time</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
+                                                <th><IntlMessages id="bus_name" /></th>
+                                                <th><IntlMessages id="date_time" /></th>
+                                                <th><IntlMessages id="status" /></th>
+                                                <th><IntlMessages id="action" /></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             {table}
                                             </tbody>
-                                        </table> : <h4 className="text-center">No Notice Of Intent Found</h4> : <div className="text-center"><Spinner /></div>}
+                                        </table> : <h4 className="text-center"><IntlMessages id="no_notice" /></h4> : <div className="text-center"><Spinner /></div>}
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +202,7 @@ const EmployeeNoticeOfIntents = (props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Detail</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_details" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}

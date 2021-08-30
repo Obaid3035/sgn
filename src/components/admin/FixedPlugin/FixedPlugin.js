@@ -24,6 +24,7 @@ import sideBarImage1 from "../../../assets/img/sidebar-1.jpg";
 import sideBarImage2 from "../../../assets/img/sidebar-2.jpg";
 import sideBarImage3 from "../../../assets/img/sidebar-3.jpg";
 import sideBarImage4 from "../../../assets/img/sidebar-4.jpg";
+import IntlMessages from '../../../Util/IntlMessages';
 
 function FixedPlugin({
   hasImage,
@@ -60,7 +61,7 @@ function FixedPlugin({
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <li className="adjustments-line d-flex align-items-center justify-content-between">
-            <p>Background Image</p>
+            <p><IntlMessages id="bg_img" /></p>
             <Form.Check
               type="switch"
               id="custom-switch-1-image"
@@ -69,7 +70,7 @@ function FixedPlugin({
             />
           </li>
           <li className="adjustments-line mt-3">
-            <p>Filters</p>
+            <p><IntlMessages id="filters" /></p>
             <div className="pull-right">
               <Badge
                 variant="secondary"
@@ -104,7 +105,7 @@ function FixedPlugin({
             </div>
             <div className="clearfix"></div>
           </li>
-          <li className="header-title">Sidebar Images</li>
+          <li className="header-title"><IntlMessages id="siderbar_img" /></li>
           <li className={image === sideBarImage1 ? "active" : ""}>
             <a
               className="img-holder switch-trigger d-block"

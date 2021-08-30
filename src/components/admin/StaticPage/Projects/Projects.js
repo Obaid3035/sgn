@@ -7,6 +7,7 @@ import {toast, ToastContainer} from "react-toastify";
 import {Button, Modal} from "react-bootstrap";
 import formConfig from "../../../../helpers/formConfig";
 import Input from "../../../UI/Input/Input";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const Project = ( props ) => {
     const token = localStorage.getItem('token')
@@ -29,14 +30,24 @@ const Project = ( props ) => {
         businessPhoneNumber: formConfig('input', 'col-md-6', 'text', 'Phone Number'),
         additionalInformation: formConfig('input', 'col-md-6', 'text', 'Additional Info'),
     })
-
+    const role = localStorage.getItem('role')
     useEffect(() => {
-        axios.get('/admin/commissioned')
-            .then((res) => {
-                setCompletedProject(res.data.completedIntent);
-                setLoaded(true)
-                console.log(completedProject)
-            })
+        if(role.includes('subAdmin')) {
+            axios.get('/subAdmin-commissioned', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setCompletedProject(res.data.completedIntent);
+                    setLoaded(true)
+                    console.log(completedProject)
+                })
+        } else  {
+            axios.get('/admin/commissioned')
+                .then((res) => {
+                    setCompletedProject(res.data.completedIntent);
+                    setLoaded(true)
+                    console.log('COMPLETED',res.data.completedIntent)
+                })
+        }
+
     },[loaded])
 
     const handleShow = (id) => {
@@ -190,9 +201,9 @@ const Project = ( props ) => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0">Projects</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="project" /></h4>
                                     <button type="button" onClick={toDoHandleShow}
-                                            className="btn btn-primary btn-lg">Add
+                                            className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />
                                     </button>
                                 </div>
                                 <div className="card-body">
@@ -201,20 +212,20 @@ const Project = ( props ) => {
                                             <li className="nav-item" role="presentation">
                                                 <a className="nav-link btn btn-sm btn-outline btn-outline-info active mr-2"
                                                    id="all-tab" data-toggle="pill" href="#all" role="tab"
-                                                   aria-controls="success" aria-selected="false">Successful</a>
+                                                   aria-controls="success" aria-selected="false"><IntlMessages id="successful" /></a>
                                             </li>
                                         </ul>
                                         <div className="tab-content" id="pills-tabContent">
                                             <div className="tab-pane fade active show" id="all" role="tabpanel"
                                                  aria-labelledby="all-tab">
-                                                {loaded ? completedProject.length > 0
+                                                {loaded ? completedProject && completedProject.length > 0
                                                 ? <ProjectTable
                                                         project={completedProject}
                                                         handleShow={handleShow}
                                                         onSubmit={onSubmitHandler}
                                                         changeStatus={changeStatusToCommissioned}
                                                     />
-                                                : <h4 className="text-center">No Project Found</h4>
+                                                : <h4 className="text-center"><IntlMessages id="no_project" /></h4>
                                                 : <div className="text-center"><Spinner /></div>}
                                             </div>
                                         </div>
@@ -244,7 +255,7 @@ const Project = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Notice</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_notice" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}

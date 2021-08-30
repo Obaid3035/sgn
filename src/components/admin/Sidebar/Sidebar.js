@@ -2,7 +2,7 @@ import React  from "react";
 import { useLocation,NavLink } from "react-router-dom";
 import Logo from '../../../assets/img/logo.png'
 import font from '@fortawesome/fontawesome-free'
-
+import IntlMessages from '../../../Util/IntlMessages';
 import { Nav } from "react-bootstrap";
 
 function Sidebar({ color, image, user }) {
@@ -35,7 +35,7 @@ function Sidebar({ color, image, user }) {
             </div>
           </a>
           <a className="simple-text text-center" href="http://www.creative-tim.com">
-            SGN
+          <IntlMessages id="sgn_head" /> 
           </a>
         </div>
         <Nav>
@@ -48,7 +48,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fa fa-home'} />
-                    <p>{'Dashboard'}</p>
+                    <p><IntlMessages id="Dashboard" /></p>
                   </NavLink>
                 </li>
 
@@ -59,7 +59,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-user-tie'} />
-                    <p>{'Sub Admin'}</p>
+                    <p><IntlMessages id="sub_admin" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/employee')}>
@@ -69,7 +69,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-users'} />
-                    <p>{'Employee'}</p>
+                    <p><IntlMessages id="ad_employee" /></p>
                   </NavLink>
                 </li>
 
@@ -80,7 +80,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-briefcase'} />
-                    <p>{'Job'}</p>
+                    <p><IntlMessages id="ad_job" /></p>
                   </NavLink>
                 </li>
 
@@ -91,7 +91,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-clipboard-list'} />
-                    <p>{'Application'}</p>
+                    <p><IntlMessages id="application" /></p>
                   </NavLink>
                 </li>
 
@@ -102,7 +102,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-project-diagram'} />
-                    <p>{'Project'}</p>
+                    <p><IntlMessages id="project" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/noticeofintent')}>
@@ -112,7 +112,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-clipboard-check'} />
-                    <p>{'Notice Of Intent'}</p>
+                    <p><IntlMessages id="intent" /></p>
                   </NavLink>
                 </li>
 
@@ -123,7 +123,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-list'} />
-                    <p>{'Todo List'}</p>
+                    <p><IntlMessages id="to_do" /></p>
                   </NavLink>
                 </li>
 
@@ -134,7 +134,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fa fa-credit-card'} />
-                    <p>{'Payment'}</p>
+                    <p><IntlMessages id="payment" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/benefit')}>
@@ -144,7 +144,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fa fa-magic'} />
-                    <p>{'Benefit'}</p>
+                    <p><IntlMessages id="benefit" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/reward')}>
@@ -154,17 +154,17 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-trophy'} />
-                    <p>{'Reward'}</p>
+                    <p><IntlMessages id="reward" /></p>
                   </NavLink>
                 </li>
-                <li className={activeRoute('/admin/chat')}>
+                <li className={activeRoute('/admin/chat-subadmin')}>
                   <NavLink
-                      to={'/admin/chat'}
+                      to={'/admin/chat-subadmin'}
                       className="nav-link"
                       activeClassName="active"
                   >
                     <i className={'fas fa-comment-dots'} />
-                    <p>{'Message'}</p>
+                    <p><IntlMessages id="message" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/report')}>
@@ -174,7 +174,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-receipt'} />
-                    <p>{'Report'}</p>
+                    <p><IntlMessages id="report" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/quote')}>
@@ -184,7 +184,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-question-circle'} />
-                    <p>{'Quote'}</p>
+                    <p><IntlMessages id="quote" /></p>
                   </NavLink>
                 </li>
                 <li className={activeRoute('/admin/getInTouch')}>
@@ -194,7 +194,7 @@ function Sidebar({ color, image, user }) {
                       activeClassName="active"
                   >
                     <i className={'fas fa-question-circle'} />
-                    <p>{'GetInTouch'}</p>
+                    <p><IntlMessages id="in_touch" /></p>
                   </NavLink>
                 </li>
               </>

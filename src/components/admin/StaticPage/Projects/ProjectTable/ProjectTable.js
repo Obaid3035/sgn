@@ -2,9 +2,13 @@ import React from "react";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
 import {Button} from "react-bootstrap";
 import axios from "axios";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const ProjectTable = ( props ) => {
+    console.log(
+        console.log('PROJECT',props.project)
 
+    )
 
 
     return (
@@ -13,26 +17,30 @@ const ProjectTable = ( props ) => {
                     <thead className="">
                     <tr>
                         <th>#</th>
-                        <th>Employee Name</th>
-                        <th>Business Name</th>
-                        <th>Status</th>
-                        <th>Approve</th>
-                        {props.payment ? '' :<><th>Points</th> <th>Actions</th></>}
+                        <th><IntlMessages id="emp_name" /></th>
+                        <th><IntlMessages id="bus_name" /></th>
+                        <th><IntlMessages id="status" /></th>
+                        {/*<th><IntlMessages id="approve_btn" /></th>*/}
+                        {props.payment ? '' : (
+                            <>
+                                <th><IntlMessages id="points" /></th>
+                                <th><IntlMessages id="action" /></th>
+                            </>
+                        )}
                     </tr>
                     </thead>
                     <tbody>
                     { props.project.map((project, index) => {
-                        console.log(project.User.applicationForm)
                         return (
                             <tr key={index}>
                                 <td>{project.id}</td>
                                 <td>{project.User.applicationForm ? project.User.applicationForm.firstName : 'Admin'}</td>
                                 <td>{project.businessName}</td>
                                 <td className="">
-                                    <span className="badge badge-pill badge-info">{project.status}</span>
+                                    <span>{project.status}</span>
                                 </td>
-                                <Button variant={'primary'} onClick={(id) => props.onSubmit(project.id)}  size={'sm'} className={'mx-4  mb-4'}><i
-                                    className="far fa-eye" /></Button>
+                                {/*<button className=" mx-4 mb-4" onClick={(id) => props.onSubmit(project.id)}>*/}
+                                {/*    <i className="far fa-eye" /></button>*/}
                                 {props.payment ? '' :
                                     <>
                                         <td>{project.points}</td>
@@ -40,11 +48,11 @@ const ProjectTable = ( props ) => {
                                             <button
                                                 role="button"
                                                 onClick={() => props.handleShow(project.id)}
-                                                className="btn btn-sm btn-primary"><i
-                                                className="far fa-eye" /></button>
+                                                className="btn btn-sm btn-primary">
+                                                <i className="far fa-eye" /></button>
                                             { project.User.applicationForm ? props.changeStatus ?
-                                                <button onClick={() => props.changeStatus(project.id)} className="btn btn-sm btn-warning">Change
-                                                    Status</button> :
+                                                <button onClick={() => props.changeStatus(project.id)} className="btn btn-sm btn-warning"><IntlMessages id="change" />
+                                                    <IntlMessages id="status" /></button> :
                                                 '' : ''
                                             }
                                         </td>

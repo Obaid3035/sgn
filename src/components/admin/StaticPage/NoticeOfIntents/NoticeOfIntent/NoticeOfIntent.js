@@ -1,7 +1,8 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-
+import IntlMessages from '../../../../../Util/IntlMessages';
 const NoticeOfIntent = (props) => {
+    console.log("FUCK UUU")
     return (
         <tr>
             <td>{props.id}</td>
@@ -12,7 +13,7 @@ const NoticeOfIntent = (props) => {
                 ? 'Under Review'
                 : props.status}</span></td>
             <td>
-                <NavLink to={'noticeofintent/' + props.id} role="button" className="btn btn-lg btn-primary ">View</NavLink>
+                <NavLink to={'noticeofintent-subadmin/' + props.id} role="button" className="btn btn-lg btn-primary "><IntlMessages id="View" /></NavLink>
             </td>
         </tr>
     )

@@ -4,6 +4,7 @@ import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import { Multiselect } from "multiselect-react-dropdown";
 import {toast, ToastContainer} from "react-toastify";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 
 const Chats = ( props ) => {
@@ -27,17 +28,24 @@ const Chats = ( props ) => {
         setReceiver(id)
     }
     const token = localStorage.getItem('token')
-
+    const role = localStorage.getItem('role')
     useEffect(() => {
         axios.get('/admin/messages', {headers: {"Authorization": `Bearer ${token}`}})
             .then((res) => {
                 setChat(res.data)
                 setLoaded(true)
             })
-        axios.get('/admin/rewardUsers')
-            .then((res) => {
-                setEmployee(res.data)
-            })
+        if (role.includes('subAdmin')) {
+            axios.get('/subadmin-rewardUsers', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setEmployee(res.data)
+                })
+        } else {
+            axios.get('/admin/rewardUsers')
+                .then((res) => {
+                    setEmployee(res.data)
+                })
+        }
     }, [loaded])
     const userChangeHandler = (list, item) => {
         setUser(list);
@@ -100,20 +108,19 @@ const Chats = ( props ) => {
             <div className="form-row">
                 <div className="col-lg-12 mb-4">
                     <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Label>Enter Recipient:</Form.Label>
+                        <Form.Label><IntlMessages id="enter_recipt" /></Form.Label>
                         <Multiselect options={employee} isObject={false} onSelect={userChangeHandler} required />
                     </Form.Group>
                 </div>
                 <div className="col-lg-12 mb-4">
                     <Form.Group controlId="exampleForm.SelectCustom">
-                        <Form.Label>Message:</Form.Label>
+                        <Form.Label><IntlMessages id="message" /></Form.Label>
                         <textarea value={message} onChange={messageChangeHandler} className="form-control" required />
                     </Form.Group>
                 </div>
             </div>
             <div className="float-right">
-                <button type="button" className="btn btn-secondary">Discard</button>
-                <button type="submit"  className="btn btn-primary btn-save">Send Message</button>
+                <button type="submit"  className="btn btn-primary btn-save"><IntlMessages id="send_message" /></button>
             </div>
         </Form>
     )
@@ -137,9 +144,9 @@ const Chats = ( props ) => {
                             <div className="card">
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0">Inbox</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="inbox" /></h4>
                                     <button onClick={handleShow} className="btn btn-secondary"><i
-                                        className="fas fa-pencil mr-2" />Compose</button>
+                                        className="fas fa-pencil mr-2" /><IntlMessages id="Compose" /></button>
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">
@@ -147,13 +154,13 @@ const Chats = ( props ) => {
                                             <thead className="">
                                             <th>#</th>
                                             <th>
-                                                Date
+                                            <IntlMessages id="date" />   
                                             </th>
                                             <th>
-                                                Sender
+                                            <IntlMessages id="Sender" />   
                                             </th>
                                             <th>
-                                                Action
+                                            <IntlMessages id="Action" />  
                                             </th>
                                             </thead>
                                             <tbody>
@@ -171,14 +178,14 @@ const Chats = ( props ) => {
                                                         <td>
                                                             <button type="button" onClick={() => messageHandleShow(chat.message, chat.senderId)}
                                                                     className="btn btn-sm btn-primary">
-                                                                <i className="fas fa-eye mr-2" />View
+                                                                <i className="fas fa-eye mr-2" /><IntlMessages id="View" />
                                                             </button>
                                                         </td>
                                                     </tr>
                                             ))}
                                             </tbody>
                                         </table>
-                                            : <h4 className={'text-center'}>No Message Found</h4> : <div className={'text-center'}><Spinner /></div> }
+                                            : <h4 className={'text-center'}><IntlMessages id="no_msg" /></h4> : <div className={'text-center'}><Spinner /></div> }
 
                                     </div>
                                 </div>
@@ -196,7 +203,7 @@ const Chats = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Compose</Modal.Title>
+                    <Modal.Title><IntlMessages id="Compose" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}
@@ -211,19 +218,19 @@ const Chats = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Message</Modal.Title>
+                    <Modal.Title><IntlMessages id="message" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form id="view-message">
                         <div className="form-group">
                             <label htmlFor="team"
-                                   className="col-form-label">Recipient:</label>
+                                   className="col-form-label"><IntlMessages id="recipt" /></label>
                             <input type="text" className="form-control" readOnly
                                    id="team" name="team" value="Admin" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="message"
-                                   className="col-form-label">Message</label>
+                                   className="col-form-label"><IntlMessages id="message" /></label>
                             <textarea className="form-control" rows="6" readOnly
                                       id="message" name="message">{chatMessage}</textarea>
                         </div>
@@ -236,7 +243,7 @@ const Chats = ( props ) => {
                         </div>
                         <div className="pull-right">
                             <button type="submit"
-                                    className="btn btn-primary btn-save">Reply
+                                    className="btn btn-primary btn-save"><IntlMessages id="reply" />
                             </button>
                         </div>
                     </form>

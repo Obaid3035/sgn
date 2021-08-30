@@ -5,6 +5,7 @@ import {color} from "d3-color";
 import Trophy from "../../../../../assets/img/trophy.png";
 import LiquidFillGauge from "react-liquid-gauge";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const EmployeeReward = ( props ) => {
     const token = localStorage.getItem('token')
@@ -64,7 +65,7 @@ const EmployeeReward = ( props ) => {
         loaded
             ? rewardData
             ? rewardData.winner
-                ? <h3 className="font-weight-bold text-center ">You are the winner</h3>
+                ? <h3 className="font-weight-bold text-center "><IntlMessages id="winner" /></h3>
                 :( <div className={'row'}>
                     <div className="col-md-6">
                         <img src={Trophy} alt="reward-image" width={'40%'} height={'40%'} className={'ml-5'} />
@@ -73,15 +74,15 @@ const EmployeeReward = ( props ) => {
                         <div className="card-body">
                             <div className="row align-items-start">
                                 <div className="col-md-12 col-lg-4 my-3 text-center border-right">
-                                    <h4>Points</h4>
+                                    <h4><IntlMessages id="points" /></h4>
                                     <p>{totalPoints}</p>
                                 </div>
                                 <div className="col-md-12 col-lg-4 my-3 text-center border-right">
-                                    <h4>Target</h4>
+                                    <h4><IntlMessages id="target" /></h4>
                                     <p>{rewardData.limit}</p>
                                 </div>
                                 <div className="col-md-12 col-lg-4 my-3 text-center">
-                                    <h4>Projects</h4>
+                                    <h4><IntlMessages id="projects" /></h4>
                                     <p>{projectCount}</p>
                                 </div>
                             </div>
@@ -139,7 +140,7 @@ const EmployeeReward = ( props ) => {
                         />
                     </div>
                 </div>)
-            : <h3 className="font-weight-bold text-center">No Rewards Found</h3>
+            : <h3 className="font-weight-bold text-center"><IntlMessages id="no_reward" /></h3>
             :<div className="text-center"><Spinner /></div>
     )
 }

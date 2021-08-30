@@ -1,6 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const Rewards = ( props ) => {
     return(
@@ -8,11 +9,11 @@ const Rewards = ( props ) => {
             {props.loaded ? props.RewardData.length > 0 ? <table className="table table-striped to-do-list">
                 <thead className="">
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th><IntlMessages id="main_id" /></th>
+                    <th><IntlMessages id="title" /></th>
+                    <th><IntlMessages id="description" /></th>
+                    <th><IntlMessages id="date" /></th>
+                    <th><IntlMessages id="action" /></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,7 @@ const Rewards = ( props ) => {
                     </tr>
                 ))}
                 </tbody>
-            </table> : <h4 className="text-center">No Reward Found</h4>
+            </table> : <h4 className="text-center"><IntlMessages id="no_reward" /></h4>
                 : <div className="text-center"><Spinner /></div>}
 
         </div>

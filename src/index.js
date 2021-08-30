@@ -10,9 +10,13 @@ import React from 'react';
 import axios from "axios";
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+import {combineReducers, createStore, compose, applyMiddleware} from "redux";
+import { Provider } from "react-redux";
 import './index.css';
 import App from './App';
-
+import languageReducer from "../src/store/reducer/language";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 import { AuthProvider } from './context/AuthContext'
 axios.defaults.baseURL = 'https://sleepy-savannah-00668.herokuapp.com/';
 // axios.defaults.baseURL = ' https://murmuring-refuge-28649.herokuapp.com/ ';
@@ -20,7 +24,25 @@ axios.defaults.baseURL = 'https://sleepy-savannah-00668.herokuapp.com/';
 
 axios.defaults.headers['Content-Type'] = 'application/json';
 
-const app = <BrowserRouter> <AuthProvider><App /></AuthProvider> </BrowserRouter>
+const rootReducer = combineReducers({
+	language: languageReducer
+})
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+	rootReducer,
+	composeEnhancers(applyMiddleware())
+);
+
+const app = (
+	<Provider store={store}>
+		<BrowserRouter>
+			<AuthProvider>
+				<App />
+			</AuthProvider>
+		</BrowserRouter>
+	</Provider>
+)
 
 ReactDOM.render(
     app,

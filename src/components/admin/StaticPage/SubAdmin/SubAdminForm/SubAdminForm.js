@@ -3,8 +3,10 @@ import './SubAdminForm.css'
 import formConfig from "../../../../../helpers/formConfig";
 import Input from "../../../../UI/Input/Input";
 import {NavLink} from 'react-router-dom';
-import Aux from "../../../../../hoc/Aux/Aux";
+import Aux from "../../../../../hoc/wrapper/Wrapper";
 import axios from "axios";
+import IntlMessages from '../../../../../Util/IntlMessages';
+import {Form} from "react-bootstrap";
 const SubAdminForm = ( props ) => {
     const [loaded, setLoaded] = useState(true);
     const [permissionForm, setPermissionForm] = useState({
@@ -21,7 +23,11 @@ const SubAdminForm = ( props ) => {
     useEffect(() => {
         axios.get('/subAdmin/' + id)
             .then((res) => {
-                setPermissionForm(res.data)
+                console.log(res.data)
+                const roleDetail = {
+                    job: res.data.job,
+                }
+                setPermissionForm(roleDetail)
                 setLoaded(false)
             })
     }, [loaded]);
@@ -41,8 +47,6 @@ const SubAdminForm = ( props ) => {
         const updatedPermissionForm = {
             ...permissionForm
         };
-
-
         updatedPermissionForm[inputIdentifier] = !updatedPermissionForm[inputIdentifier]
         setPermissionForm(updatedPermissionForm);
     }
@@ -74,7 +78,7 @@ const SubAdminForm = ( props ) => {
                                 </div>
                                 <div>
                                     <h5 className="mb-0 font-weight-bold text-primary">{formElement.id}</h5>
-                                    <p className="mb-0">Give Full Access to Admin</p>
+                                    <p className="mb-0"><IntlMessages id="full_access" /></p>
                                 </div>
                             </div>
                             <div>
@@ -93,8 +97,8 @@ const SubAdminForm = ( props ) => {
                 ))}
             </div>
             <div className="float-right">
-                <NavLink to={'/admin/subAdmin'} replace={true} className="btn btn-lg btn-warning mx-3 px-4">Close</NavLink>
-                <button type="submit" className="btn btn-lg btn-primary btn-save px-4">Save Changes</button>
+                <NavLink to={'/admin/subAdmin'} replace={true} className="btn btn-lg btn-warning mx-3 px-4"><IntlMessages id="close_btn" /></NavLink>
+                <button type="submit" className="btn btn-lg btn-primary btn-save px-4"><IntlMessages id="save_change" /></button>
             </div>
         </form>
     )
@@ -106,7 +110,7 @@ const SubAdminForm = ( props ) => {
                   <div className="col-md-12 job-list">
                       <div className="card permission-card">
                           <div className="card-header card-header-primary">
-                              <h4 className="card-title mb-0">Permissions</h4>
+                              <h4 className="card-title mb-0"><IntlMessages id="permission" /></h4>
                           </div>
                           <div className="card-body">
                               <div className="row justify-content-center">

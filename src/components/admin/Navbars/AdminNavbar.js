@@ -20,6 +20,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import Notifications from "react-notifications-menu";
 import logo from '../../../assets/img/profile.jpg'
+import IntlMessages from '../../../Util/IntlMessages';
 
 import routes from "../../../routes";
 import axios from "axios";
@@ -144,7 +145,7 @@ function Header(props) {
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
               >
-                <button onClick={logOutHandler} className="btn-warning btn-lg">Log out</button>
+                <button onClick={logOutHandler} className="btn-warning btn-lg"><IntlMessages id="log_out" /></button>
               </Nav.Link>
             </Nav.Item>
           </Nav>

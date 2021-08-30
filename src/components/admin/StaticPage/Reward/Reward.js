@@ -6,7 +6,7 @@ import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
 import Rewards from "./Rewards/Rewards";
-
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const Reward = ( props ) => {
     const [show, setShow] = useState(false);
@@ -103,22 +103,22 @@ const Reward = ( props ) => {
     const form = (
         <Form onSubmit={formSubmitHandler}>
             <Form.Group>
-                <Form.Label>Title</Form.Label>
+                <Form.Label><IntlMessages id="title" /></Form.Label>
                 <Form.Control value={name} onChange={nameChangeHandler} required />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Description</Form.Label>
+                <Form.Label><IntlMessages id="description" /></Form.Label>
                 <Form.Control value={description} onChange={descriptionChangeHandler} required />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Limit</Form.Label>
+                <Form.Label><IntlMessages id="limit" /></Form.Label>
                 <Form.Control value={limit} type={'number'} onChange={limitChangeHandler} required />
             </Form.Group>
             <Form.Group controlId="exampleForm.SelectCustom">
-                <Form.Label>User</Form.Label>
+                <Form.Label><IntlMessages id="user" /></Form.Label>
                 <Multiselect options={employee} isObject={false} onSelect={userChangeHandler} required />
             </Form.Group>
-            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Create Reward</Button>
+            <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}><IntlMessages id="cre_reward" /></Button>
         </Form>
     )
     const handleShow = () => {
@@ -148,9 +148,9 @@ const Reward = ( props ) => {
                         <div className="col-md-12 job-list">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0">Reward</h4>
+                                    <h4 className="card-title mb-0"><IntlMessages id="reward" /></h4>
                                     <button type="button" onClick={handleShow}
-                                            className="btn btn-primary btn-lg">Add
+                                            className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />
                                     </button>
                                 </div>
                                 <div className="card-body">
@@ -158,12 +158,12 @@ const Reward = ( props ) => {
                                         <li className="nav-item" role="presentation">
                                             <a className="nav-link btn btn-sm btn-outline btn-outline-info active mr-2"
                                                id="onGoing-tab" data-toggle="pill" href="#onGoing" role="tab"
-                                               aria-controls="onGoing" aria-selected="false">Active</a>
+                                               aria-controls="onGoing" aria-selected="false"><IntlMessages id="active" /></a>
                                         </li>
                                         <li className="nav-item" role="presentation">
                                             <a className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
                                                id="completed-tab" data-toggle="pill" href="#completed" role="tab"
-                                               aria-controls="completed" aria-selected="true">inActive</a>
+                                               aria-controls="completed" aria-selected="true"><IntlMessages id="in_active" /></a>
                                         </li>
                                     </ul>
                                     <div className="tab-content" id="pills-tabContent">
@@ -194,7 +194,7 @@ const Reward = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Job</Modal.Title>
+                    <Modal.Title><IntlMessages id="add_job" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}
@@ -209,23 +209,23 @@ const Reward = ( props ) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Reward</Modal.Title>
+                    <Modal.Title><IntlMessages id="edit_reward" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={editSubmitHandler}>
                         <Form.Group>
-                            <Form.Label>Title</Form.Label>
+                            <Form.Label><IntlMessages id="title" /></Form.Label>
                             <Form.Control value={name} onChange={nameChangeHandler} required />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Description</Form.Label>
+                            <Form.Label><IntlMessages id="description" /></Form.Label>
                             <Form.Control value={description} onChange={descriptionChangeHandler} required />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Limit</Form.Label>
+                            <Form.Label><IntlMessages id="limit" /></Form.Label>
                             <Form.Control value={limit} type={'number'} onChange={limitChangeHandler} required />
                         </Form.Group>
-                        <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Edit Reward</Button>
+                        <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}><IntlMessages id="edit_reward" /></Button>
                     </Form>
                 </Modal.Body>
             </Modal>

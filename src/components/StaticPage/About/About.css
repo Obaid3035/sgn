@@ -4,10 +4,11 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 60rem;
-    padding: 10rem;
+    /* padding: 10rem; */
 }
 
 .home__banner__text p {
+    width: 50%;
     color: #013f84 !important;
 }
 .about-banner-area h1 {
@@ -20,7 +21,7 @@
 .about-banner-area p {
     color: #fff;
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 3rem;
 }
 
@@ -88,4 +89,16 @@
 .bg-circle-image img {
     position: absolute;
     margin-top: 14.5rem;
+}
+
+@media (max-width: 991px) {
+
+    .home__banner__text p {
+        width: 100% !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+    }
+    .home__banner__text h1 {
+     text-align: center !important;
+    }
 }

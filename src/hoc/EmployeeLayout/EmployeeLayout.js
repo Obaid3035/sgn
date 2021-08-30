@@ -39,22 +39,26 @@ import EmployeeViewNoticeOfIntent
   from "../../components/employee/StaticPage/NoticeOfIntents/ViewNoticeOfIntent/ViewNoticeOfIntent";
 import EmployeeRewards from "../../components/employee/StaticPage/Rewards/Rewards";
 import EmployeeChats from "../../components/employee/StaticPage/Chats/Chats";
+import ContractView from "../../components/admin/StaticPage/Application/ContractView/Contract";
+import Chats from "../../components/admin/StaticPage/Chats/Chats";
 
 function EmployeeLayout(  ) {
   console.log('LOGGED IN')
   const [roleDetail, setRoleDetail] = useState({});
+  const [roles, setRoles] = useState([]);
 
 const token = localStorage.getItem('token')
 
   useEffect(() => {
     axios.get('/admin/role', { headers: {"Authorization": `Bearer ${token}`}})
         .then((res) => {
+          setRoles(res.data.roles)
           setRoleDetail(res.data.roleDetail);
         })
   }, [])
 
   const user = {
-    role: ['employee'],
+    role: roles,
     roleDetail
   }
 
@@ -161,6 +165,8 @@ const token = localStorage.getItem('token')
   //   }
   // }, [location]);
 
+  const role = localStorage.getItem('role')
+
   return (
       <><div className="wrapper">
         <Sidebar color={color} image={hasImage ? image : ""} user={user}/>
@@ -179,16 +185,18 @@ const token = localStorage.getItem('token')
               <Route path='/employee/subAdmin/:id' component={SubAdminForm}/>
               <Route path='/employee/employee/:id' component={EmployeeDetail}/>
               <Route path='/employee/job/:id' component={ViewJob}/>
+              <Route path='/employee/contract/:id' exact component={ContractView}/>
               <Route path={'/employee/reward'} exact component={EmployeeRewards} />
               <Route path='/employee/application/:id' component={ApplicationReview}/>
-              <Route path='/employee/noticeofintent/:id' component={ViewNoticeOfIntent}/>
+              <Route path='/employee/noticeofintent-subadmin/:id' component={ViewNoticeOfIntent}/>
               <Route path='/employee/benefit/:id' component={BenefitForm}/>
               <Route path='/employee/benefit' exact component={Benefits}/>
               <Route path='/employee/payment' exact component={Payments}/>
-              <Route path='/employee/project' exact component={Project}/>
-              <Route path='/employee/todoList' exact component={ToDoLists}/>
-              <Route path='/employee/noticeofintent' exact component={NoticeOfIntents}/>
+              <Route path='/employee/project-subadmin' exact component={Project}/>
+              <Route path='/employee/todoList-subadmin' exact component={ToDoLists}/>
+              <Route path='/employee/noticeofintent-subadmin' exact component={NoticeOfIntents}/>
               <Route path='/employee/job' exact component={Jobs}/>
+              <Route path={'/employee/chat-subadmin'} exact component={Chats} />
               <Route path='/employee/application' exact component={Application}/>
               <Route path='/employee/subAdmin' exact component={SubAdmin}/>
               <Route path='/employee/employee' exact component={Employee}/>

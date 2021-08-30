@@ -3,10 +3,11 @@ import {Carousel} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {data} from './home_img'
 import './HomeCarousel.css'
+import IntlMessages from '../../../Util/IntlMessages';
 
 const HomeCarousel = () => {
 	return (
-		<Carousel controls={true} indicators={false} interval={2000} pause={'hover'} fade={false}>
+		<Carousel controls={true} indicators={false} interval={200000} pause={'hover'} fade={true}>
 			{
 				data.map((data,index) => (
 					<Carousel.Item key={index}>
@@ -17,8 +18,8 @@ const HomeCarousel = () => {
 						/>
 						<Carousel.Caption className={'h-100 align-items-center d-flex'}>
 							<div className={data.css}>
-								<h1 className={'carousel__text text-uppercase'}>{ data.text }</h1>
-								<NavLink to={'/questionare'}><a className={'btn btn-warning btn-lg quote-btn'}>Get a Quote</a></NavLink>
+								<h1 >{ data.text }</h1>
+								<NavLink to={'/questionare'}><button className={'btn btn-warning btn-sm quote-btn'}><IntlMessages id="geta_quote" /></button></NavLink>
 							</div>
 						</Carousel.Caption>
 					</Carousel.Item>
@@ -30,3 +31,6 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
+
+// indicators={false} interval={2000} pause={'hover'} fade={false}

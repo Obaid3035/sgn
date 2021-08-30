@@ -6,6 +6,8 @@ import TimePicker from "react-time-picker";
 import DatePicker from "react-datepicker";
 import Spinner from "../../UI/ProgressBar/ProgressBar";
 import {toast} from "react-toastify";
+import IntlMessages from '../../../Util/IntlMessages';
+import "./Questionare.css";
 
 const Questionare = (props) => {
 
@@ -137,19 +139,18 @@ const Questionare = (props) => {
     return (
         <>
             <section className="content-img">
-                <img src={BG} />
+                <img src={BG}  />
                     <div className="far-caption">
-                        <h2>Questionnaire</h2>
+                        <h2><IntlMessages id="Ques" /></h2>
                     </div>
             </section>
 
-            <section>
-                <div className="container">
+            <section >
+                <div className="container ">
                     <div className="col-md-12">
-                        <h2 className={'font-weight-bold'}>How can we help you</h2>
+                        <h2 className={'font-weight-bold mt-5'}><IntlMessages id="help_ques" /></h2>
                         <p>
-                            Please fill out the form below. We reassure you that our company does not disclose, nor
-                            sale any personal information to any third party.
+                        <IntlMessages id="help_para" />    
                         </p>
                     </div>
                 </div>
@@ -159,7 +160,7 @@ const Questionare = (props) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                            <h2>Form</h2>
+                            <h2><IntlMessages id="form" /></h2>
                         </div>
                     </div>
                     <div className="row">
@@ -278,7 +279,7 @@ const Step1 = ( props ) => {
             <div className="row">
                 <div className="col-md-6">
                     <div className="form-group">
-                        <label htmlFor="first">First Name</label>
+                        <label htmlFor="first"><IntlMessages id="first_name" /></label>
                         <input type="text" className="form-control"
                                placeholder="First Name..." name="firstName" required value={props.firstName} onChange={props.handleChange} />
                     </div>
@@ -286,7 +287,7 @@ const Step1 = ( props ) => {
 
                 <div className="col-md-6">
                     <div className="form-group">
-                        <label htmlFor="last">Last Name</label>
+                        <label htmlFor="last"><IntlMessages id="last_name" /></label>
                         <input type="text" className="form-control"
                                placeholder="Last Name...." name="lastName"
                                required value={props.lastName} onChange={props.handleChange}
@@ -295,7 +296,7 @@ const Step1 = ( props ) => {
                 </div>
             </div>
             </fieldset>
-            <div className={'text-center'}><button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button></div>
+            <div className={'text-center'}><button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button></div>
         </form>
     )
 }
@@ -309,11 +310,11 @@ const Step2 = ( props ) => {
     return (
         <form onSubmit={props.onSubmit}>
             <fieldset className="box1">
-                <h2>Company Info</h2>
+                <h2><IntlMessages id="comp_info" /></h2>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <label htmlFor="first">Company Name</label>
+                            <label htmlFor="first"><IntlMessages id="company" /></label>
                             <input type="text" className="form-control"
                                    placeholder="Company Name..." name="companyName" required onChange={props.handleChange} value={props.companyName} />
                         </div>
@@ -321,7 +322,7 @@ const Step2 = ( props ) => {
 
                     <div className="col-md-12">
                         <div className="form-group">
-                            <label htmlFor="last">Company Address</label>
+                            <label htmlFor="last"><IntlMessages id="company_add" /></label>
                             <textarea className="form-control"
                                       placeholder="Company Address..."
                                       name="companyAddress"
@@ -337,8 +338,8 @@ const Step2 = ( props ) => {
             </fieldset>
 
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
 
         </form>
@@ -352,11 +353,11 @@ const Step3 = ( props ) => {
     return  (
         <form onSubmit={props.onSubmit}>
             <fieldset className="box1">
-                <h2>Contact Details</h2>
+                <h2><IntlMessages id="contact_details" /></h2>
                 <div className="row">
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="first">Email</label>
+                            <label htmlFor="first"><IntlMessages id="email" /></label>
                             <input type="text" className="form-control" placeholder="Email..." name="email"
                                    required onChange={props.handleChange} value={props.email} />
                         </div>
@@ -364,7 +365,7 @@ const Step3 = ( props ) => {
 
                     <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="last">Phone Number</label>
+                            <label htmlFor="last"><IntlMessages id="phone_no" /></label>
                             <input type="text" className="form-control" placeholder="Phone..." name="phoneNumber"
                                    required onChange={props.handleChange} value={props.phoneNumber}/>
                         </div>
@@ -375,8 +376,8 @@ const Step3 = ( props ) => {
  </fieldset>
 
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -389,7 +390,7 @@ const Step4 = ( props ) => {
     return  (
         <form onSubmit={props.onSubmit}>
             <fieldset className={'box1'}>
-                <h2>What is the best way to reach out to you?</h2>
+                <h2><IntlMessages id="best_reach" /></h2>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
@@ -404,8 +405,8 @@ const Step4 = ( props ) => {
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -416,19 +417,19 @@ const Step5 = ( props ) => {
     return  (
         <form onSubmit={props.onSubmit}>
             <fieldset className={'box1'}>
-                <h2>Please select the best time range to reach you.</h2>
+                <h2><IntlMessages id="best_time" /></h2>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
-                            <label htmlFor="dtp_input1" className="control-label">DateTime Picking</label>
+                            <label htmlFor="dtp_input1" className="control-label"><IntlMessages id="dateTime_pick" /></label>
                             <TimePicker value={props.timeToReach} onChange={props.onChangeFrom} className={'w-100'} />
                         </div>
                     </div>
                 </div>
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -441,7 +442,7 @@ const Step6 = ( props ) => {
     return  (
         <form onSubmit={props.onSubmit}>
             <fieldset className={'box1'}>
-                <h2>Select the industry of your product or services.</h2>
+                <h2><IntlMessages id="industry_pro" /></h2>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="form-group">
@@ -457,7 +458,7 @@ const Step6 = ( props ) => {
                 {
                     props.industry === 'Agricultural industry' || props.industry === 'Manufacturing industry' || props.industry === 'Service industry'  ? <div className="col-md-6">
                         <div className="form-group">
-                            <label htmlFor="last">Please type the name of the products or services you are looking for here separated by commas</label>
+                            <label htmlFor="last"><IntlMessages id="type_name" /></label>
                             <input type="text" className="form-control" placeholder="product " name="productName"
                                    required onChange={props.handleChange} value={props.productName}/>
                         </div>
@@ -465,8 +466,8 @@ const Step6 = ( props ) => {
                 }
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -480,7 +481,7 @@ const Step7 = ( props ) => {
         <form onSubmit={props.onSubmit}>
             <fieldset className="box2">
 
-                <h2>Please upload a picture or document of the product</h2>
+                <h2><IntlMessages id="upload_pic" /></h2>
                 <div className="row">
                     <div className="col-md-12">
                         <label>File</label>
@@ -493,8 +494,8 @@ const Step7 = ( props ) => {
 
  </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -508,13 +509,13 @@ const Step8 = ( props ) => {
 
                 <div className="row">
                     <div className="col-md-12">
-                        <label>Please type in the quantity that you’d like to purchase <span data-toggle="tooltip"
+                        <label><IntlMessages id="type_quantity" /> <span data-toggle="tooltip"
                                                                                              data-placement="top"
                                                                                              title="Please separate by commas if listing quantities for multiple products">?</span></label>
                         <input type="text" className="form-control" name="quantity" placeholder="Quantity..." required onChange={props.handleChange} value={props.quantity}  />
                     </div>
                     <div className="col-md-12">
-                        <label>What is your target price per unit of that product or service <span data-toggle="tooltip"
+                        <label><IntlMessages id="target_price" /> <span data-toggle="tooltip"
                                                                                                    data-placement="top"
                                                                                                    title="Please separate by commas if listing target price for multiple products">?</span></label>
                         <input type="text" className="form-control" name="pricePerUnit" placeholder="Price..." required onChange={props.handleChange} value={props.pricePerUnit} />
@@ -524,8 +525,8 @@ const Step8 = ( props ) => {
 
             </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
 
@@ -543,7 +544,7 @@ const Step9 = ( props ) => {
         <form onSubmit={props.onSubmit}>
             <fieldset className="box2">
 
-                <h2>How soon do you want it?</h2>
+                <h2><IntlMessages id="howsoon_want" /></h2>
                 <div className="row">
                     <div className="col-md-12">
                         <input type="text" className="form-control" name="howSoon" placeholder="How Soon...." required onChange={props.handleChange} value={props.howSoon}/>
@@ -553,8 +554,8 @@ const Step9 = ( props ) => {
 
  </fieldset>
             <div className={'text-center'}>
-                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Next</button>
+                <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="next_btn" /></button>
             </div>
         </form>
     )
@@ -569,15 +570,15 @@ const Step10 = ( props ) => {
         <form onSubmit={props.onSubmit}>
             <fieldset className="box1">
 
-                <h2>Where do you want the product to be delivered?</h2>
+                <h2><IntlMessages id="product_delivered" /></h2>
                 <div className="row">
                             <div className="col-md-6">
-                                <label>Or Check the box below if it’s the same as the company’s address above</label>
+                                <label><IntlMessages id="check_box" /></label>
                                 <input type="checkbox" name="checkAddress" className="check" checked={props.checkAddress} onChange={props.handleOnChange} value={'Yes'} />
                             </div>
                     {
                         !props.checkAddress ? <div className="col-md-6">
-                        <label>Address</label>
+                        <label><IntlMessages id="contact_address" /></label>
                         <textarea className="form-control" name="Address" placeholder="Address..." required onChange={props.handleChange} value={props.Address} />
                         </div> : ''
                     }
@@ -588,8 +589,8 @@ const Step10 = ( props ) => {
  </fieldset>
             {props.loaded ?
                 <div className={'text-center'}>
-                    <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}>Previous</button>
-                    <button type={'submit'} className={'btn btn-warning mb-3 px-5'}>Submit</button>
+                    <button type={'button'} onClick={props.previousPage} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="previous_btn" /></button>
+                    <button type={'submit'} className={'btn btn-warning mb-3 px-5'}><IntlMessages id="submit_btn" /></button>
                 </div>
                 : <div className={'text-center'}><Spinner /></div>}
 

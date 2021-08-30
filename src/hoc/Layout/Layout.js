@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import Aux from "../Aux/Aux";
+import { connect } from "react-redux";
+
+import Aux from "../wrapper/Wrapper";
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -16,10 +18,17 @@ import Welcome from "../../components/StaticPage/Welcome";
 import Questionare from "../../components/StaticPage/Questionare/Questionare";
 import Survey from "../../components/StaticPage/Survey/Survey";
 import SurveyForm from "../../components/StaticPage/SurveyForm/SurveyForm";
+import { IntlProvider } from 'react-intl';
+import AppLocale from '../../lang/index';
+
 
 const Layout = ( props ) => {
     const loggedIn = localStorage.getItem('loggedIn')
     const [welcome, setWelcome] = useState(true)
+    const { locale, languages } = props.locale;
+    const currentAppLocale = AppLocale[locale.locale];
+
+    console.log(currentAppLocale)
 
     // const getRoutes = (routes) => {
     //     return routes.map((prop, key) => {
@@ -39,9 +48,13 @@ const Layout = ( props ) => {
     // };
     // //{getRoutes(routes)}
     return (
-        <Aux>
-            <Navigation />
+        <>
+        <Navigation />
             <main>
+                <IntlProvider
+        locale={currentAppLocale.locale}
+            messages={currentAppLocale.messages}
+        >
                <Switch>
                    <Route path={'/welcome'} exact component={Welcome}/>
                    <Route path={'/survey-form/:id'} exact component={SurveyForm}/>
@@ -56,11 +69,19 @@ const Layout = ( props ) => {
                    <Route path={'/'} exact component={Home} />
                    <Route component={NotFound} />
                </Switch>
+               </IntlProvider>
             </main>
             <Footer />
-        </Aux>
+        </>
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        locale: state.language
+    }
+}
 
-export default Layout;
+
+
+export default connect(mapStateToProps, null)(Layout);

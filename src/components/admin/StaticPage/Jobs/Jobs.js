@@ -1,5 +1,5 @@
 import React, {useState , useEffect} from "react";
-import Aux from "../../../../hoc/Aux/Aux";
+import Aux from "../../../../hoc/wrapper/Wrapper";
 import './Jobs.css'
 import formConfig from "../../../../helpers/formConfig";
 import Input from "../../../UI/Input/Input";
@@ -8,6 +8,7 @@ import axios from "axios";
 import Job from "./Job/Job";
 import { Modal, Button, Form } from "react-bootstrap";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../Util/IntlMessages';
 
 const Jobs = (props ) => {
 
@@ -107,7 +108,7 @@ const Jobs = (props ) => {
                         />
                 ))}
             </div>
-            {btnLoader ? <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}>Submit</Button> : <Spinner />
+            {btnLoader ? <Button type={'submit'} size={'lg'} variant={'warning'} className={'px-5'}><IntlMessages id="submit_btn" /></Button> : <Spinner />
             }
         </form>
     )
@@ -180,9 +181,9 @@ const handleShow = () => setShow(!show);
                        <div className="card">
                            <div
                                className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                               <h4 className="card-title mb-0">Jobs List</h4>
+                               <h4 className="card-title mb-0"><IntlMessages id="job_list" /></h4>
                                <button type="button" onClick={handleShow}
-                                       className="btn btn-primary">Add Job
+                                       className="btn btn-primary"><IntlMessages id="add_job" />
                                </button>
                            </div>
                            <div className="card-body">
@@ -205,7 +206,7 @@ const handleShow = () => setShow(!show);
                                                   placeholder="city" />
                                        </div>
                                        <div className="col-lg-2">
-                                           <button type="submit" className="btn btn-lg btn-primary mt-2">Find</button>
+                                           <button type="submit" className="btn btn-lg btn-primary mt-2"><IntlMessages id="find" /></button>
                                        </div>
                                    </form>
                                    <div className="row">
@@ -215,19 +216,19 @@ const handleShow = () => setShow(!show);
                                                    <thead className="">
                                                    <tr>
                                                        <th>
-                                                           ID
+                                                       <IntlMessages id="main_id" />
                                                        </th>
                                                        <th>
-                                                           Job Title
+                                                       <IntlMessages id="job_title" /> 
                                                        </th>
                                                        <th>
-                                                           Region
+                                                       <IntlMessages id="region" />   
                                                        </th>
                                                        <th>
-                                                           Post Date
+                                                       <IntlMessages id="post_date" />   
                                                        </th>
                                                        <th>
-                                                           Action
+                                                       <IntlMessages id="action" />   
                                                        </th>
                                                    </tr>
                                                    </thead>
@@ -235,7 +236,7 @@ const handleShow = () => setShow(!show);
                                                    {jobs}
                                                    </tbody>
                                                </table>
-                                           </div> : <h3 className={'text-center'}>No Job Found</h3> :  <div className={'text-center'}><Spinner /></div>}
+                                           </div> : <h3 className={'text-center'}><IntlMessages id="no_job" /></h3> :  <div className={'text-center'}><Spinner /></div>}
 
                                        </div>
                                    </div>
@@ -256,7 +257,7 @@ const handleShow = () => setShow(!show);
            centered
        >
            <Modal.Header closeButton>
-               <Modal.Title>Add Job</Modal.Title>
+               <Modal.Title><IntlMessages id="add_job" /></Modal.Title>
            </Modal.Header>
            <Modal.Body>
                {form}

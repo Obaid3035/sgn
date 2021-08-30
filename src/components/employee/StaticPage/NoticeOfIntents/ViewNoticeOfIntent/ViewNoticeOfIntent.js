@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form} from "react-bootstrap";
 import axios from "axios";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
+import IntlMessages from '../../../../../Util/IntlMessages';
 
 const EmployeeViewNoticeOfIntent = ( props ) => {
     const [loaded, setLoaded] = useState(false);
@@ -28,12 +29,12 @@ const EmployeeViewNoticeOfIntent = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0">Details</h4>
+                                <h4 className="card-title mb-0"><IntlMessages id="details" /></h4>
                             </div>
                             <div className="card-body">
                                 {loaded ? <Form className="pt-5" id="addIntentForm">
                                     <Form.Group className="mb-4">
-                                        <Form.Label>What is the name of the business do you intend to visit?</Form.Label>
+                                        <Form.Label><IntlMessages id="bus_intent" /></Form.Label>
                                         <Form.Control type="text"
                                                       name="businessName"
                                                       readOnly
@@ -41,7 +42,7 @@ const EmployeeViewNoticeOfIntent = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-4">
-                                        <Form.Label>What’s the potential?</Form.Label>
+                                        <Form.Label><IntlMessages id="what_potent" /></Form.Label>
                                         <Form.Control type="text"
                                                       name="potential"
                                                       readOnly
@@ -49,7 +50,7 @@ const EmployeeViewNoticeOfIntent = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Select the day you plan on going on the calendar:</Form.Label>
+                                        <Form.Label><IntlMessages id="plan_cal" /></Form.Label>
                                         <Form.Control type="text"
                                                       name="planOnGoing"
                                                       readOnly
@@ -57,7 +58,7 @@ const EmployeeViewNoticeOfIntent = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Phone # of the business you intend to visit:</Form.Label>
+                                        <Form.Label><IntlMessages id="phone_visit" /></Form.Label>
                                         <Form.Control type="tel"
                                                       name="businessPhoneNumber"
                                                       readOnly
@@ -65,7 +66,7 @@ const EmployeeViewNoticeOfIntent = ( props ) => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
-                                        <Form.Label>Please give us additional information here:</Form.Label>
+                                        <Form.Label><IntlMessages id="add_info" /></Form.Label>
                                         <Form.Control as={'textarea'} className="text-left" rows="6"
                                                       name="additionalInformation"
                                                       readOnly

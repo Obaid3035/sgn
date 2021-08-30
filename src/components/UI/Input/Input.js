@@ -1,6 +1,6 @@
 import React from 'react';
 import './Input.css'
-import Aux from "../../../hoc/Aux/Aux";
+import Aux from "../../../hoc//wrapper/Wrapper";
 import DatePicker from "react-datepicker";
 import DateTimePicker from 'react-datetime-picker';
 

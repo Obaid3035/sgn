@@ -28,150 +28,150 @@ import HomeHeader25 from "../../../assets/img/0.22.jpg";
 import HomeHeader26 from "../../../assets/img/0.23.jpg";
 import HomeHeader27 from "../../../assets/img/0.24.jpg";
 import HomeHeader28 from "../../../assets/img/0.25.jpg";
-
+import IntlMessages from '../../../Util/IntlMessages';
 
 
 export const data = [
 	{
 		img: HomeHeader4,
-		text: 'Computers',
-		css: 'col-md-12 text-left home__banner__text text-center white',
+		text: <IntlMessages id="computer" />,
+		css: 'col-md-12 text-right home__banner__text computers',
 		parentCss: 'parentCss'
 	},
 	{
 		img: HomeHeader5,
-		text: 'Construction Industry:  wide variety of steel',
-		css: 'col-md-12 text-left home__banner__text  text-center white'
+		text: <IntlMessages id="const_wide" />,
+		css: 'col-md-6 text-left home__banner__text construction white'
 
 	},
 	{
 		img: HomeHeader6,
-		text: 'Construction Industry: excavator',
+		text: <IntlMessages id="const_exc" />,
 		css: 'col-md-4 home__banner__text align-items-center text-left black'
 	},
 	{
 		img: HomeHeader7,
-		text: '',
-		css: 'col-md-4 truck__margin home__banner__text align-items-center text-left black'
+		text: 'Trucks',
+		css: 'col-md-4 truck__margin home__banner__text align-items-center text-left'
 	},
 	{
 		img: HomeHeader8,
-		text: 'Construction Industry: Caterpillar tractor',
+		text: <IntlMessages id="const_cate" />,
 		css: 'col-md-4 text-left home__banner__text text-left'
 
 	},
 	{
 		img: HomeHeader9,
-		text: 'Construction industry: Dump truck',
+		text: <IntlMessages id="const_dump" />,
 		css: 'offset-md-6 col-md-6 justify-content-end home__banner__text text-right black',
 		parent: 'text-right'
 	},
 	{
 		img: HomeHeader10,
-		text: '',
-		css: 'col-md-12 ml-5'
+		text: 'All Types Of Wheels',
+		css: 'col-md-12 tyres ml-5'
 
 	},
 	{
 		img: HomeHeader11,
-		text: 'Transportation Industry: Pickup truck',
+		text: <IntlMessages id="trans_pick" />,
 		css: 'offset-md-7 col-md-7 justify-content-end home__banner__text text-right black',
 		parent: 'text-right'
 	},
 	{
 		img: HomeHeader12,
-		text: 'Telecommunication Industry: Communication tower',
+		text: <IntlMessages id="tele_comm" />,
 		css: 'offset-md-4 col-md-8 justify-content-end home__banner__text text-right white',
 
 	},
 	{
 		img: HomeHeader13,
-		text: 'Telecommunication Industry: wide variety of cables including fiber optics, Coaxial, Cat5, Cat6…etc.',
+		text: <IntlMessages id="tele_inc" />,
 		css: 'col-md-7  home__banner__text text-left',
 	},
 	{
 		img: HomeHeader14,
-		text: 'Construction Industry: Electric crawler crane',
+		text: <IntlMessages id="const_elect" />,
 		css: 'col-md-7  home__banner__text text-left',
 	},
 	{
 		img: HomeHeader15,
-		text: 'Textile Industry: Fabric manufacturing',
-		css: 'col-md-12  home__banner__text text-center',
+		text: <IntlMessages id="tex_feb" />,
+		css: 'col-md-5  home__banner__text textile text-center',
 
 	},
 	{
 		img: HomeHeader16,
-		text: 'Appliance industry: Washing and drying machines',
+		text: <IntlMessages id="app_was" />,
 		css: 'offset-9 col-md-5 drying  home__banner__text text-center ',
 
 	},
 	{
 		img: HomeHeader17,
-		text: 'Appliance Industry: Washing machine',
+		text: <IntlMessages id="app_mac" />,
 		css: 'col-md-4  text-left home__banner__text'
 	},
 	{
 		img: HomeHeader3,
-		text: 'Shipping port: Containers',
-		css: 'col-md-12  home__banner__text text-center',
+		text:<IntlMessages id="ship_con" /> ,
+		css: 'col-md-5  home__banner__text textile',
 	},
 	{
 		img: HomeHeader19,
-		text: 'Medical industry: Advanced equipment for operating rooms such as operating tables, surgical lights, displays, booms…etc.',
-		css: ' offset-9 col-md-5 standard__font text-center medical',
+		text: <IntlMessages id="med_ad" />,
+		css: ' response-div4 offset-9 col-md-5 standard__font text-center medical',
 
 	},
 	{
 		img: HomeHeader20,
-		text: 'Electronics Industry: Digital spectrum analyzer',
-		css: 'col-md-12  standard__font text-center',
+		text: <IntlMessages id="elec_digi" />,
+		css: 'offset-md-6 col-md-8  standard__font digital text-center',
 
 
 	},
 	{
 		img: HomeHeader21,
-		text: 'Textile Industry: An extensive range of fabrics',
-		css: 'col-md-12  standard__font text-center',
+		text: <IntlMessages id="tex_ex" />,
+		css: 'col-md-4  home__banner__text textile text-center',
 	},
 	{
 		img: HomeHeader22,
-		text: 'Communication Industry: vast assortment of smartphones.',
-		css: 'offset-md-5 col-md-9  home__banner__text text-center',
+		text: <IntlMessages id="comm_vas" />,
+		css: ' response-div offset-md-5 col-md-9  home__banner__text text-center',
 
 	},
 	{
 		img: HomeHeader23,
-		text: 'Automobile Industry: a wide selection of cars.',
-		css: 'col-md-12  standard__font text-center',
+		text: <IntlMessages id="auto_wid" />,
+		css: 'col-md-12  standard__font automobile',
 
 	},
 	{
 		img: HomeHeader24,
-		text: 'Electronic Industry: broad array of electronic components suitable for engineering students’ experiments.  This includes but is not limited to microcontrollers, breadboard IR receivers, different types of motors, potentiometers, different types of sensors, 7 segment displays, resistors, transistors and connecting wires.',
-		css: 'col-md-12 home__banner__text text-center electronic',
+		text: <IntlMessages id="elec_bro" />,
+		css: ' response-div col-md-12 home__banner__text text-center electronic',
 
 	},
 	{
 		img: HomeHeader25,
-		text: 'Appliance industry: Refrigerators, dishwasher, garbage disposal, water purifiers, oven, microwave oven, vacuum cleaner, air purifier, air conditioner…etc.',
-		css: 'offset-md-5 col-md-9 home__banner__text text-right ',
+		text: <IntlMessages id="app_ref" />,
+		css: ' response-div offset-md-5 col-md-9 home__banner__text text-right ',
 	},
 	{
 		img: HomeHeader26,
-		text: 'Agricultural industry:  Rice production and more.',
-		css: 'col-md-12 home__banner__text text-center white',
+		text: <IntlMessages id="agri_ric" />,
+		css: 'col-md-6 home__banner__text text-center agricultural',
 
 	},
 	{
 		img: HomeHeader27,
-		text: 'Telecommunication Industry:  Cell tower',
-		css: 'offset-md-4 col-md-8  standard__font text-center',
+		text: <IntlMessages id="tele_cell" />,
+		css: ' response-div offset-md-4 col-md-8  standard__font text-center',
 	},
 	{
 		img: HomeHeader28,
-		text: 'Energy industry: We are not limited to solar panels.',
-		css: 'col-md-12  standard__font text-center',
+		text: <IntlMessages id="ener_ind" />,
+		css: 'col-md-4  home__banner__text text-center energy',
 	}
 
 ]
