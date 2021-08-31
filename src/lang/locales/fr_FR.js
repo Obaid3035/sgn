@@ -1,4 +1,4 @@
-export const enMessages = {
+const enMessages = {
    "delivery": "Livraison",
    "no_need": "PAS BESOIN DE VOYAGER LOIN, NOUS APPORTERONS VOS COMMANDES JUSTE À VOUS ET DANS VOTRE HORAIRE.",
    "customer_services": "Service client",
@@ -487,4 +487,6 @@ export const enMessages = {
    "ener_ind": "Industrie de l'énergie : Nous ne nous limitons pas aux panneaux solaires.",
 
 }
+
+export default enMessages;
 
