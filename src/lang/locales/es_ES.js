@@ -1,4 +1,4 @@
-module.exports = {
+export const enMessages = {
    "delivery": "Entrega",
    "no_need": "NO HAY NECESIDAD DE VIAJAR LEJOS, LLEVAREMOS SUS PEDIDOS DERECHO A USTED Y DENTRO DE SU HORARIO.",
    "customer_services": "Servicios al cliente",
