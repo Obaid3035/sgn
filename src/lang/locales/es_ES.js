@@ -1,4 +1,10 @@
 export const enMessages = {
+   "firstName":"Primer nombre",
+   "lastName": "Apellido",
+   "phoneNumber": "Número de teléfono",
+   "assign_to_sub_admin": "Asignarlo a Subadministrador",
+   "neverAttendedSchool": "Nunca asistió a la escuela vocacional",
+   "neverAttended": "Nunca asistió a la universidad",
    "delivery": "Entrega",
    "no_need": "NO HAY NECESIDAD DE VIAJAR LEJOS, LLEVAREMOS SUS PEDIDOS DERECHO A USTED Y DENTRO DE SU HORARIO.",
    "customer_services": "Servicios al cliente",

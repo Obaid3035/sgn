@@ -7,7 +7,7 @@ import IntlMessages from '../../../Util/IntlMessages';
 
 const HomeCarousel = () => {
 	return (
-		<Carousel controls={true} indicators={false} interval={200000} pause={'hover'} fade={true}>
+		<Carousel controls={true} indicators={false} interval={2000} pause={'hover'} fade={true}>
 			{
 				data.map((data,index) => (
 					<Carousel.Item key={index}>

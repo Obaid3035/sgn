@@ -1156,7 +1156,7 @@ const Step8 = ( props ) => {
                         <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="col_uni" /></label>
                         <div className="col-lg-7 col-sm-6">
                             <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" onClick={hideContentHandler} inline label="Never attended College / University" />
+                                <Form.Check type="checkbox" onClick={hideContentHandler} inline label=<IntlMessages id="neverAttended" /> />
                             </Form.Group>
                         </div>
                     </div>
@@ -1218,7 +1218,7 @@ const Step8 = ( props ) => {
                         <label htmlFor="" className="col-lg-5 col-sm-6 col-form-label"><IntlMessages id="vocation_school" /> </label>
                         <div className="col-lg-7 col-sm-6">
                             <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" onClick={hideVocationalHandler}  inline label="Never attended Vocational School" />
+                                <Form.Check type="checkbox" onClick={hideVocationalHandler}  inline label=<IntlMessages id="neverAttendedSchool" /> />
                             </Form.Group>
                         </div>
                     </div>
@@ -1604,7 +1604,7 @@ const Step10 = ( props ) => {
                     <h4 className="mb-5"><IntlMessages id="reference_head" /></h4>
                     <p><IntlMessages id="reference_para" /></p>
                     <div className="form-group row align-items-center">
-                        <label htmlFor="haveAnyFriendsAtSGN" className="col-sm-8 col-form-label">Assign it to Sub Admin</label>
+                        <label htmlFor="haveAnyFriendsAtSGN" className="col-sm-8 col-form-label"><IntlMessages id="assign_to_sub_admin" /></label>
                         <div className="col-sm-4">
                             <div className="form-check form-check-inline">
                                 <input className="form-check-input" name="showSubAdmin" required type="radio" id="yes"

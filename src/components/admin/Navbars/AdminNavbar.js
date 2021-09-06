@@ -51,7 +51,7 @@ function Header(props) {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "";
   };
   const logOutHandler = () => {
     localStorage.clear()
@@ -80,13 +80,13 @@ function Header(props) {
           >
             <i className="fas fa-ellipsis-v" />
           </Button>
-          <Navbar.Brand
-            href="#home"
-            onClick={(e) => e.preventDefault()}
-            className="mr-2"
-          >
-            {getBrandText()}
-          </Navbar.Brand>
+          {/*<Navbar.Brand*/}
+          {/*  href="#home"*/}
+          {/*  onClick={(e) => e.preventDefault()}*/}
+          {/*  className="mr-2"*/}
+          {/*>*/}
+          {/*  {getBrandText()}*/}
+          {/*</Navbar.Brand>*/}
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
           <span className="navbar-toggler-bar burger-lines" />

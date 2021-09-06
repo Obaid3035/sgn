@@ -27,7 +27,10 @@ const SubAdmin = ( props ) => {
     const [formData, setFormData] = useState({
         uniqueID: '',
         email: '',
-        password: ''
+        password: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: ''
     });
 
     const onSubmit = (e) => {
@@ -40,7 +43,10 @@ const SubAdmin = ( props ) => {
                 setFormData({
                     uniqueID: '',
                     email: '',
-                    password: ''
+                    password: '',
+                    firstName: '',
+                    lastName: '',
+                    phoneNumber: ''
                 })
                 setShow(!show);
             })
@@ -65,6 +71,18 @@ const SubAdmin = ( props ) => {
                     <Form.Group>
                         <Form.Label>ID:</Form.Label>
                         <Form.Control name={'uniqueID'} type={'text'} value={formData.uniqueID} onChange={onChangeHandler} placeholder={'Enter Unique ID'}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>First Name:</Form.Label>
+                        <Form.Control type={'text'} name={'firstName'} value={formData.firstName} onChange={onChangeHandler} placeholder={'Enter First Name'}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Last Name:</Form.Label>
+                        <Form.Control type={'text'} name={'lastName'} value={formData.lastName} onChange={onChangeHandler} placeholder={'Enter Last Name'}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Phone Number:</Form.Label>
+                        <Form.Control type={'text'} name={'phoneNumber'} value={formData.phoneNumber} onChange={onChangeHandler} placeholder={'Enter Phone Number'}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Email:</Form.Label>
@@ -118,8 +136,11 @@ const SubAdmin = ( props ) => {
                                                         <th><IntlMessages id="main_id" /></th>
                                                         <th><IntlMessages id="email" /></th>
                                                         <th><IntlMessages id="role" /></th>
-                                                        <th><IntlMessages id="permission" /></th>
-                                                        <th><IntlMessages id="action" /></th>
+                                                        <th><IntlMessages id="firstName" /></th>
+                                                        <th><IntlMessages id="lastName" /></th>
+                                                        <th><IntlMessages id="phoneNumber" /></th>
+                                                        {/*<th><IntlMessages id="permission" /></th>*/}
+                                                        {/*<th><IntlMessages id="action" /></th>*/}
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -130,6 +151,9 @@ const SubAdmin = ( props ) => {
                                                             id={subAdmin.id}
                                                             email={subAdmin.email}
                                                             roles={subAdmin.roles}
+                                                            firstName={subAdmin.firstName}
+                                                            lastName={subAdmin.lastName}
+                                                            phoneNumber={subAdmin.phoneNumber}
                                                         />
                                                     )) : <div className="text-center">
                                                             <p>No SubAdmin Found</p>
