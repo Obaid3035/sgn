@@ -30,7 +30,7 @@ const Home = ( props ) => {
        <>
            <div className="bg_load" />
            <div className="splash__wrapper d-flex justify-content-center">
-               <ReactPlayer url={video} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
+               <ReactPlayer url={'https://res.cloudinary.com/thiaza/video/upload/v1630924684/logo_hd62ln.mp4'} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
            </div>
        </>
     )
