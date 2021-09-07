@@ -45,7 +45,7 @@ const EmployeeChats = ( props) => {
             message,
             wholeChat
         }
-        console.log(wholeChat)
+        console.log('DAMN NIGGA', wholeChat)
         axios.post('/reply', formData ,{headers: {"Authorization": `Bearer ${token}`}})
             .then((res) => {
                 setLoaded(false)

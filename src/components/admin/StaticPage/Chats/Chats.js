@@ -5,6 +5,7 @@ import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import { Multiselect } from "multiselect-react-dropdown";
 import {toast, ToastContainer} from "react-toastify";
 import IntlMessages from '../../../../Util/IntlMessages';
+import AsyncSelect from 'react-select/async';
 
 
 const Chats = ( props ) => {
@@ -12,7 +13,7 @@ const Chats = ( props ) => {
     const [show, setShow] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [chat, setChat] = useState([]);
-    const [employee, setEmployee] = useState([]);
+    const [employee, setEmployee] = useState(null);
     const [user, setUser] = useState([]);
     const [message, setMessage] = useState('');
     const [chatMessage, setChatMessage] = useState('hello');
@@ -35,22 +36,12 @@ const Chats = ( props ) => {
                 setChat(res.data)
                 setLoaded(true)
             })
-        if (role.includes('subAdmin')) {
-            axios.get('/subadmin-rewardUsers', {headers: {"Authorization": `Bearer ${token}`}})
-                .then((res) => {
-                    setEmployee(res.data)
-                })
-        } else {
-            axios.get('/admin/rewardUsers')
-                .then((res) => {
-                    setEmployee(res.data)
-                })
-        }
+
     }, [loaded])
-    const userChangeHandler = (list, item) => {
-        setUser(list);
+    const userChangeHandler = (list) => {
+        console.log(list)
+        setEmployee(list)
     }
-    console.log(employee)
     const successNotify = (msg) => toast.success(msg, {
         position: "top-center",
         autoClose: 2000,
@@ -64,7 +55,7 @@ const Chats = ( props ) => {
         setShow(false)
         const formData = {
             message,
-            userName: user
+            userName: employee,
         }
         console.log(formData)
 
@@ -80,6 +71,22 @@ const Chats = ( props ) => {
             })
 
     }
+
+    const categoriesPromiseHandler = () =>
+        new Promise(resolve => {
+            if (role.includes('subAdmin')) {
+                axios.get('/subadmin-rewardUsers', {headers: {"Authorization": `Bearer ${token}`}})
+                    .then((res) => {
+                        console.log(res.data)
+                        resolve(res.data)
+                    })
+            } else {
+                axios.get('/admin/rewardUsers')
+                    .then((res) => {
+                        resolve(res.data)
+                    })
+            }
+        });
     const messageChangeHandler = (e) => {
         setMessage(e.target.value);
     }
@@ -109,7 +116,15 @@ const Chats = ( props ) => {
                 <div className="col-lg-12 mb-4">
                     <Form.Group controlId="exampleForm.SelectCustom">
                         <Form.Label><IntlMessages id="enter_recipt" /></Form.Label>
-                        <Multiselect options={employee} isObject={false} onSelect={userChangeHandler} required />
+                        <AsyncSelect
+                            required
+                            isMulti
+                            cacheOptions
+                            defaultOptions
+                            value={employee}
+                            onChange={userChangeHandler}
+                            loadOptions={categoriesPromiseHandler}
+                        />
                     </Form.Group>
                 </div>
                 <div className="col-lg-12 mb-4">

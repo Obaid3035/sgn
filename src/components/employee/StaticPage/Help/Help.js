@@ -38,6 +38,7 @@ const EmployeeHelp = ( props ) => {
 
                 })
         } else {
+            console.log('WHATTTT')
             axios.post('/reply', formData ,{headers: {"Authorization": `Bearer ${token}`}})
                 .then((res) => {
                     console.log(res.data)
