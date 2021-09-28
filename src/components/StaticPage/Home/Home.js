@@ -22,7 +22,6 @@ const Home = ( props ) => {
         // }
 
     }, [])
-    console.log(video)
 
 
 
@@ -30,7 +29,7 @@ const Home = ( props ) => {
        <>
            <div className="bg_load" />
            <div className="splash__wrapper d-flex justify-content-center">
-               <ReactPlayer url={'https://res.cloudinary.com/thiaza/video/upload/v1630924684/logo_hd62ln.mp4'} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
+               <ReactPlayer url={video} controls={false} playing={true} volume={0} onEnded={() => setLoader(false)} />
            </div>
        </>
     )
@@ -40,7 +39,7 @@ const Home = ( props ) => {
             loader ? preLoader :
                 (
                     <Aux>
-                       
+
                         <section className={'home-banner text-center'}>
                             <HomeCarousel />
                         </section>
@@ -52,7 +51,7 @@ const Home = ( props ) => {
                                         <div className="col-md-7">
                                             <img src="img/icon1.png" alt={'icon'}/>
                                             <h1><IntlMessages id="delivery" /></h1>
-                                            
+
                                             <p><IntlMessages id="no_need" /></p>
                                         </div>
                                         <div className={'sec2img'}>
