@@ -22,6 +22,7 @@ const Project = ( props ) => {
         additionalInformation: '',
     });
     const [completedProject, setCompletedProject] = useState([]);
+    const [inProgressProject, setInProgressProject] = useState([]);
 
     const [noticeOfIntentForm, setNoticeOfIntentForm] = useState({
         businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
@@ -39,12 +40,25 @@ const Project = ( props ) => {
                     setLoaded(true)
                     console.log(completedProject)
                 })
+
+            axios.get('/subAdmin-inProgress', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setInProgressProject(res.data.completedIntent);
+                    setLoaded(true)
+                    console.log('DATA' + res.data)
+                })
         } else  {
             axios.get('/admin/commissioned')
                 .then((res) => {
                     setCompletedProject(res.data.completedIntent);
                     setLoaded(true)
                     console.log('COMPLETED',res.data.completedIntent)
+                })
+
+            axios.get('/admin/inProgress')
+                .then((res) => {
+                    setInProgressProject(res.data.completedIntent);
+                    setLoaded(true)
                 })
         }
 
@@ -182,6 +196,15 @@ const Project = ( props ) => {
             })
     }
 
+    const onChangeStatusToComplete = (id) => {
+        axios.put('/admin/tocompleted/' + id)
+            .then((res) => {
+                console.log(res.data);
+                setLoaded(false)
+                successNotify('Project Updated SuccessFully')
+            })
+    }
+
     return (
         <>
             <div className="content">
@@ -202,21 +225,39 @@ const Project = ( props ) => {
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
                                     <h4 className="card-title mb-0"><IntlMessages id="project" /></h4>
-                                    <button type="button" onClick={toDoHandleShow}
-                                            className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />
-                                    </button>
+                                    {/*<button type="button" onClick={toDoHandleShow}*/}
+                                    {/*        className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />*/}
+                                    {/*</button>*/}
                                 </div>
                                 <div className="card-body">
                                     <div className="project-section">
                                         <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
-                                                <a className="nav-link btn btn-sm btn-outline btn-outline-info active mr-2"
-                                                   id="all-tab" data-toggle="pill" href="#all" role="tab"
+                                                <a className="nav-link btn btn-sm btn-outline btn-outline-warning active mr-2"
+                                                   id="inProgress-tab" data-toggle="pill" href="#all" role="tab"
+                                                   aria-controls="warning" aria-selected="false">In Progress</a>
+                                            </li>
+                                            <li className="nav-item" role="presentation">
+                                                <a className="nav-link btn btn-sm btn-outline btn-outline-info mr-2"
+                                                   id="all-tab" data-toggle="pill" href="#completed" role="tab"
                                                    aria-controls="success" aria-selected="false"><IntlMessages id="successful" /></a>
                                             </li>
+
                                         </ul>
-                                        <div className="tab-content" id="pills-tabContent">
+                                        <div className="tab-content" id="inProgress-tab">
                                             <div className="tab-pane fade active show" id="all" role="tabpanel"
+                                                 aria-labelledby="inprogress-tab">
+                                                {loaded ? inProgressProject && inProgressProject.length > 0
+                                                    ? <ProjectTable
+                                                        project={inProgressProject}
+                                                        handleShow={handleShow}
+                                                        onSubmit={onSubmitHandler}
+                                                        changeStatus={onChangeStatusToComplete}
+                                                    />
+                                                    : <h4 className="text-center"><IntlMessages id="no_project" /></h4>
+                                                    : <div className="text-center"><Spinner /></div>}
+                                            </div>
+                                            <div className="tab-pane fade show" id="completed" role="tabpanel"
                                                  aria-labelledby="all-tab">
                                                 {loaded ? completedProject && completedProject.length > 0
                                                 ? <ProjectTable

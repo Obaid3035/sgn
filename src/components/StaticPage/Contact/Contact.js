@@ -18,7 +18,7 @@ const Contact = ( props ) => {
                                 </p>
                                 <a className="custom-scroll" href="#contact-details" role="button"
                                    data-target="#contact-details">
-                                   <IntlMessages id="scroll" /> 
+                                   <IntlMessages id="scroll" />
                                     <span>
 							<img src="img/arrow-scroll.png" alt="scroll-arrow" className="img-fluid pt-3 pr-1" />
 						</span>
@@ -48,7 +48,7 @@ const Contact = ( props ) => {
                                         </div>
                                         <div>
                                             <h6><IntlMessages id="call_us" /></h6>
-                                            <a href="tel:+123456789"><IntlMessages id="call_number" /></a>
+                                            <a href="tel:+123456789"><IntlMessages id="foot_number" /></a>
                                         </div>
                                     </div>
 
@@ -59,20 +59,20 @@ const Contact = ( props ) => {
                                         </div>
                                         <div>
                                             <h6><IntlMessages id="mail_head" /></h6>
-                                            <a href="mailto:loremipsum@gmail.com"><IntlMessages id="mail" /></a>
+                                            <a href="mailto:loremipsum@gmail.com"><IntlMessages id="foot_email" /></a>
                                         </div>
                                     </div>
 
-                                    <div className="d-flex align-items-center">
-                                        <div>
-                                            <img src="img/location-mark-icon.png" alt="phone icon"
-                                                 className="w-75 pr-3" />
-                                        </div>
-                                        <div>
-                                            <h6><IntlMessages id="contact_address" /></h6>
-                                            <p className="m-0"><IntlMessages id="contact_addressPara" /></p>
-                                        </div>
-                                    </div>
+                                    {/*<div className="d-flex align-items-center">*/}
+                                    {/*    <div>*/}
+                                    {/*        <img src="img/location-mark-icon.png" alt="phone icon"*/}
+                                    {/*             className="w-75 pr-3" />*/}
+                                    {/*    </div>*/}
+                                    {/*    <div>*/}
+                                    {/*        <h6><IntlMessages id="contact_address" /></h6>*/}
+                                    {/*        <p className="m-0"><IntlMessages id="contact_addressPara" /></p>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
                             </div>
                         </div>
                     </div>

@@ -51,7 +51,7 @@ export const data = [
 	},
 	{
 		img: HomeHeader7,
-		text: 'Trucks',
+		text: <IntlMessages id="trucks" />,
 		css: 'col-md-4 truck__margin home__banner__text align-items-center text-left'
 	},
 	{
@@ -68,7 +68,8 @@ export const data = [
 	},
 	{
 		img: HomeHeader10,
-		text: 'All Types Of Wheels',
+
+		text: <IntlMessages id="all_type_of_wheels" />,
 		css: 'col-md-12 tyres ml-5'
 
 	},

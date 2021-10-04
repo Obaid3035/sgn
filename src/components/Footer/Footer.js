@@ -99,7 +99,7 @@ const Footer = ( props ) => {
             </div>
         </form>
     )
-    
+
     return (
         <div className={'footer'}>
             <section className="section6">
@@ -120,7 +120,7 @@ const Footer = ( props ) => {
                         </div>
                         <div className="col-lg-3 col-md-3">
                             <ul className={'contactDetails'}>
-                                <li><i className={'fa fa-address-card'} /><IntlMessages id="lorem" /></li>
+                                {/*<li><i className={'fa fa-address-card'} /><IntlMessages id="lorem" /></li>*/}
                                 <li><i className={'fa fa-phone-alt'} /><IntlMessages id="foot_number" /></li>
                                 <li><i className={'fa fa-envelope'} /><IntlMessages id="foot_email" /></li>
                             </ul>

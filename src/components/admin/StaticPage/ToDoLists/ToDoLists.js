@@ -69,7 +69,7 @@ const ToDoLists = (props ) => {
     }
 
     const toCompleted = (id) => {
-        axios.put('/admin/tocompleted/' + id)
+        axios.put('/admin/toInProgress/' + id)
             .then((res) => {
                 setLoaded(false)
                 successNotify('Task Updated SuccessFully')

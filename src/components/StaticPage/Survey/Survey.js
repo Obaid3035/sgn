@@ -35,9 +35,9 @@ const Survey = props => {
 									</div>
 								</div>
 								<p className={'mt-4'}>
-								<IntlMessages id="taking_time" />	
+								<IntlMessages id="taking_time" />
 								</p>
-								<h4 style={{fontWeight: 'bold'}}><IntlMessages id="have_great" /></h4>
+								{/*<h4 style={{fontWeight: 'bold'}}><IntlMessages id="have_great" /></h4>*/}
 							</Card.Body>
 						</Card>
 					</Col>
