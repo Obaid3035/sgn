@@ -7,6 +7,7 @@ import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import {toast, ToastContainer} from "react-toastify";
 import Rewards from "./Rewards/Rewards";
 import IntlMessages from '../../../../Util/IntlMessages';
+import './Rewards.css'
 
 const Reward = ( props ) => {
     const [show, setShow] = useState(false);

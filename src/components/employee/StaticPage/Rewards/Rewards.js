@@ -48,23 +48,27 @@ const EmployeeRewards = ( props ) => {
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        { rewards.map((reward, index) => (
-                                                            <>
-                                                                <tr key={index}>
-                                                                    <td>{reward.id}</td>
-                                                                    <td>{reward.name}</td>
-                                                                    <td>{reward.status}</td>
-                                                                    <td><ProgressBar animated now={(totalPoints * 100) / (reward.limit)}/></td>
-                                                                    <td>{reward.createdAt}</td>
-                                                                    {reward.status === 'Completed' ? null :
-                                                                        <td>
-                                                                            <NavLink to={'/employee/reward/' + reward.id} role="button"
-                                                                                     className="btn btn-sm btn-primary"><i className="far fa-eye" /></NavLink>
-                                                                        </td>
-                                                                    }
-                                                                </tr>
-                                                            </>
-                                                        )) }
+                                                        { rewards.map((reward, index) => {
+                                                            if (reward.status === 'onGoing') {
+                                                                return (
+                                                                    <>
+                                                                        <tr key={index}>
+                                                                            <td>{reward.id}</td>
+                                                                            <td>{reward.name}</td>
+                                                                            <td>{reward.status}</td>
+                                                                            <td><ProgressBar animated now={(totalPoints * 100) / (reward.limit)}/></td>
+                                                                            <td>{reward.createdAt}</td>
+                                                                            {reward.status === 'Completed' ? null :
+                                                                                <td>
+                                                                                    <NavLink to={'/employee/reward/' + reward.id} role="button"
+                                                                                             className="btn btn-sm btn-primary"><i className="far fa-eye" /></NavLink>
+                                                                                </td>
+                                                                            }
+                                                                        </tr>
+                                                                    </>
+                                                                )
+                                                            }
+                                                        }) }
                                                         </tbody>
                                                     </table>
                                                     : <h3 className="text-center"><IntlMessages id="no_reward" /></h3>
