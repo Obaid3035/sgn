@@ -13,6 +13,7 @@ const AuthProvider = ( props ) => {
         console.log('hello')
         axios.post('/login', data)
             .then((res) => {
+                console.log('DAMN')
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('loggedIn', 'true')
                 localStorage.setItem('role', res.data.role)
@@ -31,8 +32,11 @@ const AuthProvider = ( props ) => {
 
             })
             .catch((err) => {
-                notify(err.response.status);
                 loader(true);
+                console.log(err.message)
+                if(err && err.response && err.response.status) {
+                    notify(err.response.status);
+                }
                 email('');
                 password('')
             })

@@ -43,6 +43,7 @@ import Chats from "../../components/admin/StaticPage/Chats/Chats";
 import Quote from "../../components/admin/StaticPage/Quote/Quote";
 import QuoteView from "../../components/admin/StaticPage/Quote/QuoteView/QuoteView";
 import GetInTouch from "../../components/admin/StaticPage/GetInTouch/GetInTouch";
+import SubAdminView from "../../components/admin/StaticPage/SubAdmin/SubAdminView/SubAdminView";
 
 function Admin(  ) {
     const admin = {
@@ -161,6 +162,7 @@ function Admin(  ) {
                         <Route path={'/admin/getInTouch'} exact component={GetInTouch} />
                         <Route path={'/admin/quote/:id'} exact component={QuoteView} />
                         <Route path='/admin/quote' exact component={Quote}/>
+                        <Route path='/admin/subAdmin-view/:id' component={SubAdminView}/>
                         <Route path='/admin/subAdmin/:id' component={SubAdminForm}/>
                         <Route path='/admin/employee/:id' component={EmployeeDetail}/>
                         <Route path='/admin/job/:id' component={ViewJob}/>

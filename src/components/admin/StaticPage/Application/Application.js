@@ -19,7 +19,6 @@ const Application = () => {
     const [formData, setFormData] = useState({
         referralID: '',
         showSubAdmin: false,
-
     });
     const [subAdmin, setSubAdmin] = useState([]);
     const [user, setUser] = useState([]);
@@ -113,7 +112,6 @@ const Application = () => {
 
     const showSubAdminHandler = (e) => {
         setFormData({...formData, showSubAdmin: e.target.value})
-
     }
     const servicesPromiseHandler = () =>
         new Promise(resolve => {

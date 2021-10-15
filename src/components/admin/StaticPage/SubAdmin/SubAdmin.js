@@ -12,16 +12,17 @@ import SubAdminList from "./SubAdminTable/SubAdminList/SubAdminList";
 const SubAdmin = ( props ) => {
 
     const [subAdmin, setSubAdmin] = useState([]);
+    const [disabledSubAdmin, setDisabledSubAdmin] = useState([]);
+
     const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         axios.get('/subAdmins')
             .then((res) => {
-                setSubAdmin(res.data);
+                console.log(res.data)
+                setSubAdmin(res.data.subAdmin);
+                setDisabledSubAdmin(res.data.disabledSubAdmin)
             })
-        return () => {
-            setSubAdmin({});
-        };
     }, [loader]);
 
     const [formData, setFormData] = useState({
@@ -98,6 +99,23 @@ const SubAdmin = ( props ) => {
         </Modal>
     )
 
+    const onDeleteHandler = (id) => {
+        setLoader(true)
+        axios.put('/subAdmin-disable/' + id)
+            .then(() => {
+                setLoader(false)
+            })
+    }
+
+    const onEnableHandler = (id) => {
+        console.log(id)
+        setLoader(true)
+        axios.put('/subAdmin-enable/' + id)
+            .then(() => {
+                setLoader(false)
+            })
+    }
+
     return (
 
         <div className="content">
@@ -126,46 +144,113 @@ const SubAdmin = ( props ) => {
                                 </div>
                             </div>
                             <div className="card-body">
-                                {
-                                    !loader?
-                                        (
-                                            <div className="table-responsive">
-                                                <table className="table table-striped to-do-list">
-                                                    <thead className="">
-                                                    <tr>
-                                                        <th><IntlMessages id="main_id" /></th>
-                                                        <th><IntlMessages id="email" /></th>
-                                                        <th><IntlMessages id="role" /></th>
-                                                        <th><IntlMessages id="firstName" /></th>
-                                                        <th><IntlMessages id="lastName" /></th>
-                                                        <th><IntlMessages id="phoneNumber" /></th>
-                                                        {/*<th><IntlMessages id="permission" /></th>*/}
-                                                        {/*<th><IntlMessages id="action" /></th>*/}
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    {subAdmin && subAdmin.length > 0 ?
-                                                         subAdmin.map((subAdmin, index) => (
-                                                        <SubAdminList
-                                                            key={index}
-                                                            id={subAdmin.id}
-                                                            email={subAdmin.email}
-                                                            roles={subAdmin.roles}
-                                                            firstName={subAdmin.firstName}
-                                                            lastName={subAdmin.lastName}
-                                                            phoneNumber={subAdmin.phoneNumber}
-                                                        />
-                                                    )) : <div className="text-center">
-                                                            <p>No SubAdmin Found</p>
-                                                        </div>}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        )
-                                        : <div className="text-center">
-                                            <ProgressBar />
-                                        </div>
-                                }
+                                <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li className="nav-item" role="presentation">
+                                        <a className="nav-link btn btn-sm btn-outline btn-outline-warning active mr-2"
+                                           id="inProgress-tab" data-toggle="pill" href="#all" role="tab"
+                                           aria-controls="warning" aria-selected="false">Enabled</a>
+                                    </li>
+                                    <li className="nav-item" role="presentation">
+                                        <a className="nav-link btn btn-sm btn-outline btn-outline-info mr-2"
+                                           id="all-tab" data-toggle="pill" href="#completed" role="tab"
+                                           aria-controls="success" aria-selected="false">Disabled</a>
+                                    </li>
+
+                                </ul>
+                                <div className="tab-content" id="inProgress-tab">
+                                    <div className="tab-pane fade active show" id="all" role="tabpanel"
+                                         aria-labelledby="inprogress-tab">
+                                        {
+                                            !loader?
+                                                (
+                                                    <div className="table-responsive">
+                                                        <table className="table table-striped to-do-list">
+                                                            <thead className="">
+                                                            <tr>
+                                                                <th><IntlMessages id="main_id" /></th>
+                                                                <th><IntlMessages id="email" /></th>
+                                                                <th><IntlMessages id="role" /></th>
+                                                                <th><IntlMessages id="firstName" /></th>
+                                                                <th><IntlMessages id="lastName" /></th>
+                                                                <th><IntlMessages id="phoneNumber" /></th>
+                                                                {/*<th><IntlMessages id="permission" /></th>*/}
+                                                                {/*<th><IntlMessages id="action" /></th>*/}
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {subAdmin && subAdmin.length > 0 ?
+                                                                subAdmin.map((subAdmin, index) => (
+                                                                    <SubAdminList
+                                                                        key={index}
+                                                                        id={subAdmin.id}
+                                                                        onDelete={onDeleteHandler}
+                                                                        email={subAdmin.email}
+                                                                        roles={subAdmin.roles}
+                                                                        firstName={subAdmin.firstName}
+                                                                        lastName={subAdmin.lastName}
+                                                                        phoneNumber={subAdmin.phoneNumber}
+                                                                        status={subAdmin.status}
+                                                                    />
+                                                                )) : <div className="text-center">
+                                                                    <p>No SubAdmin Found</p>
+                                                                </div>}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                )
+                                                : <div className="text-center">
+                                                    <ProgressBar />
+                                                </div>
+                                        }
+                                    </div>
+                                    <div className="tab-pane fade show" id="completed" role="tabpanel"
+                                         aria-labelledby="all-tab">
+                                        {
+                                            !loader?
+                                                (
+                                                    <div className="table-responsive">
+                                                        <table className="table table-striped to-do-list">
+                                                            <thead className="">
+                                                            <tr>
+                                                                <th><IntlMessages id="main_id" /></th>
+                                                                <th><IntlMessages id="email" /></th>
+                                                                <th><IntlMessages id="role" /></th>
+                                                                <th><IntlMessages id="firstName" /></th>
+                                                                <th><IntlMessages id="lastName" /></th>
+                                                                <th><IntlMessages id="phoneNumber" /></th>
+                                                                {/*<th><IntlMessages id="permission" /></th>*/}
+                                                                {/*<th><IntlMessages id="action" /></th>*/}
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {disabledSubAdmin && disabledSubAdmin.length > 0 ?
+                                                                disabledSubAdmin.map((subAdmin, index) => (
+                                                                    <SubAdminList
+                                                                        key={index}
+                                                                        id={subAdmin.id}
+                                                                        onDelete={onDeleteHandler}
+                                                                        onEnable={onEnableHandler}
+                                                                        email={subAdmin.email}
+                                                                        roles={subAdmin.roles}
+                                                                        firstName={subAdmin.firstName}
+                                                                        lastName={subAdmin.lastName}
+                                                                        phoneNumber={subAdmin.phoneNumber}
+                                                                        status={subAdmin.status}
+                                                                    />
+                                                                )) : <div className="text-center">
+                                                                    <p>No SubAdmin Found</p>
+                                                                </div>}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                )
+                                                : <div className="text-center">
+                                                    <ProgressBar />
+                                                </div>
+                                        }
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
