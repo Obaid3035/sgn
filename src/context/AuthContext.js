@@ -53,6 +53,7 @@ const AuthProvider = ( props ) => {
     const adminLogin = ( data, notify, email, password, loader ) => {
         axios.post('/admin/login', data)
             .then((res) => {
+                console.log(res)
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('role', 'admin')
                 localStorage.setItem('loggedIn', 'true')

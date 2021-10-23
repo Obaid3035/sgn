@@ -23,6 +23,7 @@ const Project = ( props ) => {
     });
     const [completedProject, setCompletedProject] = useState([]);
     const [inProgressProject, setInProgressProject] = useState([]);
+    const [allProject, setAllProject] = useState([]);
 
     const [noticeOfIntentForm, setNoticeOfIntentForm] = useState({
         businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
@@ -47,6 +48,13 @@ const Project = ( props ) => {
                     setLoaded(true)
                     console.log('DATA' + res.data)
                 })
+
+            axios.get('/subAdmin-project', {headers: {"Authorization": `Bearer ${token}`}})
+                .then((res) => {
+                    setAllProject(res.data.completedIntent);
+                    setLoaded(true)
+                    console.log('DATA' + res.data)
+                })
         } else  {
             axios.get('/admin/commissioned')
                 .then((res) => {
@@ -58,6 +66,12 @@ const Project = ( props ) => {
             axios.get('/admin/inProgress')
                 .then((res) => {
                     setInProgressProject(res.data.completedIntent);
+                    setLoaded(true)
+                })
+
+            axios.get('/admin/projects')
+                .then((res) => {
+                    setAllProject(res.data.completedIntent);
                     setLoaded(true)
                 })
         }
@@ -205,6 +219,28 @@ const Project = ( props ) => {
             })
     }
 
+    const onChangeStatusToCompleteOrCommission = (id, status) => {
+        console.log(id, status)
+
+        if (status === 'inProgress') {
+            axios.put('/admin/tocompleted/' + id)
+                .then((res) => {
+                    console.log(res.data);
+                    setLoaded(false)
+                    successNotify('Project Updated SuccessFully')
+                })
+        } else if (status === 'completed') {
+            axios.put('/admin/tocommissioned/' + id)
+                .then((res) => {
+                    console.log(res.data);
+                    setLoaded(false)
+                    successNotify('Project Updated SuccessFully')
+                })
+        }
+
+
+    }
+
     return (
         <>
             <div className="content">
@@ -224,7 +260,7 @@ const Project = ( props ) => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0"><IntlMessages id="project" /></h4>
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="project" /></h3>
                                     {/*<button type="button" onClick={toDoHandleShow}*/}
                                     {/*        className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />*/}
                                     {/*</button>*/}
@@ -233,19 +269,37 @@ const Project = ( props ) => {
                                     <div className="project-section">
                                         <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
-                                                <a className="nav-link btn btn-sm btn-outline btn-outline-warning active mr-2"
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-danger active mr-2"
+                                                   id="allProject-tab" data-toggle="pill" href="#allProject" role="tab"
+                                                   aria-controls="danger" aria-selected="false">All Project</a>
+                                            </li>
+                                            <li className="nav-item" role="presentation">
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-warning mr-2"
                                                    id="inProgress-tab" data-toggle="pill" href="#all" role="tab"
                                                    aria-controls="warning" aria-selected="false">In Progress</a>
                                             </li>
                                             <li className="nav-item" role="presentation">
-                                                <a className="nav-link btn btn-sm btn-outline btn-outline-info mr-2"
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-info mr-2"
                                                    id="all-tab" data-toggle="pill" href="#completed" role="tab"
                                                    aria-controls="success" aria-selected="false"><IntlMessages id="successful" /></a>
                                             </li>
 
                                         </ul>
-                                        <div className="tab-content" id="inProgress-tab">
-                                            <div className="tab-pane fade active show" id="all" role="tabpanel"
+                                        <div className="tab-content" id="allProject-tab">
+                                            <div className="tab-pane fade active show" id="allProject" role="tabpanel"
+                                                 aria-labelledby="allProject-tab">
+                                                {loaded ? allProject && allProject.length > 0
+                                                    ? <ProjectTable
+                                                        project={allProject}
+                                                        handleShow={handleShow}
+                                                        onSubmit={onSubmitHandler}
+                                                        changeStatus={onChangeStatusToCompleteOrCommission}
+                                                        allProject={true}
+                                                    />
+                                                    : <h4 className="text-center"><IntlMessages id="no_project" /></h4>
+                                                    : <div className="text-center"><Spinner /></div>}
+                                            </div>
+                                            <div className="tab-pane fade show" id="all" role="tabpanel"
                                                  aria-labelledby="inprogress-tab">
                                                 {loaded ? inProgressProject && inProgressProject.length > 0
                                                     ? <ProjectTable

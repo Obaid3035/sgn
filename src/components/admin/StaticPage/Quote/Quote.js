@@ -48,7 +48,7 @@ const Quote = () => {
                         <div className="card">
                             <div className="card-body">
                                 <div className="col-md-12 my-5">
-                                    <h4><IntlMessages id="quote" /></h4>
+                                    <h3 style={{fontWeight: "bold"}}><IntlMessages id="quote" /></h3>
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="table-responsive">

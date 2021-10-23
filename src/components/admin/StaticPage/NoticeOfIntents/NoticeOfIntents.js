@@ -76,7 +76,7 @@ const NoticeOfIntents = () => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0"><IntlMessages id="notice_intent" /></h4>
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="notice_intent" /></h3>
 
                                 </div>
                                 <div className="card-body">

@@ -182,7 +182,7 @@ const handleShow = () => setShow(!show);
                            <div
                                className="card-header d-flex justify-content-between align-items-center card-header-primary">
                                <h4 className="card-title mb-0"><IntlMessages id="job_list" /></h4>
-                               <button type="button" onClick={handleShow}
+                               <button type="button" onClick={handleShow} style={{fontSize: "18px"}}
                                        className="btn btn-primary"><IntlMessages id="add_job" />
                                </button>
                            </div>
@@ -190,23 +190,23 @@ const handleShow = () => setShow(!show);
                                <div className="col-md-12 my-5">
                                    <form onSubmit={filterData} className="row mb-5">
                                        <div className="col-lg-3">
-                                           <input type="text" className="form-control" id="job-title" name={'jobTitle'} required onChange={(e) => queryChangeHandler(e)}
+                                           <input style={{fontSize: "14px"}} type="text" className="form-control" id="job-title" name={'jobTitle'} required onChange={(e) => queryChangeHandler(e)}
                                                   placeholder="job Title, Keywords, City" />
                                        </div>
                                        <div className="col-lg-2">
-                                           <input type="text" className="form-control" id="country" name={'jobCountry'} required onChange={(e) => queryChangeHandler(e)}
+                                           <input style={{fontSize: "14px"}} type="text" className="form-control" id="country" name={'jobCountry'} required onChange={(e) => queryChangeHandler(e)}
                                                   placeholder="Country" />
                                        </div>
                                        <div className="col-lg-2">
-                                           <input type="text" className="form-control" id="State" name={'jobState'} required onChange={(e) => queryChangeHandler(e)}
+                                           <input style={{fontSize: "14px"}} type="text" className="form-control" id="State" name={'jobState'} required onChange={(e) => queryChangeHandler(e)}
                                                   placeholder="State" />
                                        </div>
                                        <div className="col-lg-2">
-                                           <input type="text" className="form-control" id="city" name={'jobCity'} required onChange={(e) => queryChangeHandler(e)}
+                                           <input style={{fontSize: "14px"}} type="text" className="form-control" id="city" name={'jobCity'} required onChange={(e) => queryChangeHandler(e)}
                                                   placeholder="city" />
                                        </div>
                                        <div className="col-lg-2">
-                                           <button type="submit" className="btn btn-lg btn-primary mt-2"><IntlMessages id="find" /></button>
+                                           <button style={{fontSize: "18px"}} type="submit" className="btn btn-lg btn-primary "><IntlMessages id="find" /></button>
                                        </div>
                                    </form>
                                    <div className="row">
@@ -215,19 +215,19 @@ const handleShow = () => setShow(!show);
                                                <table className="table text-center">
                                                    <thead className="">
                                                    <tr>
-                                                       <th>
+                                                       <th style={{fontWeight: "bold"}}>
                                                        <IntlMessages id="main_id" />
                                                        </th>
-                                                       <th>
+                                                       <th style={{fontWeight: "bold"}}>
                                                        <IntlMessages id="job_title" /> 
                                                        </th>
-                                                       <th>
+                                                       <th style={{fontWeight: "bold"}}>
                                                        <IntlMessages id="region" />   
                                                        </th>
-                                                       <th>
+                                                       <th style={{fontWeight: "bold"}}>
                                                        <IntlMessages id="post_date" />   
                                                        </th>
-                                                       <th>
+                                                       <th style={{fontWeight: "bold"}}>
                                                        <IntlMessages id="action" />   
                                                        </th>
                                                    </tr>

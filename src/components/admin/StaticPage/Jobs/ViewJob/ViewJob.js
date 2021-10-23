@@ -56,6 +56,7 @@ const ViewJob = ( props ) => {
                                         <Form.Control type="text"
                                                       name="businessName"
                                                       value= {formFields.jobTitle}
+                                                      style={{ fontSize: '15px' }}
                                                       onChange={createChangeHandler('jobTitle')}
                                                       required
                                         />
@@ -65,6 +66,7 @@ const ViewJob = ( props ) => {
                                         <Form.Control type="text"
                                                       name="potential"
                                                       value= {formFields.jobCountry}
+                                                      style={{ fontSize: '15px' }}
                                                       onChange={createChangeHandler('jobCountry')}
                                                       required
                                         />
@@ -74,6 +76,7 @@ const ViewJob = ( props ) => {
                                         <Form.Control type="text"
                                                       name="planOnGoing"
                                                       value= {formFields.jobState}
+                                                      style={{ fontSize: '15px' }}
                                                       onChange={createChangeHandler('jobState')}
                                                       required
                                         />
@@ -82,6 +85,7 @@ const ViewJob = ( props ) => {
                                         <Form.Label><IntlMessages id="job_city" /></Form.Label>
                                         <Form.Control type="tel"
                                                       name="businessPhoneNumber"
+                                                      style={{ fontSize: '15px' }}
                                                       value= {formFields.jobCity}
                                                       onChange={createChangeHandler('jobCity')}
                                                       required
@@ -92,6 +96,7 @@ const ViewJob = ( props ) => {
                                         <Form.Control as={'textarea'} className="text-left" rows="6"
                                                       name="additionalInformation"
                                                       value= {formFields.jobDescription}
+                                                      style={{ fontSize: '15px' }}
                                                       onChange={createChangeHandler('jobDescription')}
                                                       required
                                         />
@@ -101,6 +106,7 @@ const ViewJob = ( props ) => {
                                         <Form.Control as={'textarea'} className="text-left" rows="6"
                                                       name="additionalInformation"
                                                       value= {formFields.jobBenefit}
+                                                      style={{ fontSize: '15px' }}
                                                       onChange={createChangeHandler('jobBenefit')}
                                                       required
                                         />

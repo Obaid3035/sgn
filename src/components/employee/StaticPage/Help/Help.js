@@ -68,10 +68,10 @@ const EmployeeHelp = ( props ) => {
                         <div className="card ">
                             <div
                                 className="card-header d-flex justify-content-between align-items-center card-header-primary ">
-                                <h4 className="card-title mb-0 "><IntlMessages id="help" /></h4>
+                                <h3 style={{fontWeight: "bold"}} className="card-title mb-0 "><IntlMessages id="help" /></h3>
                             </div>
                             <div className="card-body ">
-                                <form onSubmit={replyHandler} className="pt-5 " id="reviewApplication ">
+                                <form onSubmit={replyHandler} className="" id="reviewApplication ">
                                     <div className="form-row ">
                                         <div className="col-lg-12 ">
                                             <div className="form-group ">
@@ -82,7 +82,7 @@ const EmployeeHelp = ( props ) => {
                                         </div>
                                         <div className="col-lg-12 ">
                                             <div className="float-right ">
-                                                <button type="submit " className="btn btn-primary btn-save "><IntlMessages id="send" />
+                                                <button style={{fontSize: "15px"}} type="submit" className="btn btn-primary btn-save  "><IntlMessages id="send" />
                                                 </button>
                                             </div>
                                         </div>

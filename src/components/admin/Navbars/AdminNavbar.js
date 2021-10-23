@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import Notifications from "react-notifications-menu";
@@ -24,7 +24,7 @@ import IntlMessages from '../../../Util/IntlMessages';
 
 import routes from "../../../routes";
 import axios from "axios";
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function Header(props) {
 
@@ -61,10 +61,10 @@ function Header(props) {
 
   useEffect(() => {
     axios.get('/notifications')
-        .then((res) => {
-          setNotificationData(res.data);
-          setLoaded(false)
-        })
+      .then((res) => {
+        setNotificationData(res.data);
+        setLoaded(false)
+      })
   }, [])
   console.log(notificationData)
 
@@ -90,7 +90,7 @@ function Header(props) {
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
           <span className="navbar-toggler-bar burger-lines" />
-          <span className="navbar-toggler-bar burger-lines"/>
+          <span className="navbar-toggler-bar burger-lines" />
           <span className="navbar-toggler-bar burger-lines" />
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
@@ -109,22 +109,24 @@ function Header(props) {
 
             <div className={'ml-2 mt-4'}>
               {notificationData.length > 0 ?
-                  <Notifications
-                      data={notificationData}
-                      header={{
-                        title: 'Notification',
-                        option: {
-                          text: 'Mark as read', onClick: () => {axios.put('/notification', notificationData)
-                              .then((res) => {
-                                console.log(res.data)
-                                window.location.reload()
-                                setLoaded(true)
-                              })}
-                        }
-                      }}
-                      height='20rem'
-                      width='40rem'
-                  /> : <i className="nc-icon nc-bell-55" style={{"padding": "0 0 2.7rem 0"}} />
+                <Notifications
+                  data={notificationData}
+                  header={{
+                    title: 'Notification',
+                    option: {
+                      text: 'Mark as read', onClick: () => {
+                        axios.put('/notification', notificationData)
+                        .then((res) => {
+                          console.log(res.data)
+                          window.location.reload()
+                          setLoaded(true)
+                        })
+                      }
+                    }
+                  }}
+                  height='20rem'
+                  width='40rem'
+                /> : <i className="nc-icon nc-bell-55" style={{ "padding": "0 0 2.7rem 0" }} />
               }
             </div>
             {/*<Nav.Item>*/}
@@ -140,13 +142,13 @@ function Header(props) {
           </Nav>
           <Nav className="ml-auto" navbar>
             <Nav.Item>
-              <Nav.Link
+              {/* <Nav.Link
                 className="m-0"
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
-              >
-                <button onClick={logOutHandler} className="btn-warning btn-lg"><IntlMessages id="log_out" /></button>
-              </Nav.Link>
+              > */}
+              <button style={{fontSize: "16px"}} onClick={logOutHandler} className="m-3 btn-warning btn-lg"><IntlMessages id="log_out" /></button>
+              {/* </Nav.Link> */}
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

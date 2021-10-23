@@ -28,19 +28,19 @@ const EmployeeProject = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0"><IntlMessages id="comp_proj" /></h4>
+                                <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="comp_proj" /></h3>
                             </div>
 
                             <div className="card-body">
                                 <div className="project-section">
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item" role="presentation">
-                                            <a className="nav-link btn btn-sm btn-outline btn-outline-warning active mr-2"
+                                            <a style={{fontSize: "15px"}} className="nav-link btn btn-sm btn-outline btn-outline-warning active mr-2"
                                                id="all-tab" data-toggle="pill" href="#all" role="tab"
                                                aria-controls="all" aria-selected="false"><IntlMessages id="completed" /></a>
                                         </li>
                                         <li className="nav-item" role="presentation">
-                                            <a className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
+                                            <a style={{fontSize: "15px"}} className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
                                                id="completed-tab" data-toggle="pill" href="#completed" role="tab"
                                                aria-controls="completed" aria-selected="true"><IntlMessages id="commission" /></a>
                                         </li>

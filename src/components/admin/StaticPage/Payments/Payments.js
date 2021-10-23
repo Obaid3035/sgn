@@ -36,7 +36,7 @@ const Payments = ( props ) => {
                     <div className="col-md-12 job-list">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0"><IntlMessages id="payment" /></h4>
+                                <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="payment" /></h3>
                             </div>
                             <div className="card-body">
                                 <div className="project-section">

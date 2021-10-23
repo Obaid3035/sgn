@@ -68,19 +68,19 @@ const Employee = ( props ) => {
                     <div className="card">
                             <div
                                 className="card-header card-header-primary">
-                                <h4 className="card-title mb-0"><IntlMessages id="list_emp" /></h4>
+                                <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="list_emp" /></h3>
                             </div>
                         <div className="card-body">
 
                             <div className="project-section">
                                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     <li className="nav-item" role="presentation">
-                                        <a className="nav-link btn btn-lg btn-outline btn-outline-success mr-2"
+                                        <a style={{ fontSize: '15px' }} className="nav-link btn btn-lg btn-outline btn-outline-success mr-2"
                                            id="activeEmp-tab" data-toggle="pill" href="#activeEmp" role="tab"
                                            aria-controls="activeEmp" aria-selected="false"><IntlMessages id="active" /></a>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <a className="nav-link btn btn-lg btn-outline btn-outline-danger mr-2"
+                                        <a style={{ fontSize: '15px' }} className="nav-link btn btn-lg btn-outline btn-outline-danger mr-2"
                                            id="inActiveEmp-tab" data-toggle="pill" href="#inActiveEmp" role="tab"
                                            aria-controls="inActiveEmp" aria-selected="true"><IntlMessages id="in_active" /></a>
                                     </li>

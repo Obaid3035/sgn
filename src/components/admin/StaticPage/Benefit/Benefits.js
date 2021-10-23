@@ -142,8 +142,8 @@ const Benefits = ( props ) => {
                             <div className="card">
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0"><IntlMessages id="benefit_list" /></h4>
-                                    <button type="button" onClick={handleShow}
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="benefit_list" /></h3>
+                                    <button style={{fontSize: "15px"}} type="button" onClick={handleShow}
                                             className="btn btn-primary"><IntlMessages id="add_benefit" />
                                     </button>
                                 </div>

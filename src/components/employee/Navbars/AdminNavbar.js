@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React  from "react";
+import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 import IntlMessages from '../../../Util/IntlMessages';
@@ -46,7 +46,8 @@ function Header(props) {
     return "Brand";
   };
 
-  const logOutHandler = () => {
+  const logOutHandler = (e) => {
+    e.preventDefault()
     localStorage.clear()
     history.replace('/')
   }
@@ -70,13 +71,13 @@ function Header(props) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto" navbar>
             <Nav.Item>
-              <Nav.Link
+              {/* <Nav.Link
                 className="m-0"
                 href="#pablo"
                 onClick={(e) => e.preventDefault()}
-              >
-                <button onClick={logOutHandler} className="btn-warning btn-lg"><IntlMessages id="log_out" /></button>
-              </Nav.Link>
+              > */}
+              <button style={{fontSize: "16px"}} onClick={logOutHandler} className="m-3 btn-warning btn-lg"><IntlMessages id="log_out" /></button>
+              {/* </Nav.Link> */}
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

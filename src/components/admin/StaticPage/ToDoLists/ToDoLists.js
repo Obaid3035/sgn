@@ -265,8 +265,8 @@ const ToDoLists = (props ) => {
                             <div className="card">
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0"><IntlMessages id="to_dos" /></h4>
-                                    <button type="button" onClick={toDoHandleShow}
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="to_dos" /></h3>
+                                    <button style={{fontSize: "15px"}} type="button" onClick={toDoHandleShow}
                                             className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />
                                     </button>
                                 </div>
@@ -275,10 +275,10 @@ const ToDoLists = (props ) => {
                                         {loaded ? toDoList.length > 0 ? <table className="table">
                                             <thead className="">
                                             <tr>
-                                                <th><IntlMessages id="emp_name" /></th>
-                                                <th><IntlMessages id="bus_name" /></th>
-                                                <th><IntlMessages id="status" /></th>
-                                                <th><IntlMessages id="action" /></th>
+                                                <th style={{fontWeight: "bold"}}><IntlMessages id="emp_name" /></th>
+                                                <th style={{fontWeight: "bold"}}><IntlMessages id="bus_name" /></th>
+                                                <th style={{fontWeight: "bold"}}><IntlMessages id="status" /></th>
+                                                <th style={{fontWeight: "bold"}}><IntlMessages id="action" /></th>
                                             </tr>
                                             </thead>
                                             <tbody>

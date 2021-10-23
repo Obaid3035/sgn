@@ -149,20 +149,20 @@ const Reward = ( props ) => {
                         <div className="col-md-12 job-list">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0"><IntlMessages id="reward" /></h4>
-                                    <button type="button" onClick={handleShow}
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="reward" /></h3>
+                                    <button style={{fontSize: "15px"}} type="button" onClick={handleShow}
                                             className="btn btn-primary btn-lg"><IntlMessages id="add_btn" />
                                     </button>
                                 </div>
                                 <div className="card-body">
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item" role="presentation">
-                                            <a className="nav-link btn btn-sm btn-outline btn-outline-info active mr-2"
+                                            <a style={{fontSize: "15px"}} className="nav-link btn btn-sm btn-outline btn-outline-info active mr-2"
                                                id="onGoing-tab" data-toggle="pill" href="#onGoing" role="tab"
                                                aria-controls="onGoing" aria-selected="false"><IntlMessages id="active" /></a>
                                         </li>
                                         <li className="nav-item" role="presentation">
-                                            <a className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
+                                            <a style={{fontSize: "15px"}} className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
                                                id="completed-tab" data-toggle="pill" href="#completed" role="tab"
                                                aria-controls="completed" aria-selected="true"><IntlMessages id="in_active" /></a>
                                         </li>

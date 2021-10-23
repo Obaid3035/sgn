@@ -66,7 +66,7 @@ const Report = ( props ) => {
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title mb-0"><IntlMessages id="report" /></h4>
+                                <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="report" /></h3>
                             </div>
                             <div className="card-body">
                                 <Form onSubmit={onSubmitHandler} className={'d-flex justify-content-around'}>
@@ -92,7 +92,7 @@ const Report = ( props ) => {
                                         />
                                     </Form.Group>
 
-                                    <Button type={'submit'} className={'px-4 h-25'} variant={'warning'}><IntlMessages id="search" /></Button>
+                                    <Button style={{fontSize: "15px"}} type={'submit'} className={'px-4 h-25'} variant={'warning'}><IntlMessages id="search" /></Button>
                                 </Form>
 
                                <div className={'d-flex justify-content-between'}>

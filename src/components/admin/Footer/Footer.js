@@ -23,36 +23,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="footer px-0 px-lg-3">
-        <Container fluid>
-          <nav>
-            <ul className="footer-menu">
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <IntlMessages id="foot_home" /> 
-                </a>
-              </li>
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <IntlMessages id="foot_company" />  
-                </a>
-              </li>
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <IntlMessages id="foot_portfolio" />  
-                </a>
-              </li>
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <IntlMessages id="foot_blog" />  
-                </a>
-              </li>
-            </ul>
-            <p className="copyright text-center">
-              © {new Date().getFullYear()}{" "}
-              <a href="http://www.creative-tim.com"><IntlMessages id="creative_Tim" /></a>, <IntlMessages id="better_web" /> 
-            </p>
-          </nav>
-        </Container>
+        
       </footer>
     );
   }

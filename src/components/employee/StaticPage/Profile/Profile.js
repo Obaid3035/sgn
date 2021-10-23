@@ -225,7 +225,7 @@ const EmployeeProfile = ( props ) => {
                             <div className="card">
                                 <div className="card-header card-header-primary d-flex justify-content-between">
                                     <h4 className="card-title "><IntlMessages id="contract" /></h4>
-                                    <button type="button" onClick={contractShowHandler}
+                                    <button style={{fontSize: "15px"}} type="button" onClick={contractShowHandler}
                                             className="btn btn-attachment btn-warning mx-4">
                                       <IntlMessages id="add_contract" />  
                                     </button>

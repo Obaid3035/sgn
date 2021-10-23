@@ -159,8 +159,8 @@ const Chats = ( props ) => {
                             <div className="card">
                                 <div
                                     className="card-header d-flex justify-content-between align-items-center card-header-primary">
-                                    <h4 className="card-title mb-0"><IntlMessages id="inbox" /></h4>
-                                    <button onClick={handleShow} className="btn btn-secondary"><i
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="inbox" /></h3>
+                                    <button style={{fontSize: "15px"}} onClick={handleShow} className="btn btn-secondary"><i
                                         className="fas fa-pencil mr-2" /><IntlMessages id="Compose" /></button>
                                 </div>
                                 <div className="card-body">

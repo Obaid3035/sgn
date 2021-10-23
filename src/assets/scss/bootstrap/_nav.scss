@@ -46,7 +46,7 @@
 
     &.disabled {
       color: $nav-link-disabled-color;
-      background-color: transparent;
+      // background-color: transparent;
       border-color: transparent;
     }
   }
@@ -76,11 +76,11 @@
     @include border-radius($nav-pills-border-radius);
   }
 
-  .nav-link.active,
-  .show > .nav-link {
-    color: $nav-pills-link-active-color;
-    background-color: $nav-pills-link-active-bg;
-  }
+  // .nav-link.active,
+  // .show > .nav-link {
+  //   color: $nav-pills-link-active-color;
+  //   background-color: $nav-pills-link-active-bg;
+  // }
 }
 
 

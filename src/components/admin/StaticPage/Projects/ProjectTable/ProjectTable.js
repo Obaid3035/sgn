@@ -50,10 +50,12 @@ const ProjectTable = ( props ) => {
                                                 onClick={() => props.handleShow(project.id)}
                                                 className="btn btn-sm btn-primary">
                                                 <i className="far fa-eye" /></button>
-                                            { project.User.applicationForm ? props.changeStatus ?
-                                                <button onClick={() => props.changeStatus(project.id)} className="btn btn-sm btn-warning"><IntlMessages id="change" />
+                                            { project.User.applicationForm ? props.changeStatus  ?
+                                                props.allProject ?
+                                                <button onClick={() => props.changeStatus(project.id, project.status)} className="btn btn-sm btn-warning"><IntlMessages id="change" />
                                                     <IntlMessages id="status" /></button> :
-                                                '' : ''
+                                                    <button onClick={() => props.changeStatus(project.id)} className="btn btn-sm btn-warning"><IntlMessages id="change" />
+                                                        <IntlMessages id="status" /></button> : '' : ''
                                             }
                                         </td>
                                     </>

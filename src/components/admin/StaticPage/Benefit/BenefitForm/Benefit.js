@@ -10,9 +10,29 @@ const BenefitForm = ( props ) => {
     const [benefitData, setBenefitData] = useState([])
     const id = props.match.params.id;
     useEffect(() => {
-        axios.get('/admin/benefits')
+        axios.get('/admin/user-benefit/' + id)
             .then((res) => {
-                setBenefitData(res.data)
+                console.log(res.data)
+                let allBenefit = res.data.benefits
+                const userBenefit = res.data.user.benefits;
+                if (userBenefit.length > 0) {
+                    allBenefit.forEach((i) => {
+                        userBenefit.forEach((j) => {
+                            if (i.id === j.id) {
+                                i.alpha = true
+                            }
+                        })
+                    })
+                } else if (allBenefit.length > 0) {
+                    allBenefit = allBenefit.map((i) => {
+                        return {
+                            ...i,
+                            alpha: false
+                        }
+                    })
+                }
+                console.log(allBenefit)
+                setBenefitData(allBenefit)
                 setLoaded(true)
                 console.log('gg')
             })
@@ -20,7 +40,7 @@ const BenefitForm = ( props ) => {
 
     const inputChangeHandler = ( event, inputIdentifier, index ) => {
         const updatedBenefitData = [...benefitData]
-        updatedBenefitData[index].assigned = !updatedBenefitData[index].assigned;
+        updatedBenefitData[index].alpha = !updatedBenefitData[index].alpha;
         setBenefitData(updatedBenefitData)
 
         // updatedBenefits[index].assigned = !updatedBenefits[index].assigned
@@ -34,7 +54,7 @@ const BenefitForm = ( props ) => {
         e.preventDefault();
         const idArr = []
         benefitData.forEach((i) => {
-            idArr.push({id: i.id, assigned: i.assigned})
+            idArr.push({id: i.id, assigned: i.alpha})
         })
         axios.post('/admin/addbenefit/' + id, idArr)
             .then((res) => {
@@ -73,7 +93,7 @@ const BenefitForm = ( props ) => {
                                 <label className="switch">
                                     <input className="inputElement form-control" type="checkbox" placeholder=""
                                            onChange={(e) => inputChangeHandler( e, benefit.id, index)}
-                                           checked={benefit.assigned}
+                                           checked={benefit.alpha}
                                     />
                                     <div className="slider" />
                                 </label>

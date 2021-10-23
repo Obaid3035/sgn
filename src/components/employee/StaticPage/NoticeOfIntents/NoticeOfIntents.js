@@ -166,8 +166,8 @@ const EmployeeNoticeOfIntents = (props ) => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center">
-                                    <h4 className="card-title mb-0"><IntlMessages id="intent" /></h4>
-                                    <button type="button" onClick={handleShow}
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="intent" /></h3>
+                                    <button style={{fontSize: "15px"}} type="button" onClick={handleShow}
                                             className="btn btn-primary btn-lg"><IntlMessages id="add" />
                                     </button>
                                 </div>

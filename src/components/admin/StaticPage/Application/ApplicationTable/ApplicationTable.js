@@ -8,23 +8,23 @@ const ApplicationTable = ( props ) => (
         {props.loaded ? (props.applicationForm.length > 0 ? <table className="table" id="applications-list-table">
             <thead className="">
             <tr>
-                <th>
+                <th style={{fontWeight: "bold"}}>
                 <IntlMessages id="main_id" />  
                 </th>
-                <th>
+                <th style={{fontWeight: "bold"}}>
                 <IntlMessages id="appli_name" />     
                 </th>
-                <th>
+                <th style={{fontWeight: "bold"}}>
                 <IntlMessages id="loc" />        
                 </th>
-                <th>
+                <th style={{fontWeight: "bold"}}>
                 <IntlMessages id="applied_for" />   
                 </th>
-                {props.all ? <th><IntlMessages id="status" /></th>: ''}
-                <th>
+                {props.all ? <th style={{fontWeight: "bold"}}><IntlMessages id="status" /></th>: ''}
+                <th style={{fontWeight: "bold"}}>
                 <IntlMessages id="applied_on" />   
                 </th>
-                <th>
+                <th style={{fontWeight: "bold"}}>
                 <IntlMessages id="action" />   
                 </th>
             </tr>

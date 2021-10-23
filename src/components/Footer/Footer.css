@@ -3,6 +3,17 @@
 }
 
 .footer form input {
+    font-size: 16px;
+    margin-bottom: 1rem;
+    height: 4rem !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 6px;
+}
+
+.footer form textarea {
+    font-size: 16px;
     margin-bottom: 1rem;
     height: 4rem !important;
     border-width: 1px;

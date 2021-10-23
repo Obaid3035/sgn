@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ApplicationTable from "./ApplicationTable/ApplicationTable";
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
 import IntlMessages from '../../../../Util/IntlMessages';
-import {Button, Form, Modal} from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import AsyncSelect from 'react-select/async';
 
 const Application = () => {
@@ -27,8 +27,8 @@ const Application = () => {
     const token = localStorage.getItem('token')
     useEffect(() => {
 
-        if(role.includes('subAdmin')) {
-            axios.get('/subAdmin-application', {headers: {"Authorization": `Bearer ${token}`}})
+        if (role.includes('subAdmin')) {
+            axios.get('/subAdmin-application', { headers: { "Authorization": `Bearer ${token}` } })
                 .then((res) => {
                     setUnderReviewApplication(res.data.applicationForm)
                     setDeclinedApplication(res.data.declinedApplicant)
@@ -51,7 +51,7 @@ const Application = () => {
             .then((res) => {
                 setSubAdmin(res.data)
             })
-    },[loaded])
+    }, [loaded])
 
 
     const Notify = () => toast.success('Application Updated Successfully', {
@@ -75,7 +75,7 @@ const Application = () => {
         setShow(!show)
     }
 
-    const declineApplicationHandler = ( id ) => {
+    const declineApplicationHandler = (id) => {
         axios.put('/admin/application/decline/' + id, {})
             .then((res) => {
                 console.log(res);
@@ -84,7 +84,7 @@ const Application = () => {
             })
     }
 
-    const activeApplicationHandler = ( id ) => {
+    const activeApplicationHandler = (id) => {
         axios.put('/admin/application/active/' + id, {})
             .then((res) => {
                 console.log(res);
@@ -94,7 +94,7 @@ const Application = () => {
     }
 
     const handleShow = () => setShow(!show);
-    const onSubmitHandler =(e) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log(formData)
         axios.put('/admin/application/hired/' + userId, formData)
@@ -107,11 +107,11 @@ const Application = () => {
     }
     const inputChangeHandler = (e) => {
         console.log(e.target.value)
-        setFormData({...formData, referralID: e.target.value})
+        setFormData({ ...formData, referralID: e.target.value })
     }
 
     const showSubAdminHandler = (e) => {
-        setFormData({...formData, showSubAdmin: e.target.value})
+        setFormData({ ...formData, showSubAdmin: e.target.value })
     }
     const servicesPromiseHandler = () =>
         new Promise(resolve => {
@@ -141,12 +141,12 @@ const Application = () => {
                     <div className="col-sm-4">
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" name="showSubAdmin" type="radio" id="yes"
-                                   value={true} onChange={showSubAdminHandler} />
+                                value={true} onChange={showSubAdminHandler} />
                             <label className="form-check-label" htmlFor="yes"><IntlMessages id="yes" /></label>
                         </div>
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" name="showSubAdmin" type="radio" id="no"
-                                   value={false} onChange={showSubAdminHandler} />
+                                value={false} onChange={showSubAdminHandler} />
                             <label className="form-check-label" htmlFor="no"><IntlMessages id="no" /></label>
                         </div>
                     </div>
@@ -163,112 +163,99 @@ const Application = () => {
                         value={formData.subAdmins}
                         onChange={handleInputChange}
                         loadOptions={servicesPromiseHandler}
-                    />                </Form.Group> : null }
+                    />                </Form.Group> : null}
             <Button type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="enter" /></Button>
         </Form>
     )
 
 
     return (
-       <>
-           <Modal
-               show={show}
-               onHide={handleShow}
-               animation={false}
-               size={'md'}
-               centered
-           >
-               <Modal.Header closeButton>
-                   <Modal.Title><IntlMessages id="ref_id" /></Modal.Title>
-               </Modal.Header>
-               <Modal.Body>
-                   {form}
-               </Modal.Body>
-           </Modal>
-           <div className="content">
-               <ToastContainer
-                   position="top-center"
-                   autoClose={2000}
-                   hideProgressBar={false}
-                   newestOnTop={false}
-                   closeOnClick
-                   rtl={false}
-                   pauseOnFocusLoss={false}
-                   draggable
-                   pauseOnHover
-               />
-               <div className="container-fluid">
-                   <div className="row">
-                       <div className="col-md-12 job-list">
-                           <div className="card">
-                               <div className="card-header card-header-primary">
-                                   <h4 className="card-title mb-0"><IntlMessages id="appli_list" /></h4>
-                               </div>
-                               <div className="card-body">
-                                   <div className="project-section">
-                                       <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                           <li className="nav-item" role="presentation">
-                                               <a className="nav-link btn btn-sm btn-outline btn-outline-primary active mr-2"
-                                                  id="all-tab" data-toggle="pill" href="#all" role="tab"
-                                                  aria-controls="all" aria-selected="false"><IntlMessages id="all" /></a>
-                                           </li>
-                                           <li className="nav-item" role="presentation">
-                                               <a className="nav-link btn btn-sm btn-outline btn-outline-warning mr-2"
-                                                  id="review-tab" data-toggle="pill" href="#review" role="tab"
-                                                  aria-controls="review" aria-selected="false"><IntlMessages id="under_rev" /></a>
-                                           </li>
-                                           <li className="nav-item" role="presentation">
-                                               <a className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
-                                                  id="hired-tab" data-toggle="pill" href="#hired" role="tab"
-                                                  aria-controls="hired" aria-selected="false"><IntlMessages id="hired" /></a>
-                                           </li>
-                                           <li className="nav-item" role="presentation">
-                                               <a className="nav-link btn btn-sm btn-outline btn-outline-danger mr-2"
-                                                  id="rejected-tab" data-toggle="pill" href="#rejected" role="tab"
-                                                  aria-controls="rejected" aria-selected="false"><IntlMessages id="rejected" /></a>
-                                           </li>
-                                           <li className="nav-item dropdown ml-auto">
-                                               <a className="nav-link btn btn-sm btn-warning shadow btn-color-option"
-                                                  href="#" id="options" data-toggle="dropdown" aria-haspopup="true"
-                                                  aria-expanded="false">
-                                                   <i className="fas fa-ellipsis-v" />
-                                               </a>
-                                               <div className="dropdown-menu dropdown-menu-right" aria-labelledby="options">
-                                                   <a className="dropdown-item" href="#"><IntlMessages id="mark_red" /></a>
-                                                   <a className="dropdown-item" href="#"><IntlMessages id="mark_yellow" /></a>
-                                                   <a className="dropdown-item" href="#"><IntlMessages id="mark_green" /></a>
-                                                   <a className="dropdown-item" href="#"><IntlMessages id="mark_blue" /></a>
-                                               </div>
-                                           </li>
-                                       </ul>
-                                       <div className="tab-content" id="pills-tabContent">
-                                           <div className="tab-pane fade active show"  id="all" role="tabpanel"
+        <>
+            <Modal
+                show={show}
+                onHide={handleShow}
+                animation={false}
+                size={'md'}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title><IntlMessages id="ref_id" /></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {form}
+                </Modal.Body>
+            </Modal>
+            <div className="content">
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable
+                    pauseOnHover
+                />
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-12 job-list">
+                            <div className="card">
+                                <div className="card-header card-header-primary">
+                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="appli_list" /></h3>
+                                </div>
+                                <div className="card-body">
+                                    <div className="project-section">
+                                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li className="nav-item" role="presentation">
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-primary active mr-2"
+                                                    id="all-tab" data-toggle="pill" href="#all" role="tab"
+                                                    aria-controls="all" aria-selected="false"><IntlMessages id="all" /></a>
+                                            </li>
+                                            <li className="nav-item" role="presentation">
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-warning mr-2"
+                                                    id="review-tab" data-toggle="pill" href="#review" role="tab"
+                                                    aria-controls="review" aria-selected="false"><IntlMessages id="under_rev" /></a>
+                                            </li>
+                                            <li className="nav-item" role="presentation">
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-success mr-2"
+                                                    id="hired-tab" data-toggle="pill" href="#hired" role="tab"
+                                                    aria-controls="hired" aria-selected="false"><IntlMessages id="hired" /></a>
+                                            </li>
+                                            <li className="nav-item" role="presentation">
+                                                <a style={{ fontSize: '15px' }} className="nav-link btn btn-sm btn-outline btn-outline-danger mr-2"
+                                                    id="rejected-tab" data-toggle="pill" href="#rejected" role="tab"
+                                                    aria-controls="rejected" aria-selected="false"><IntlMessages id="rejected" /></a>
+                                            </li>
+                                        </ul>
+                                        <div className="tab-content" id="pills-tabContent">
+                                            <div className="tab-pane fade active show" id="all" role="tabpanel"
                                                 aria-labelledby="all-tab">
-                                               {loaded ? <ApplicationTable applicationForm={allApplication} all={'all'} loaded={loaded} accept={hiredApplicationHandler} declineApp={declineApplicationHandler} />
-                                                   : <div className="text-center"><Spinner /></div>}
-                                           </div>
-                                           <div className="tab-pane fade" id="review" role="tabpanel"
+                                                {loaded ? <ApplicationTable applicationForm={allApplication} all={'all'} loaded={loaded} accept={hiredApplicationHandler} declineApp={declineApplicationHandler} />
+                                                    : <div className="text-center"><Spinner /></div>}
+                                            </div>
+                                            <div className="tab-pane fade" id="review" role="tabpanel"
                                                 aria-labelledby="review-tab">
-                                               {loaded ? <ApplicationTable applicationForm={underReviewApplication} loaded={loaded} accept={hiredApplicationHandler} declineApp={declineApplicationHandler} />
-                                                   : <div className="text-center"><Spinner /></div>}
-                                           </div>
-                                           <div className="tab-pane fade" id="hired" role="tabpanel"
+                                                {loaded ? <ApplicationTable applicationForm={underReviewApplication} loaded={loaded} accept={hiredApplicationHandler} declineApp={declineApplicationHandler} />
+                                                    : <div className="text-center"><Spinner /></div>}
+                                            </div>
+                                            <div className="tab-pane fade" id="hired" role="tabpanel"
                                                 aria-labelledby="hired-tab">
-                                               {loaded ? <ApplicationTable applicationForm={hiredApplication}  loaded={loaded} hired={true} declineApp={declineApplicationHandler} activeApp={activeApplicationHandler}/> : <div className="text-center"><Spinner /></div> }
-                                           </div>
-                                           <div className="tab-pane fade" id="rejected" role="tabpanel"
+                                                {loaded ? <ApplicationTable applicationForm={hiredApplication} loaded={loaded} hired={true} declineApp={declineApplicationHandler} activeApp={activeApplicationHandler} /> : <div className="text-center"><Spinner /></div>}
+                                            </div>
+                                            <div className="tab-pane fade" id="rejected" role="tabpanel"
                                                 aria-labelledby="rejected-tab">
-                                               {loaded ? <ApplicationTable applicationForm={declinedApplication}  decline={true} loaded={loaded} accept={hiredApplicationHandler}/> : <div className="text-center"><Spinner /></div>}
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </>
+                                                {loaded ? <ApplicationTable applicationForm={declinedApplication} decline={true} loaded={loaded} accept={hiredApplicationHandler} /> : <div className="text-center"><Spinner /></div>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 };
 
