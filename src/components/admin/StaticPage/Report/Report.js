@@ -72,7 +72,7 @@ const Report = ( props ) => {
                                 <Form onSubmit={onSubmitHandler} className={'d-flex justify-content-around'}>
                                     <Form.Group>
                                         <select value={user} onChange={handleChange}>
-                                            <option selected value={''}><IntlMessages id="select" /></option>
+                                            <option selected value={''}>Please Select</option>
                                             {userArr.map((user, index) =>  (
                                                     <option key={index} value={user.value}>{user.label}</option>
                                                 )

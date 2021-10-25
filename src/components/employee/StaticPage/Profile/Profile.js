@@ -280,9 +280,9 @@ const EmployeeProfile = (props) => {
                                     <tbody>
                                         {benefits.map((benefit, index) => (
                                             <tr key={index}>
-                                                <td>{benefit.id}</td>
-                                                <td>{benefit.title}</td>
-                                                <td>{benefit.description}</td>
+                                                <td>{benefit.benefit.id}</td>
+                                                <td>{benefit.benefit.title}</td>
+                                                <td>{benefit.benefit.description}</td>
                                             </tr>
                                         ))}
                                     </tbody>

@@ -81,7 +81,7 @@ const Chats = ( props ) => {
                         resolve(res.data)
                     })
             } else {
-                axios.get('/admin/rewardUsers')
+                axios.get('/admin/chatUsers')
                     .then((res) => {
                         resolve(res.data)
                     })
@@ -169,13 +169,13 @@ const Chats = ( props ) => {
                                             <thead className="">
                                             <th>#</th>
                                             <th>
-                                            <IntlMessages id="date" />   
+                                            <IntlMessages id="date" />
                                             </th>
                                             <th>
-                                            <IntlMessages id="Sender" />   
+                                            <IntlMessages id="Sender" />
                                             </th>
                                             <th>
-                                            <IntlMessages id="Action" />  
+                                            <IntlMessages id="Action" />
                                             </th>
                                             </thead>
                                             <tbody>
