@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
-import {toast, ToastContainer} from "react-toastify";
-import {Button, Form, Modal} from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import { Button, Form, Modal } from "react-bootstrap";
 import IntlMessages from '../../../../Util/IntlMessages';
 
-const EmployeeProfile = ( props ) => {
+const EmployeeProfile = (props) => {
 
     const [profileData, setProfileData] = useState();
     const [contract, setContract] = useState(null);
@@ -20,7 +20,7 @@ const EmployeeProfile = ( props ) => {
 
 
     useEffect(() => {
-        axios.get('/role', {headers: {"Authorization": `Bearer ${token}`}})
+        axios.get('/role', { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 console.log(res.data.role)
                 setUserId(res.data.id)
@@ -35,25 +35,25 @@ const EmployeeProfile = ( props ) => {
     }, [])
 
     useEffect(() => {
-        axios.get('/profile', {headers: {"Authorization": `Bearer ${token}`}})
+        axios.get('/profile', { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 setProfileData(res.data);
                 setLoaded(true)
 
             })
-        axios.get('/contracts', {headers: {"Authorization": `Bearer ${token}`}})
+        axios.get('/contracts', { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 setContractData(res.data);
                 setLoaded(true)
             })
 
-        axios.get('/employee/benefit', {headers: {"Authorization": `Bearer ${token}`}})
+        axios.get('/employee/benefit', { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 setBenefits(res.data)
                 setLoaded(true)
             })
 
-        axios.get('/payment', {headers: {"Authorization": `Bearer ${token}`}})
+        axios.get('/payment', { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 setLoaded(true)
                 setPayment(res.data)
@@ -79,11 +79,11 @@ const EmployeeProfile = ( props ) => {
     // }
 
     const contractShowHandler = () => {
-        console.log('hello')
+
         setContractShow(!contractShow);
     }
 
-    const notify = (msg) => toast.success(msg ,{
+    const notify = (msg) => toast.success(msg, {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -97,7 +97,7 @@ const EmployeeProfile = ( props ) => {
     }
 
 
-    const contractUploadHandler = ( e ) => {
+    const contractUploadHandler = (e) => {
         e.preventDefault()
         const data = new FormData()
         data.append('contract', contract)
@@ -136,10 +136,10 @@ const EmployeeProfile = ( props ) => {
                             label={'Upload Contract'}
                             onChange={contractSelectHandler}
                             custom
+                            style={{ fontSize: "15px" }}
                         />
-
                         <div className="float-right mt-3">
-                            {contract ? <Button type="submit"  variant={'outline-warning'}><IntlMessages id="send" /></Button> : <Button type="submit" disabled  variant={'outline-warning'}><IntlMessages id="send" /></Button>}
+                            {contract ? <Button type="submit" style={{ fontSize: "15px" }} variant={'outline-warning'}><IntlMessages id="send" /></Button> : <Button type="submit" style={{ fontSize: "15px" }} disabled variant={'outline-warning'}><IntlMessages id="send" /></Button>}
                         </div>
                     </Form>
                 </Modal.Body>
@@ -162,58 +162,57 @@ const EmployeeProfile = ( props ) => {
                             <div className="card">
                                 <div className="card-header card-header-primary">
                                     <h4 className="card-title"><IntlMessages id="edit_pro" /></h4>
-                                    <p className="card-category"><IntlMessages id="com_pro" /></p>
                                 </div>
                                 {loaded ? profileData ? <div className="card-body">
                                     <form action="" className="pt-5" id="reviewApplication">
                                         <div className="form-row">
-                                            <div className="col-lg-4 mb-4">
+                                            <div className="col-lg-4 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="first_name" /></label>
-                                                    <input type="text" className="form-control" readOnly id=""
-                                                           value={profileData.profile.firstName} />
+                                                    <input style={{ fontSize: "15px" }} type="text" className="form-control" readOnly id=""
+                                                        value={profileData.profile.firstName} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-4 mb-4">
+                                            <div className="col-lg-4 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="middle_name" /></label>
-                                                    <input type="text" className="form-control" readOnly id=""
-                                                           value={profileData.profile.middleName} />
+                                                    <input style={{ fontSize: "15px" }} type="text" className="form-control" readOnly id=""
+                                                        value={profileData.profile.middleName} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-4 mb-4">
+                                            <div className="col-lg-4 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="last_name" /></label>
-                                                    <input type="text" className="form-control" readOnly id=""
-                                                           value={profileData.profile.lastName} />
+                                                    <input style={{ fontSize: "15px" }} type="text" className="form-control" readOnly id=""
+                                                        value={profileData.profile.lastName} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-12 mb-4">
+                                            <div className="col-lg-12 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="street_address" /></label>
-                                                    <input type="text" className="form-control" readOnly id=""
-                                                           value={profileData.profile.streetAddress} />
+                                                    <input style={{ fontSize: "15px" }} type="text" className="form-control" readOnly id=""
+                                                        value={profileData.profile.streetAddress} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-4 mb-4">
+                                            <div className="col-lg-4 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="city_state" /></label>
-                                                    <input type="text" className="form-control" readOnly id=""
-                                                           value={profileData.profile.zipCode} />
+                                                    <input style={{ fontSize: "15px" }} type="text" className="form-control" readOnly id=""
+                                                        value={profileData.profile.zipCode} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-4 mb-4">
+                                            <div className="col-lg-4 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="phone_no" /></label>
-                                                    <input type="tel" className="form-control" id="" name="phoneNumber"
-                                                           readOnly value={profileData.profile.phoneNumber} />
+                                                    <input style={{ fontSize: "15px" }} type="tel" className="form-control" id="" name="phoneNumber"
+                                                        readOnly value={profileData.profile.phoneNumber} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-4 mb-4">
+                                            <div className="col-lg-8 ">
                                                 <div className="form-group">
                                                     <label htmlFor=""><IntlMessages id="email" /></label>
-                                                    <input type="text" className="form-control" id="" name="email" readOnly
-                                                           value={profileData.email} />
+                                                    <input style={{ fontSize: "15px" }} type="text" className="form-control" id="" name="email" readOnly
+                                                        value={profileData.email} />
                                                 </div>
                                             </div>
                                         </div>
@@ -225,41 +224,41 @@ const EmployeeProfile = ( props ) => {
                             <div className="card">
                                 <div className="card-header card-header-primary d-flex justify-content-between">
                                     <h4 className="card-title "><IntlMessages id="contract" /></h4>
-                                    <button style={{fontSize: "15px"}} type="button" onClick={contractShowHandler}
-                                            className="btn btn-attachment btn-warning mx-4">
-                                      <IntlMessages id="add_contract" />  
+                                    <button style={{ fontSize: "15px" }} type="button" onClick={contractShowHandler}
+                                        className="btn btn-attachment btn-warning mx-4">
+                                        <IntlMessages id="add_contract" />
                                     </button>
                                 </div>
                                 <div className="card-body">
                                     {
                                         loaded ? contractData.length > 0 ? <div className="table-responsive">
-                                                <table className="table">
-                                                    <thead className=" text-primary">
+                                            <table className="table">
+                                                <thead className=" text-primary">
                                                     <tr>
                                                         <th>
-                                                        <IntlMessages id="main_id" /> 
+                                                            <IntlMessages id="main_id" />
                                                         </th>
                                                         <th>
-                                                        <IntlMessages id="name" />    
+                                                            <IntlMessages id="name" />
                                                         </th>
                                                         <th>
-                                                        <IntlMessages id="date" /> 
+                                                            <IntlMessages id="date" />
                                                         </th>
                                                     </tr>
-                                                    </thead>
-                                                    <tbody>
+                                                </thead>
+                                                <tbody>
                                                     {contractData.map((i, index) => (
                                                         <tr key={index}>
                                                             <td>{i.id}</td>
                                                             <td className="text-primary">
-                                                                <a href={'https://sleepy-savannah-00668.herokuapp.com/upload/'+i.id}>{i.name}</a>
+                                                                <a href={'https://sleepy-savannah-00668.herokuapp.com/upload/' + i.id}>{i.name}</a>
                                                             </td>
                                                             <td>{i.createdAt}</td>
                                                         </tr>
                                                     ))}
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                             : <h5 className="text-center"><IntlMessages id="no_contract" /></h5>
                                             : <div className="text-center"><Spinner /></div>
                                     }
@@ -272,20 +271,20 @@ const EmployeeProfile = ( props ) => {
                             {loaded ? benefits.length > 0
                                 ? <table className="table">
                                     <thead className="">
-                                    <tr>
-                                        <th>#</th>
-                                        <th><IntlMessages id="title" /></th>
-                                        <th><IntlMessages id="description" /></th>
-                                    </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th><IntlMessages id="title" /></th>
+                                            <th><IntlMessages id="description" /></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    { benefits.map((benefit, index) => (
-                                        <tr key={index}>
-                                            <td>{benefit.id}</td>
-                                            <td>{benefit.title}</td>
-                                            <td>{benefit.description}</td>
-                                        </tr>
-                                    ))}
+                                        {benefits.map((benefit, index) => (
+                                            <tr key={index}>
+                                                <td>{benefit.id}</td>
+                                                <td>{benefit.title}</td>
+                                                <td>{benefit.description}</td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table> : <h4><IntlMessages id="no_benefit" /> </h4>
                                 : <div className="text-center"><Spinner /></div>
@@ -299,33 +298,33 @@ const EmployeeProfile = ( props ) => {
                                 <div className="card-body">
                                     {
                                         loaded ? payment.length > 0 ? <div className="table-responsive">
-                                                <table className="table">
-                                                    <thead className=" text-primary">
+                                            <table className="table">
+                                                <thead className=" text-primary">
                                                     <tr>
                                                         <th>
-                                                        <IntlMessages id="main_id" />   
+                                                            <IntlMessages id="main_id" />
                                                         </th>
                                                         <th>
-                                                        <IntlMessages id="name" />    
+                                                            <IntlMessages id="name" />
                                                         </th>
                                                         <th>
-                                                        <IntlMessages id="date" />    
+                                                            <IntlMessages id="date" />
                                                         </th>
                                                     </tr>
-                                                    </thead>
-                                                    <tbody>
+                                                </thead>
+                                                <tbody>
                                                     {payment.map((i, index) => (
                                                         <tr key={index}>
                                                             <td>{i.id}</td>
                                                             <td className="text-primary">
-                                                                <a href={'https://sleepy-savannah-00668.herokuapp.com/payment/'+i.id}>{i.name}</a>
+                                                                <a href={'https://sleepy-savannah-00668.herokuapp.com/payment/' + i.id}>{i.name}</a>
                                                             </td>
                                                             <td>{i.createdAt}</td>
                                                         </tr>
                                                     ))}
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                             : <h5 className="text-center"><IntlMessages id="no_pay" /></h5>
                                             : <div className="text-center"><Spinner /></div>
                                     }

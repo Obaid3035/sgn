@@ -1,12 +1,12 @@
-import React, {useState} from "react";
-import {Button, Form} from "react-bootstrap";
-import {useAuth} from "../../../context/AuthContext";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useAuth } from "../../../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import Spinner from "../../UI/ProgressBar/ProgressBar";
 import IntlMessages from '../../../Util/IntlMessages';
 
 
-const Login = ( props ) => {
+const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +19,7 @@ const Login = ( props ) => {
         password
     }
 
-    const errorNotify = (msg) => toast.error(msg===401 || msg===400 ? 'Invalid Email or Password' : '', {
+    const errorNotify = (msg) => toast.error(msg === 401 || msg === 400 ? 'Invalid Email or Password' : '', {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -30,7 +30,7 @@ const Login = ( props ) => {
 
 
 
-    const onSubmitHandler = ( e ) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault();
         setLoaded(false)
         adminLogin(data, errorNotify, setEmail, setPassword, setLoaded);
@@ -62,19 +62,19 @@ const Login = ( props ) => {
                     <div className="col-md-5">
                         <div className="card text-center">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title font-weight-bold"><IntlMessages id="login_btn" /></h4>
+                                <h2 style={{ fontWeight: "bold" }} className="card-title font-weight-bold"><IntlMessages id="login_btn" /></h2>
                             </div>
                             <div className="card-body">
                                 <Form onSubmit={onSubmitHandler} className="my-5" >
                                     <Form.Group className="mb-4">
                                         <Form.Label><IntlMessages id="Email" /></Form.Label>
-                                        <Form.Control type="email" required className="form-control" placeholder="Enter Email/Username" onChange={(e) => emailChangeHandler(e)} value={email} />
+                                        <Form.Control style={{fontSize: "15px"}} type="email" required className="form-control" placeholder="Enter Email/Username" onChange={(e) => emailChangeHandler(e)} value={email} />
                                     </Form.Group>
                                     <Form.Group className="mb-4">
                                         <Form.Label><IntlMessages id="main_password" /></Form.Label>
-                                        <Form.Control type="password" required className="form-control" placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password}  />
+                                        <Form.Control style={{fontSize: "15px"}} type="password" required className="form-control" placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password} />
                                     </Form.Group>
-                                    {loaded ? <Button type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button> : <Spinner />}
+                                    {loaded ? <Button style={{fontSize: "15px"}} type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button> : <Spinner />}
                                 </Form>
                             </div>
                         </div>

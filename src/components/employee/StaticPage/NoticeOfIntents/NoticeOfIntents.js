@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {Button, Modal} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 import Aux from "../../../../hoc//wrapper/Wrapper";
 import axios from "axios";
 import Input from "../../../UI/Input/Input";
 import formConfig from "../../../../helpers/formConfig";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Spinner from "../../../UI/ProgressBar/ProgressBar";
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import IntlMessages from '../../../../Util/IntlMessages';
 
-const EmployeeNoticeOfIntents = (props ) => {
+const EmployeeNoticeOfIntents = (props) => {
     const [noticeOfIntent, setNoticeOfIntent] = useState([]);
     const [show, setShow] = useState(false);
     const [loaded, setLoaded] = useState(false);
@@ -24,7 +24,7 @@ const EmployeeNoticeOfIntents = (props ) => {
     const token = localStorage.getItem('token')
 
     useEffect(() => {
-        axios.get('/employee/noticeofintent', {headers: {"Authorization": `Bearer ${token}`}})
+        axios.get('/employee/noticeofintent', { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 setNoticeOfIntent(res.data);
                 setLoaded(true)
@@ -45,11 +45,9 @@ const EmployeeNoticeOfIntents = (props ) => {
         const updatedNoticeForm = {
             ...noticeOfIntentForm
         }
-
         const updatedFormElement = {
             ...updatedNoticeForm[inputIdentifier]
         }
-
         updatedFormElement.value = event.target.value;
         updatedNoticeForm[inputIdentifier] = updatedFormElement;
 
@@ -57,7 +55,7 @@ const EmployeeNoticeOfIntents = (props ) => {
     }
 
     const formElementArray = [];
-    for (const key in noticeOfIntentForm ) {
+    for (const key in noticeOfIntentForm) {
         formElementArray.push({
             id: key,
             config: noticeOfIntentForm[key],
@@ -68,12 +66,12 @@ const EmployeeNoticeOfIntents = (props ) => {
         e.preventDefault();
         setShow(false)
         const formData = {};
-        for(const formElementIdentifier in noticeOfIntentForm) {
+        for (const formElementIdentifier in noticeOfIntentForm) {
             formData[formElementIdentifier] = noticeOfIntentForm[formElementIdentifier].value;
         }
         console.log(formData)
 
-        axios.post('/employee/noticeofintent', formData, {headers: {"Authorization": `Bearer ${token}`}})
+        axios.post('/employee/noticeofintent', formData, { headers: { "Authorization": `Bearer ${token}` } })
             .then((res) => {
                 console.log(res.data)
                 Notify()
@@ -87,11 +85,9 @@ const EmployeeNoticeOfIntents = (props ) => {
                     additionalInformation: formConfig('input', 'col-md-12', 'text', 'Additional Info'),
                 })
             })
-
-
     }
 
-    const datePickerHandler =(date, inputIdentifier)=> {
+    const datePickerHandler = (date, inputIdentifier) => {
 
         const updatedNoticeForm = {
             ...noticeOfIntentForm
@@ -110,7 +106,7 @@ const EmployeeNoticeOfIntents = (props ) => {
     const form = (
         <form onSubmit={formSubmitHandler}>
             <div className="form-row">
-                {formElementArray.map(( formElement, index ) => (
+                {formElementArray.map((formElement, index) => (
                     <Input
                         key={index}
                         elementType={formElement.config.elementType}
@@ -134,11 +130,11 @@ const EmployeeNoticeOfIntents = (props ) => {
     const table = noticeOfIntent.map((notice, index) => {
         return (
             <tr key={index}>
-                <td>{notice.id}</td>
-                <td>{notice.businessName}</td>
-                <td>{notice.planOnGoing}</td>
-                <td>{notice.createdAt}</td>
-                <td><span className="badge badge-pill badge-secondary">{notice.status==='underReview'
+                <td >{notice.id}</td>
+                <td >{notice.businessName}</td>
+                <td >{notice.planOnGoing}</td>
+                <td >{notice.createdAt}</td>
+                <td ><span className="badge badge-pill badge-secondary">{notice.status === 'underReview'
                     ? 'Under Review'
                     : notice.status}</span></td>
                 <td>
@@ -166,25 +162,25 @@ const EmployeeNoticeOfIntents = (props ) => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header d-flex justify-content-between align-items-center">
-                                    <h3 style={{fontWeight: "bold"}} className="card-title mb-0"><IntlMessages id="intent" /></h3>
-                                    <button style={{fontSize: "15px"}} type="button" onClick={handleShow}
-                                            className="btn btn-primary btn-lg"><IntlMessages id="add" />
+                                    <h3 style={{ fontWeight: "bold" }} className="card-title mb-0"><IntlMessages id="intent" /></h3>
+                                    <button style={{ fontSize: "15px" }} type="button" onClick={handleShow}
+                                        className="btn btn-primary btn-lg"><IntlMessages id="add" />
                                     </button>
                                 </div>
                                 <div className="card-body">
                                     <div className="table-responsive">
                                         {loaded ? noticeOfIntent.length > 0 ? <table className="table table-striped">
                                             <thead className="">
-                                            <tr>
-                                                <th>#</th>
-                                                <th><IntlMessages id="bus_name" /></th>
-                                                <th><IntlMessages id="date_time" /></th>
-                                                <th><IntlMessages id="status" /></th>
-                                                <th><IntlMessages id="action" /></th>
-                                            </tr>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th><IntlMessages id="bus_name" /></th>
+                                                    <th><IntlMessages id="date_time" /></th>
+                                                    <th><IntlMessages id="status" /></th>
+                                                    <th><IntlMessages id="action" /></th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            {table}
+                                                {table}
                                             </tbody>
                                         </table> : <h4 className="text-center"><IntlMessages id="no_notice" /></h4> : <div className="text-center"><Spinner /></div>}
                                     </div>

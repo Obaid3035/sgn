@@ -59,18 +59,17 @@ const NavigationItems = (props) => {
         setPassword(e.target.value)
     }
 
-
     const form = (
         <Form className="my-5" onSubmit={onSubmitHandler}>
             <Form.Group >
                 <Form.Label><IntlMessages id="main_email" /></Form.Label>
-                <Form.Control type="email" className="form-control" required placeholder="Enter Email/Username" onChange={(e) => emailChangeHandler(e)} value={email} />
+                <Form.Control style={{fontSize: "15px"}} type="email" className="form-control" required placeholder="Enter Email/Username" onChange={(e) => emailChangeHandler(e)} value={email} />
             </Form.Group>
             <Form.Group>
                 <Form.Label><IntlMessages id="main_password" /></Form.Label>
-                <Form.Control type="password" className="form-control" required placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password} />
+                <Form.Control style={{fontSize: "15px"}} type="password" className="form-control" required placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password} />
             </Form.Group>
-            <Button type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button>
+            <Button style={{fontSize: "15px"}} type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button>
         </Form>
     )
     return (
@@ -87,10 +86,10 @@ const NavigationItems = (props) => {
                     draggable
                     pauseOnHover
                 />
-                <NavigationItem link={'/'} exact><IntlMessages id="home_nav" /></NavigationItem>
-                <NavigationItem link={'/about'} ><IntlMessages id="home_about" /></NavigationItem>
-                <NavigationItem link={'/career'} ><IntlMessages id="home_career" /></NavigationItem>
-                <NavigationItem link={'/contact'}><IntlMessages id="home_contact" /></NavigationItem>
+                <NavigationItem className={'main-nav'} link={'/'} exact><IntlMessages id="home_nav" /></NavigationItem>
+                <NavigationItem className={'main-nav'} link={'/about'} ><IntlMessages id="home_about" /></NavigationItem>
+                <NavigationItem className={'main-nav'} link={'/career'} ><IntlMessages id="home_career" /></NavigationItem>
+                <NavigationItem className={'main-nav'} link={'/contact'}><IntlMessages id="home_contact" /></NavigationItem>
                 {(loggedIn === 'true') ? <NavigationItem link={'/applicationStatus'}><IntlMessages id="home_application" /></NavigationItem> : ''}
                 {(loggedIn !== 'true') ? loaded ? <button onClick={handleShow} className={'btn btn-lg btn-warning'} ><IntlMessages id="sign_in" /></button> : <Spinner /> : <button onClick={() => logout(setEmail, setPassword)} className={'btn btn-lg btn-warning'} ><IntlMessages id="sign_out" /></button>}
 
@@ -113,7 +112,7 @@ const NavigationItems = (props) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title><IntlMessages id="login_btn" /></Modal.Title>
+                    <Modal.Title><IntlMessages style={{fontSize: "15px", fontWeight: "bold"}} id="login_btn" /></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {form}

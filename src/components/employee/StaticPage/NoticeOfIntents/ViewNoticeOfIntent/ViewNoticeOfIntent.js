@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 import Spinner from "../../../../UI/ProgressBar/ProgressBar";
 import IntlMessages from '../../../../../Util/IntlMessages';
 
-const EmployeeViewNoticeOfIntent = ( props ) => {
+const EmployeeViewNoticeOfIntent = (props) => {
     const [loaded, setLoaded] = useState(false);
-    const [ formFields, setFormFields ] = useState({
+    const [formFields, setFormFields] = useState({
         businessName: '',
         potential: '',
         planOnGoing: '',
@@ -35,45 +35,52 @@ const EmployeeViewNoticeOfIntent = ( props ) => {
                                 {loaded ? <Form className="pt-5" id="addIntentForm">
                                     <Form.Group className="mb-4">
                                         <Form.Label><IntlMessages id="bus_intent" /></Form.Label>
-                                        <Form.Control type="text"
-                                                      name="businessName"
-                                                      readOnly
-                                                      value= {formFields.businessName}
+                                        <Form.Control
+                                            style={{ fontSize: "15px" }}
+                                            type="text"
+                                            name="businessName"
+                                            readOnly
+                                            value={formFields.businessName}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-4">
                                         <Form.Label><IntlMessages id="what_potent" /></Form.Label>
                                         <Form.Control type="text"
-                                                      name="potential"
-                                                      readOnly
-                                                      value= {formFields.potential}
+                                            style={{ fontSize: "15px" }}
+                                            name="potential"
+                                            readOnly
+                                            value={formFields.potential}
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
                                         <Form.Label><IntlMessages id="plan_cal" /></Form.Label>
                                         <Form.Control type="text"
-                                                      name="planOnGoing"
-                                                      readOnly
-                                                      value= {formFields.planOnGoing}
+                                            style={{ fontSize: "15px" }}
+                                            name="planOnGoing"
+                                            readOnly
+                                            value={formFields.planOnGoing}
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
                                         <Form.Label><IntlMessages id="phone_visit" /></Form.Label>
                                         <Form.Control type="tel"
-                                                      name="businessPhoneNumber"
-                                                      readOnly
-                                                      value= {formFields.businessPhoneNumber}
+                                            style={{ fontSize: "15px" }}
+                                            name="businessPhoneNumber"
+                                            readOnly
+                                            value={formFields.businessPhoneNumber}
                                         />
                                     </Form.Group>
                                     <Form.Group className="form-group mb-4">
                                         <Form.Label><IntlMessages id="add_info" /></Form.Label>
-                                        <Form.Control as={'textarea'} className="text-left" rows="6"
-                                                      name="additionalInformation"
-                                                      readOnly
-                                                      value= {formFields.additionalInformation}
+                                        <Form.Control as={'textarea'}
+                                            style={{ fontSize: "15px" }}
+                                            className="text-left" rows="6"
+                                            name="additionalInformation"
+                                            readOnly
+                                            value={formFields.additionalInformation}
                                         />
                                     </Form.Group>
-                                </Form> : <div className="text-center"><Spinner /></div> }
+                                </Form> : <div style={{fontSize: "15px"}} className="text-center"><Spinner /></div>}
                             </div>
                         </div>
                     </div>

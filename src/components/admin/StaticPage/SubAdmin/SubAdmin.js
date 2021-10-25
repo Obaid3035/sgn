@@ -141,7 +141,7 @@ const SubAdmin = (props) => {
                                             aria-controls="warning" aria-selected="false">Enabled</a>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <a  className="nav-link btn btn-outline btn-outline-info mr-2"
+                                        <a style={{ fontSize: '15px' }} className="nav-link btn btn-outline btn-outline-info mr-2"
                                             id="all-tab" data-toggle="pill" href="#completed" role="tab"
                                             aria-controls="success" aria-selected="false">Disabled</a>
                                     </li>

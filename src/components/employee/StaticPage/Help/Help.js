@@ -76,7 +76,7 @@ const EmployeeHelp = ( props ) => {
                                         <div className="col-lg-12 ">
                                             <div className="form-group ">
                                                 <label htmlFor=" "><IntlMessages id="type_ques" /></label>
-                                                <textarea className="form-control" value={message} onChange={messageChangeHandler}  cols="30 "
+                                                <textarea style={{fontSize: "15px"}} className="form-control" value={message} onChange={messageChangeHandler}  cols="30 "
                                                           rows="5 " />
                                             </div>
                                         </div>
