@@ -13,6 +13,7 @@ const Report = ( props ) => {
     const [completedTask, setCompletedTask] = useState([])
     const [underReviewTask, setUnderReviewTask] = useState([])
     const [approvedTask, setApprovedTask] = useState([])
+    const [commisionedTask, setCommisionedTask] = useState([])
     const [endDate, setEndDate] = useState('');
 
 
@@ -53,6 +54,7 @@ const Report = ( props ) => {
                 setApprovedTask(res.data.approvedTask);
                 setCompletedTask(res.data.completedTask);
                 setUnderReviewTask(res.data.underReviewTask)
+                setCommisionedTask(res.data.commisionedTask)
             })
         console.log(formData)
     }
@@ -107,6 +109,11 @@ const Report = ( props ) => {
                                    <div>
                                        <h4><IntlMessages id="un_task" /></h4>
                                        {underReviewTask ? <h4 className={'text-center'}>{underReviewTask.length}</h4>  : <h5><IntlMessages id="no_task" /></h5> }
+                                   </div>
+
+                                   <div>
+                                       <h4>Commisioned Task</h4>
+                                       {commisionedTask ? <h4 className={'text-center'}>{commisionedTask.length}</h4>  : <h5><IntlMessages id="no_task" /></h5> }
                                    </div>
                                </div>
                             </div>

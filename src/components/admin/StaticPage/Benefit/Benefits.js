@@ -113,12 +113,24 @@ const Benefits = ( props ) => {
     const handleShow = () => {
         setShow(!show);
     }
+
+    const onDeleteHandler = (id) => {
+        axios.delete('/admin/benefit/' + id)
+            .then((res) => {
+                console.log(res.data)
+                setLoaded(false)
+            }).catch((err) => {
+            setLoaded(true)
+        })
+    }
     const table = benefitData.map((notice, index) => {
         return (
             <tr key={index}>
                 <td>{notice.id}</td>
                 <td>{notice.title}</td>
                 <td>{notice.description}</td>
+                <td><button type="button" onClick={() => onDeleteHandler(notice.id)} className="btn btn-danger"><IntlMessages id="delete" />
+                </button></td>
             </tr>
         )
     })
@@ -157,13 +169,16 @@ const Benefits = ( props ) => {
                                                             <thead className="">
                                                             <tr>
                                                                 <th>
-                                                                <IntlMessages id="main_id" /> 
+                                                                <IntlMessages id="main_id" />
                                                                 </th>
                                                                 <th>
-                                                                <IntlMessages id="title" />     
+                                                                <IntlMessages id="title" />
                                                                 </th>
                                                                 <th>
-                                                                <IntlMessages id="description" />   
+                                                                <IntlMessages id="description" />
+                                                                </th>
+                                                                <th>
+                                                                    Action
                                                                 </th>
                                                             </tr>
                                                             </thead>

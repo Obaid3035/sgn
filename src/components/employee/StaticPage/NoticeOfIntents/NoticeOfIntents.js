@@ -16,7 +16,7 @@ const EmployeeNoticeOfIntents = (props) => {
     const [noticeOfIntentForm, setNoticeOfIntentForm] = useState({
         businessName: formConfig('input', 'col-md-6', 'text', 'Business Name'),
         potential: formConfig('input', 'col-md-6', 'text', 'Potential'),
-        planOnGoing: formConfig('date', 'col-md-6', 'text', 'Date', Date.now()),
+        planOnGoing: formConfig('dateTime', 'col-md-6', 'text', 'Date'),
         businessPhoneNumber: formConfig('input', 'col-md-6', 'text', 'Phone Number'),
         additionalInformation: formConfig('input', 'col-md-12', 'text', 'Additional Info'),
     })
