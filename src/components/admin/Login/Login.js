@@ -38,7 +38,7 @@ const Login = (props) => {
 
     const emailChangeHandler = (e) => {
         console.log(e.target.value)
-        setEmail(e.target.value)
+        setEmail(e.target.value.toLowerCase())
     }
 
     const passwordChangeHandler = (e) => {
