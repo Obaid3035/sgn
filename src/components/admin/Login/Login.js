@@ -4,6 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import Spinner from "../../UI/ProgressBar/ProgressBar";
 import IntlMessages from '../../../Util/IntlMessages';
+import {NavLink} from "react-router-dom";
 
 
 const Login = (props) => {
@@ -74,6 +75,16 @@ const Login = (props) => {
                                         <Form.Label><IntlMessages id="main_password" /></Form.Label>
                                         <Form.Control style={{fontSize: "15px"}} type="password" required className="form-control" placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password} />
                                     </Form.Group>
+                                    <NavLink
+                                        style={{
+                                            cursor: 'pointer',
+                                            'text-decoration': 'none'
+                                        }}
+                                        to={'/admin/forgot-password'}>
+                                        <p className={'text-muted'}>
+                                            Forget Password?
+                                        </p>
+                                    </NavLink>
                                     {loaded ? <Button style={{fontSize: "15px"}} type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button> : <Spinner />}
                                 </Form>
                             </div>

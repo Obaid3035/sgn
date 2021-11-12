@@ -14,6 +14,8 @@ import { IntlProvider } from 'react-intl';
 import { connect } from "react-redux";
 import AppLocale from './lang/index';
 import {setLanguage} from "./store/action/language";
+import ForgotPassword from "./components/admin/Login/ForgotPassword";
+import NewPassword from "./components/admin/Login/newPassword";
 
 //rehman3904561@cloud.neduet.edu.pk
 //bY09UH7
@@ -51,6 +53,8 @@ const App = ( props ) => {
           {loggedIn && role.includes('admin') ? <Route path={'/admin'} render={(props) =><AdminLayout {...props} />  }/> : ''}
           {loggedIn && (role.includes('employee') || role.includes('subAdmin') ) ? <Route path={'/employee'} render={(props) =><EmployeeLayout {...props} />  }/> : ''}
           {loggedIn && role.includes('candidate') ? <Route path={'/candidate'} render={(props) =><CandidateLayout {...props} />  }/> : ''}
+          <Route path={'/admin/resetPassword/:id'} exact component={NewPassword} />
+          <Route path={'/admin/forgot-password'} exact component={ForgotPassword} />
           <Route path={'/admin/login'} exact component={Login} />
           <Route render={(props) => <Layout {...props}/>} />
           <Route component={NotFound} />
