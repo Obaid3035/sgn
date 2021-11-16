@@ -83,9 +83,12 @@ const Questionare = (props) => {
     }
 
     const inputChangeHandler = (e) => {
-        const {name, value} = e.target
+        let {name, value} = e.target
         console.log(name, value);
         console.log(formFields.checkAddress)
+        if (name === 'email') {
+            value = value.toLowerCase();
+        }
         const updated = {...formFields}
         updated[name] = value
         setFormFields(updated)
@@ -150,7 +153,7 @@ const Questionare = (props) => {
                     <div className="col-md-12">
                         <h2 className={'font-weight-bold mt-5'}><IntlMessages id="help_ques" /></h2>
                         <p>
-                        <IntlMessages id="help_para" />    
+                        <IntlMessages id="help_para" />
                         </p>
                     </div>
                 </div>

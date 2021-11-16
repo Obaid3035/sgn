@@ -22,7 +22,8 @@ const NoticeOfIntents = () => {
         if(role.includes('subAdmin')) {
             axios.get('/subadmin-noticeofintents', {headers: {"Authorization": `Bearer ${token}`}})
                 .then((res) => {
-                    setNoticeOfIntent(res.data);
+                    console.log('NEW ', res.data)
+                    setNoticeOfIntent(res.data.result);
                     console.log('MY NOTICE',res.data)
                     setLoaded(true)
                 })

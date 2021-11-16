@@ -126,6 +126,15 @@ const Reward = ( props ) => {
         setShow(!show)
 
     };
+    const inActiveHandler = (id) => {
+        setLoaded(true)
+        axios.put('/admin/reward-status/' + id)
+            .then((res) => {
+                if (res.data.updated) {
+                    setLoaded(false)
+                }
+            })
+    }
     const editHandleShow = (id) => {
         setEditShow(!editShow)
         setRewardId(id);
@@ -170,7 +179,7 @@ const Reward = ( props ) => {
                                     <div className="tab-content" id="pills-tabContent">
                                         <div className="tab-pane fade  active show" id="onGoing" role="tabpanel"
                                              aria-labelledby="onGoing-tab">
-                                            {loaded ?  <Rewards RewardData={activeRewardData} loaded={loaded} editHandleShow={editHandleShow} />
+                                            {loaded ?  <Rewards RewardData={activeRewardData} loaded={loaded} inActiveHandler={inActiveHandler} editHandleShow={editHandleShow} />
                                                 : <div className="text-center"><Spinner /></div>}
                                         </div>
                                         <div className="tab-pane fade" id="completed" role="tabpanel"

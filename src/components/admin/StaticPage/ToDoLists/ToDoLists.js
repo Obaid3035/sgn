@@ -42,7 +42,8 @@ const ToDoLists = (props ) => {
         if(role.includes('subAdmin')) {
             axios.get('/successnotice-subadmin', {headers: {"Authorization": `Bearer ${token}`}})
                 .then((res) => {
-                    setToDoList(res.data);
+                    console.log('SUCCESS', res.data)
+                    setToDoList(res.data.result);
                     setLoaded(true)
                 });
         } else {

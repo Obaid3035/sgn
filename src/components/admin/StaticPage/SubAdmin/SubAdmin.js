@@ -55,7 +55,10 @@ const SubAdmin = (props) => {
     }
 
     const onChangeHandler = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+        if (name === 'email') {
+            value = value.toLowerCase();
+        }
         console.log(name, value);
         const updated = { ...formData }
         updated[name] = value

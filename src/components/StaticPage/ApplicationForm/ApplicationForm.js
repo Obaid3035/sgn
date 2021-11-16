@@ -325,8 +325,12 @@ const ApplicationForm = ( props ) => {
     }
 
     const emailChangeHandler = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
 
+        if (name === 'email') {
+            value = value.toLowerCase();
+        }
+        console.log(name, value)
         const updated = {...formFields}
         updated[name] = value;
         setFormFields(updated)

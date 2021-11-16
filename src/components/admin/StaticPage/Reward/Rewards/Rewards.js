@@ -28,7 +28,12 @@ const Rewards = ( props ) => {
                             className="far fa-eye" /></NavLink>
                         {
                             reward.status === 'onGoing' ?
-                                <button className={"btn btn-sm btn-primary ml-4 mt-3"} onClick={() => props.editHandleShow(reward.id)}><i className={'far fa-bell'}/></button>
+                                (
+                                    <>
+                                        <button className={"btn btn-sm btn-warning ml-4 mt-3"} onClick={() => props.editHandleShow(reward.id)}><i className={'far fa-bell'}/></button>
+                                        <button className={"btn btn-sm btn-primary ml-4 mt-3"} onClick={() => props.inActiveHandler(reward.id)}><i className={'far fa-bell'}/></button>
+                                    </>
+                                )
                                 : null
                         }
                     </tr>
