@@ -10,7 +10,6 @@ import AsyncSelect from "react-select/async/dist/react-select.esm";
 
 const ApplicationForm = ( props ) => {
     const id = props.match.params.id;
-
     const [subAdmins, setSubAdmins] = useState(true);
     const handleInputChange = (newValue) => {
         setSubAdmins(newValue)
@@ -20,7 +19,6 @@ const ApplicationForm = ( props ) => {
     const [timeRangeAvailableFrom, setTimeRangeAvailableFrom] = useState(null);
     const [timeRangeAvailableTo, setTimeRangeAvailableTo] = useState(null);
     const [resume, setResume] = useState(null);
-    const [applicantID, setApplicantID] = useState();
     const [ formFields, setFormFields ] = useState({
         currentStep: 1,
         email: '',
@@ -63,9 +61,7 @@ const ApplicationForm = ( props ) => {
         yearsCompleted: '',
         isGraduate: false,
         schoolDegree: '',
-    })
-
-    console.log(formFields.applicationForm.daysAvailable)
+    });
 
     const [college, setCollege] = useState({
         schoolName: '',
@@ -163,6 +159,7 @@ const ApplicationForm = ( props ) => {
     })
 
     let progressBar = 0;
+
     const handleSubmit = e => {
         e.preventDefault()
         const formData = {
@@ -171,14 +168,12 @@ const ApplicationForm = ( props ) => {
         setLoaded(false)
 
 
-        formData.referenceHistory.push(reference)
-        formData.referenceHistory.push(reference2)
-        formData.referenceHistory.push(reference3)
-
-        formData.educationHistory.push(school)
-        formData.educationHistory.push(vocational)
-        formData.educationHistory.push(college)
-
+        formData.referenceHistory.push(reference);
+        formData.referenceHistory.push(reference2);
+        formData.referenceHistory.push(reference3);
+        formData.educationHistory.push(school);
+        formData.educationHistory.push(vocational);
+        formData.educationHistory.push(college);
         formData.employmentHistory.push(employee)
         formData.employmentHistory.push(employee2)
         formData.employmentHistory.push(employee3)
@@ -186,7 +181,6 @@ const ApplicationForm = ( props ) => {
         formData.timeRangeAvailableFrom = timeRangeAvailableFrom
         formData.subAdmins = subAdmins;
 
-        console.log(formData)
         axios.post('/register', formData)
             .then((res) => {
                 console.log(res.data)
@@ -344,14 +338,10 @@ const ApplicationForm = ( props ) => {
         setTimeRangeAvailableTo(time)
     }
 
-
     const fileSelectHandler = (e) => {
         let files = e.target.files[0];
         setResume(files);
     }
-
-
-
 
     return (
         <section className="application-form py-5">
@@ -641,7 +631,7 @@ const Step2 = ( props ) => {
                     <div className="form-group row align-items-center">
                         <label htmlFor="" className="col-sm-4 col-form-label"><IntlMessages id="upload_resume" /></label>
                         <div className="col-sm-8">
-                            <input type="file" onChange={props.fileSelectHandler} name={'resume'} required id="resume"
+                            <input type="file" onChange={props.fileSelectHandler} accept={'.pdf,.jpg,.png'}  name={'resume'} required id="resume"
                                    className="form-control form-control-file" />
                         </div>
                     </div>
