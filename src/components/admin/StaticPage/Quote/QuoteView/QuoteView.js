@@ -27,7 +27,7 @@ const QuoteView = (props) => {
                         </div>
                         {quoteData.file ?  <div className="col-md-4 mb-5">
                             <p><IntlMessages id="file" /></p>
-                            <a href={'https://sleepy-savannah-00668.herokuapp.com/file/'+quoteData.file.id}>{quoteData.file.name}</a>
+                            <a href={'https://sgn-backend.herokuapp.com/file/'+quoteData.file.id}>{quoteData.file.name}</a>
                         </div> : ''}
                         <div className="col-md-12 job-list">
                             <div className="card">

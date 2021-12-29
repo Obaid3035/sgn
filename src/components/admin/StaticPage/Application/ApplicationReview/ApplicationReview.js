@@ -167,7 +167,7 @@ const ApplicationReview = ( props ) => {
                         </div>
                         {application.User.resume ?  <div className="col-md-4 mb-5">
                             <p><IntlMessages id="resume" /></p>
-                            <a href={'https://sleepy-savannah-00668.herokuapp.com/resume/'+application.User.resume.id}>{application.User.resume.name}</a>
+                            <a href={'https://sgn-backend.herokuapp.com/resume/'+application.User.resume.id}>{application.User.resume.name}</a>
                         </div> : ''}
                         <div className="col-md-12 job-list">
                             <div className="card">

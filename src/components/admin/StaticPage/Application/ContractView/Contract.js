@@ -138,7 +138,7 @@ const ContractView = ( props ) => {
                                                                 <tr>
                                                                     <td>{i.id}</td>
                                                                     <td>{i.createdAt}</td>
-                                                                    <td><a href={'https://sleepy-savannah-00668.herokuapp.com/upload/'+i.id}>{i.name}</a></td>
+                                                                    <td><a href={'https://sgn-backend.herokuapp.com/upload/'+i.id}>{i.name}</a></td>
                                                                     <td>
                                                                     <span
                                                                         className="badge badge-pill badge-warning">{i.status}</span>

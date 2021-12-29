@@ -251,7 +251,7 @@ const EmployeeProfile = (props) => {
                                                         <tr key={index}>
                                                             <td>{i.id}</td>
                                                             <td className="text-primary">
-                                                                <a href={'https://sleepy-savannah-00668.herokuapp.com/upload/' + i.id}>{i.name}</a>
+                                                                <a href={'https://sgn-backend.herokuapp.com/upload/' + i.id}>{i.name}</a>
                                                             </td>
                                                             <td>{i.createdAt}</td>
                                                         </tr>
@@ -317,7 +317,7 @@ const EmployeeProfile = (props) => {
                                                         <tr key={index}>
                                                             <td>{i.id}</td>
                                                             <td className="text-primary">
-                                                                <a href={'https://sleepy-savannah-00668.herokuapp.com/payment/' + i.id}>{i.name}</a>
+                                                                <a href={'https://sgn-backend.herokuapp.com/payment/' + i.id}>{i.name}</a>
                                                             </td>
                                                             <td>{i.createdAt}</td>
                                                         </tr>

@@ -301,7 +301,7 @@ const EmployeeDetail = ( props ) => {
                                               </button>
                                               <button type="button" onClick={receiptShowHandler}
                                                       className="btn btn-attachment btn-warning">
-                                                <IntlMessages id="pay" />  
+                                                <IntlMessages id="pay" />
                                               </button>
                                               <button type="button" onClick={contractShowHandler}
                                                       className="btn btn-attachment btn-warning mx-4">
@@ -311,7 +311,7 @@ const EmployeeDetail = ( props ) => {
                                                   !role.includes('subAdmin')  ?
                                                       <button type="button" onClick={makeAdminHandler}
                                                               className="btn btn-attachment btn-warning mx-4">
-                                                        <IntlMessages id="make_admin" />  
+                                                        <IntlMessages id="make_admin" />
                                                       </button>
                                                       : ''
                                               }
@@ -359,7 +359,7 @@ const EmployeeDetail = ( props ) => {
                                                                   <tr key={index}>
                                                                       <td>{i.id}</td>
                                                                       <td className="text-primary">
-                                                                          <a href={'https://sleepy-savannah-00668.herokuapp.com/upload/'+i.id}>{i.name}</a>
+                                                                          <a href={'https://sgn-backend.herokuapp.com/upload/'+i.id}>{i.name}</a>
                                                                       </td>
                                                                       <td>{i.createdAt}</td>
                                                                       <td>{i.status}</td>
