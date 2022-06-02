@@ -11,7 +11,7 @@ const Navigation = ( props ) => {
                 <button className={'navbar-toggler'} type={'button'} data-bs-toggle={'collapse'} data-bs-target={'#NAVBAR'}>
                     <i className={' nav-icon fa fa-bars'} />
                 </button>
-                <div id={'NAVBAR'} className={'collapse navbar-collapse'}>
+                <div id={'NAVBAR'} className={'collapse navbar-collapse justify-content-end'}>
                     <NavigationItems showButton={true} />
                 </div>
             </div>

@@ -245,7 +245,7 @@ const Application = () => {
                                             </div>
                                             <div className="tab-pane fade" id="rejected" role="tabpanel"
                                                 aria-labelledby="rejected-tab">
-                                                {loaded ? <ApplicationTable applicationForm={declinedApplication} decline={true} loaded={loaded} accept={hiredApplicationHandler} /> : <div className="text-center"><Spinner /></div>}
+                                                {loaded ? <ApplicationTable applicationForm={declinedApplication} rejected={true}  decline={true} loaded={loaded} accept={hiredApplicationHandler} /> : <div className="text-center"><Spinner /></div>}
                                             </div>
                                         </div>
                                     </div>

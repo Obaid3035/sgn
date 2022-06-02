@@ -45,10 +45,16 @@ if (role.includes('subAdmin')) {
                                                                       className="btn btn-sm btn-primary"><i
                         className="fas fa-eye"/></NavLink>}
                     {props.all ? '': <>
-                        <button role="button" onClick={onClick} className="btn btn-sm btn-success"><i
-                            className="fas fa-check text-white"/></button>
-                        {props.Decline ? '' : <button role="button" onClick={props.decline ? () => props.decline(props.id) : dummy} className="btn btn-sm btn-danger"><i
-                            className="fas fa-times text-white"/></button>}
+                        {
+                            !props.rejected ? (
+                                <button role="button" onClick={onClick} className="btn btn-sm btn-success"><i
+                                    className="fas fa-check text-white"/></button>
+                            ) : null
+                        }
+                        {
+                            props.Decline ? '' : <button role="button" onClick={props.decline ? () => props.decline(props.id) : dummy} className="btn btn-sm btn-danger"><i
+                                className="fas fa-times text-white"/></button>
+                        }
                     </> }
                 </td>
             </tr></>

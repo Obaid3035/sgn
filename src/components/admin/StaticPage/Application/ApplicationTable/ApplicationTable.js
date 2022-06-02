@@ -9,23 +9,23 @@ const ApplicationTable = ( props ) => (
             <thead className="">
             <tr>
                 <th style={{fontWeight: "bold"}}>
-                <IntlMessages id="main_id" />  
+                <IntlMessages id="main_id" />
                 </th>
                 <th style={{fontWeight: "bold"}}>
-                <IntlMessages id="appli_name" />     
+                <IntlMessages id="appli_name" />
                 </th>
                 <th style={{fontWeight: "bold"}}>
-                <IntlMessages id="loc" />        
+                <IntlMessages id="loc" />
                 </th>
                 <th style={{fontWeight: "bold"}}>
-                <IntlMessages id="applied_for" />   
+                <IntlMessages id="applied_for" />
                 </th>
                 {props.all ? <th style={{fontWeight: "bold"}}><IntlMessages id="status" /></th>: ''}
                 <th style={{fontWeight: "bold"}}>
-                <IntlMessages id="applied_on" />   
+                <IntlMessages id="applied_on" />
                 </th>
                 <th style={{fontWeight: "bold"}}>
-                <IntlMessages id="action" />   
+                <IntlMessages id="action" />
                 </th>
             </tr>
 
@@ -35,6 +35,7 @@ const ApplicationTable = ( props ) => (
                 <ApplicationList
                     key={index}
                     id={application.id}
+                    rejected={props.rejected}
                     all={props.all}
                     firstName={application.firstName}
                     status={application.applicationStatus}

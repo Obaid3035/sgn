@@ -59,10 +59,9 @@ const SubAdminForm = ( props ) => {
         }
         axios.post('/subAdmin/' + id, formData)
             .then((res) => {
-                console.log(res)
                 setLoaded(true)
-            })
-        console.log(formData)
+            });
+
         props.history.replace('/admin/subAdmin');
         window.location.reload();
     }

@@ -8,6 +8,7 @@ import Spinner from "../../UI/ProgressBar/ProgressBar";
 import LanguageProvider from '../LanguageProvider';
 import IntlMessages from '../../../Util/IntlMessages';
 import "./NavigationItems.css";
+import {NavLink} from "react-router-dom";
 //gROpNls
 const NavigationItems = (props) => {
     const [show, setShow] = useState(false);
@@ -70,6 +71,17 @@ const NavigationItems = (props) => {
                 <Form.Control style={{fontSize: "15px"}} type="password" className="form-control" required placeholder="Enter Password" onChange={(e) => passwordChangeHandler(e)} value={password} />
             </Form.Group>
             <Button style={{fontSize: "15px"}} type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button>
+            <NavLink
+                style={{
+                    cursor: 'pointer',
+                    'text-decoration': 'none',
+                    textAlign: "center"
+                }}
+                to={'/admin/forgot-password'}>
+                <p className={'text-muted'}>
+                    Forget Password?
+                </p>
+            </NavLink>
         </Form>
     )
     return (
