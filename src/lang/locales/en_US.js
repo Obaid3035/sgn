@@ -320,7 +320,7 @@ export const enMessages = {
    "date_time": "Date/Time",
    "no_notice": "No Notice Of Intent Found",
    "payment": "Payments",
-   "emp_name": "Employee Name",
+   "emp_name": "Employer Name",
    "status": "Status",
    "created_at": "Created At",
    "commisioned": "Commissioned",

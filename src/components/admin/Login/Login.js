@@ -82,7 +82,7 @@ const Login = (props) => {
                                         }}
                                         to={'/admin/forgot-password'}>
                                         <p className={'text-muted'}>
-                                            Forget Password?
+                                            Forgot Password?
                                         </p>
                                     </NavLink>
                                     {loaded ? <Button style={{fontSize: "15px"}} type={'submit'} href="" variant={'primary'} size={'lg'}><IntlMessages id="main_login" /></Button> : <Spinner />}

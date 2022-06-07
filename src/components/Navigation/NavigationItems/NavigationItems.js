@@ -79,7 +79,7 @@ const NavigationItems = (props) => {
                 }}
                 to={'/admin/forgot-password'}>
                 <p className={'text-muted'}>
-                    Forget Password?
+                    Forgot Password?
                 </p>
             </NavLink>
         </Form>
